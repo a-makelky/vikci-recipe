@@ -20,9 +20,11 @@ import {
 } from "./lib/io";
 import { evaluateReviewReasons, extractRecipeFromFile } from "./lib/ocr";
 import {
+  computePublicationHash,
   createSlugFromTitle,
   deriveRecipeId,
   ensureUniqueSlug,
+  isArtifactPublishCurrent,
   markArtifactPublished,
   markArtifactUnpublished,
   publishArtifact,
@@ -40,6 +42,7 @@ Usage:
   npm run recipes -- review
   npm run recipes -- show --id recipe-0001
   npm run recipes -- update --id recipe-0001 [--title \"...\"] [--ingredients \"a|b|c\"] [--publish]
+  npm run recipes -- republish-stale
   npm run recipes -- status
   npm run recipes -- approve --id recipe-0001
   npm run recipes -- publish --id recipe-0001
@@ -49,6 +52,7 @@ Commands:
   review   List staged recipes that still need manual review.
   show     Print a staged artifact with recipe fields and an OCR preview for manual review.
   update   Patch a staged artifact's recipe fields without hand-editing the raw JSON.
+  republish-stale  Rebuild approved recipes whose published pages are out of date with their staged artifact.
   status   Show repository counts for approved recipes, staged artifacts, and review queue items.
   approve  Mark a staged recipe as approved and publish it to the site.
   publish  Re-publish an already approved staged recipe and refresh its public assets.
@@ -73,6 +77,9 @@ async function main() {
       break;
     case "update":
       await updateCommand(rest);
+      break;
+    case "republish-stale":
+      await republishStaleCommand();
       break;
     case "status":
       await statusCommand();
@@ -384,18 +391,55 @@ async function updateCommand(args: string[]) {
 
 async function statusCommand() {
   const approvedRecipes = await listRecipeMarkdownFiles(path.join(config.projectRoot, "src/content/recipes"));
-  const stagedArtifacts = await listJsonFiles(config.stagingDir);
+  const stagedArtifactPaths = await listJsonFiles(config.stagingDir);
+  const stagedArtifacts = await Promise.all(stagedArtifactPaths.map((filePath) => readStagedRecipe(filePath)));
   const reviewArtifacts = await listJsonFiles(config.reviewDir);
   const publicScanEntries = await readdir(config.publishedScanDir, { withFileTypes: true }).catch(() => []);
   const publishedScanSets = publicScanEntries.filter((entry) => entry.isDirectory()).length;
+  const approvedArtifactCount = stagedArtifacts.filter((artifact) => artifact.review.status === "approved").length;
+  const stalePublishedCount = stagedArtifacts.filter(
+    (artifact) => artifact.review.status === "approved" && artifact.publication.is_published && !isArtifactPublishCurrent(artifact)
+  ).length;
+  const approvedUnpublishedCount = stagedArtifacts.filter(
+    (artifact) => artifact.review.status === "approved" && artifact.publication.is_published === false
+  ).length;
 
   console.log([
     "Recipe archive status",
     `- Approved recipes: ${approvedRecipes.length}`,
     `- Staged artifacts: ${stagedArtifacts.length}`,
+    `- Approved artifacts: ${approvedArtifactCount}`,
+    `- Approved but unpublished: ${approvedUnpublishedCount}`,
+    `- Published but stale: ${stalePublishedCount}`,
     `- Review queue: ${reviewArtifacts.length}`,
     `- Published scan sets: ${publishedScanSets}`
   ].join("\n"));
+}
+
+async function republishStaleCommand() {
+  const stagedArtifactPaths = await listJsonFiles(config.stagingDir);
+  const stagedArtifacts = await Promise.all(stagedArtifactPaths.map((filePath) => readStagedRecipe(filePath)));
+  const staleArtifacts = stagedArtifacts.filter(
+    (artifact) => artifact.review.status === "approved" && artifact.publication.is_published && !isArtifactPublishCurrent(artifact)
+  );
+
+  if (staleArtifacts.length === 0) {
+    console.log("No approved published artifacts are stale.");
+    return;
+  }
+
+  console.log(`Republishing ${staleArtifacts.length} stale artifact(s)`);
+  for (let artifact of staleArtifacts) {
+    if (artifact.publication.published_slug && artifact.publication.published_slug !== artifact.slug) {
+      await removePublishedRecipe(artifact.publication.published_slug, config);
+      console.log(`Removed old slug: ${artifact.publication.published_slug}`);
+    }
+
+    const published = await publishArtifact(artifact, config);
+    artifact = markArtifactPublished(artifact);
+    await persistArtifact(artifact);
+    console.log(`Republished ${artifact.id}: ${published.recipePath}`);
+  }
 }
 
 async function approveCommand(args: string[], publishAfterApproval: boolean) {
@@ -496,12 +540,20 @@ function resolveIdRoot(inputPath: string): string {
 }
 
 function formatArtifactSummary(artifact: StagedRecipe, includeOcr: boolean): string {
+  const publicationStatus = artifact.publication.is_published
+    ? isArtifactPublishCurrent(artifact)
+      ? "current"
+      : "stale"
+    : "unpublished";
   const lines = [
     `ID: ${artifact.id}`,
     `Title: ${artifact.recipe.title}`,
     `Slug: ${artifact.slug}`,
     `Review status: ${artifact.review.status}`,
-    `Published: ${artifact.publication.is_published ? `yes (${artifact.publication.published_slug})` : "no"}`,
+    `Publication status: ${publicationStatus}`,
+    `Published slug: ${artifact.publication.published_slug || "none"}`,
+    `Published hash: ${artifact.publication.published_hash || "none"}`,
+    `Current hash: ${computePublicationHash(artifact)}`,
     `OCR provider: ${artifact.ocr.provider}${artifact.ocr.fallback_used ? " (fallback used)" : ""}`,
     `Source file: ${artifact.source.input_path}`,
     `Course: ${artifact.recipe.course}`,

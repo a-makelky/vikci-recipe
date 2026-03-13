@@ -5,7 +5,13 @@ import path from "node:path";
 import test from "node:test";
 
 import type { RuntimeConfig } from "../scripts/lib/environment";
-import { markArtifactPublished, markArtifactUnpublished, removePublishedRecipe } from "../scripts/lib/publish";
+import {
+  computePublicationHash,
+  isArtifactPublishCurrent,
+  markArtifactPublished,
+  markArtifactUnpublished,
+  removePublishedRecipe
+} from "../scripts/lib/publish";
 import type { StagedRecipe } from "../src/lib/recipe-schema";
 
 function createArtifact(): StagedRecipe {
@@ -80,10 +86,27 @@ test("markArtifactPublished and markArtifactUnpublished update publication state
   assert.equal(published.publication.is_published, true);
   assert.equal(published.publication.published_slug, "fudgy-brownies");
   assert.ok(published.publication.published_at);
+  assert.equal(published.publication.published_hash, computePublicationHash(artifact));
+  assert.equal(isArtifactPublishCurrent(published), true);
 
   const unpublished = markArtifactUnpublished(published);
   assert.equal(unpublished.publication.is_published, false);
   assert.equal(unpublished.publication.published_slug, undefined);
+  assert.equal(isArtifactPublishCurrent(unpublished), false);
+});
+
+test("isArtifactPublishCurrent detects drift after approved artifact changes", () => {
+  const artifact = createArtifact();
+  const published = markArtifactPublished(artifact);
+  const drifted = {
+    ...published,
+    recipe: {
+      ...published.recipe,
+      ingredients: [...published.recipe.ingredients, "1 tsp vanilla"]
+    }
+  };
+
+  assert.equal(isArtifactPublishCurrent(drifted), false);
 });
 
 test("removePublishedRecipe removes both markdown and scan assets", async () => {

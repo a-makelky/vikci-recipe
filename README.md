@@ -49,6 +49,7 @@ npm run recipes -- review
 npm run recipes -- show --id batch-01-recipe-0001-xxxxxxxx --ocr
 npm run recipes -- update --id batch-01-recipe-0001-xxxxxxxx --ingredients "2 cups flour|1 cup sugar|2 eggs" --review-reasons "Cleaned OCR list"
 npm run recipes -- status
+npm run recipes -- republish-stale
 ```
 
 4. Open the staged JSON artifact, make manual corrections if needed, then approve it:
@@ -76,6 +77,7 @@ npm run recipes -- ingest --input /path/to/scans [--stage-only] [--with-google-f
 npm run recipes -- review
 npm run recipes -- show --id recipe-...
 npm run recipes -- update --id recipe-... [--title "..."] [--ingredients "a|b|c"] [--publish]
+npm run recipes -- republish-stale
 npm run recipes -- status
 npm run recipes -- approve --id recipe-...
 npm run recipes -- publish --id recipe-...
@@ -93,8 +95,10 @@ npm run recipes -- publish --id recipe-...
   - prints one staged artifact, including ingredients, instructions, and optional OCR text
 - `update`
   - patches a staged artifact from CLI flags and can optionally re-publish the approved recipe
+- `republish-stale`
+  - republishes approved recipes whose public page no longer matches the staged artifact
 - `status`
-  - shows counts for approved recipes, staged artifacts, review queue items, and published scan sets
+  - shows counts for approved recipes, staged artifacts, approved but unpublished items, stale published items, review queue items, and published scan sets
 - `approve`
   - marks a staged artifact approved and publishes it
 - `publish`
@@ -111,6 +115,8 @@ npm run recipes -- publish --id recipe-...
 - Use `|` between ingredient, instruction, note, or review-reason entries.
 - Use `,` or `|` between tags and proteins.
 - Setting `--review-status needs_review` on a published recipe will remove its current public page until it is approved and published again.
+- A published artifact becomes `stale` when approved recipe fields change after publication.
+- Use `npm run recipes -- republish-stale` after batch review edits to refresh every stale public recipe in one pass.
 - Example:
 
 ```bash

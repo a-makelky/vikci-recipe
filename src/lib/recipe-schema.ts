@@ -43,7 +43,8 @@ export const publicationStateSchema = z
   .object({
     is_published: z.boolean().default(false),
     published_slug: z.string().optional(),
-    published_at: z.string().optional()
+    published_at: z.string().optional(),
+    published_hash: z.string().optional()
   })
   .default({
     is_published: false

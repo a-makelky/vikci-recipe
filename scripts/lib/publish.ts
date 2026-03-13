@@ -54,13 +54,49 @@ export async function removePublishedRecipe(slug: string, config: RuntimeConfig)
   });
 }
 
+export function computePublicationHash(artifact: StagedRecipe): string {
+  return createHash("sha1")
+    .update(
+      JSON.stringify({
+        slug: artifact.slug,
+        source_input_path: artifact.source.input_path,
+        title: artifact.recipe.title,
+        summary: artifact.recipe.summary,
+        ingredients: artifact.recipe.ingredients,
+        instructions: artifact.recipe.instructions,
+        notes: artifact.recipe.notes,
+        source_name: artifact.recipe.source_name,
+        source_family: artifact.recipe.source_family,
+        course: artifact.recipe.course,
+        proteins: artifact.recipe.proteins,
+        cuisine: artifact.recipe.cuisine,
+        dessert: artifact.recipe.dessert,
+        tags: artifact.recipe.tags,
+        card_type: artifact.recipe.card_type,
+        ocr_confidence: artifact.recipe.ocr_confidence,
+        review_status: artifact.review.status,
+        review_reasons: artifact.review.reasons
+      })
+    )
+    .digest("hex");
+}
+
+export function isArtifactPublishCurrent(artifact: StagedRecipe): boolean {
+  return (
+    artifact.publication.is_published === true &&
+    artifact.publication.published_slug === artifact.slug &&
+    artifact.publication.published_hash === computePublicationHash(artifact)
+  );
+}
+
 export function markArtifactPublished(artifact: StagedRecipe): StagedRecipe {
   return {
     ...artifact,
     publication: {
       is_published: true,
       published_slug: artifact.slug,
-      published_at: new Date().toISOString()
+      published_at: new Date().toISOString(),
+      published_hash: computePublicationHash(artifact)
     }
   };
 }
