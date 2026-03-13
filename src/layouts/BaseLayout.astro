@@ -1,0 +1,26 @@
+---
+import "@/styles/global.css";
+
+const {
+  title = "Vicki's Recipe Archive",
+  description = "Handwritten and printed family recipes, digitized into a searchable archive.",
+  bodyClass = ""
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class={bodyClass}>
+    <div class="site-shell">
+      <slot />
+    </div>
+  </body>
+</html>

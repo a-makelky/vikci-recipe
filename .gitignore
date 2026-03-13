@@ -1,0 +1,12 @@
+node_modules
+dist
+.astro
+.DS_Store
+.netlify
+.env
+.env.local
+npm-debug.log*
+data/staging/artifacts/*.json
+data/staging/artifacts/*.md
+data/staging/review/*.json
+data/staging/review/*.md

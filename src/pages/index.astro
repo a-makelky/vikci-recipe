@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+
+import RecipeExplorer from "@/components/RecipeExplorer.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const recipes = (await getCollection("recipes", ({ data }) => data.review_status === "approved"))
+  .sort((left, right) => left.data.title.localeCompare(right.data.title))
+  .map((entry) => ({
+    href: `/recipes/${entry.slug}`,
+    recipe: entry.data
+  }));
+---
+
+<BaseLayout>
+  <main>
+    <section class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Vicki's Recipe Archive</p>
+        <h1>Handwritten family recipes, preserved in a searchable public collection.</h1>
+        <p class="hero__lede">
+          Every card starts as a scan, moves through OCR and review, and ends up here as a clean transcription with
+          the original scan attached.
+        </p>
+        <div class="hero__stats">
+          <div>
+            <strong>{recipes.length}</strong>
+            <span>public recipes</span>
+          </div>
+          <div>
+            <strong>Searchable</strong>
+            <span>ingredients, notes, and instructions</span>
+          </div>
+          <div>
+            <strong>Static</strong>
+            <span>fast to host and easy to preserve</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__panel">
+        <p>Archive priorities</p>
+        <ul>
+          <li>Keep the original wording from the card whenever possible.</li>
+          <li>Publish only approved or high-confidence recipes.</li>
+          <li>Store structured metadata for filters and future migrations.</li>
+        </ul>
+      </div>
+    </section>
+
+    <RecipeExplorer recipes={recipes} />
+  </main>
+</BaseLayout>

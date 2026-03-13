@@ -1,0 +1,258 @@
+---
+import type { RecipeFrontmatter } from "@/lib/recipe-schema";
+import { buildSearchText } from "@/lib/recipes";
+import RecipeCard from "@/components/RecipeCard.astro";
+
+interface ExploreRecipe {
+  href: string;
+  recipe: RecipeFrontmatter;
+}
+
+interface Props {
+  recipes: ExploreRecipe[];
+}
+
+const { recipes } = Astro.props;
+
+const filterOptions = {
+  course: [...new Set(recipes.map(({ recipe }) => recipe.course))].sort(),
+  cuisine: [...new Set(recipes.map(({ recipe }) => recipe.cuisine))].sort(),
+  family: [...new Set(recipes.map(({ recipe }) => recipe.source_family))].sort(),
+  cardType: [...new Set(recipes.map(({ recipe }) => recipe.card_type))].sort(),
+  proteins: [...new Set(recipes.flatMap(({ recipe }) => recipe.proteins))].sort(),
+  tags: [...new Set(recipes.flatMap(({ recipe }) => recipe.tags))].sort()
+};
+
+const dataset = recipes.map(({ href, recipe }) => ({
+  href,
+  title: recipe.title,
+  course: recipe.course,
+  cuisine: recipe.cuisine,
+  family: recipe.source_family,
+  cardType: recipe.card_type,
+  dessert: recipe.dessert,
+  proteins: recipe.proteins,
+  tags: recipe.tags,
+  haystack: buildSearchText(recipe)
+}));
+---
+
+<section class="explorer">
+  <div class="explorer__controls">
+    <div class="explorer__intro">
+      <p class="eyebrow">Searchable Family Archive</p>
+      <h2>Search by ingredient, family source, or recipe type.</h2>
+      <p>
+        This archive is static and read-only. Every public entry has been reviewed or auto-approved above the
+        confidence threshold.
+      </p>
+    </div>
+
+    <div class="explorer__search">
+      <label for="recipe-search">Search recipes</label>
+      <input id="recipe-search" type="search" placeholder="Try cinnamon, sauerkraut, casserole..." autocomplete="off" />
+    </div>
+
+    <div class="explorer__filters">
+      <label>
+        <span>Course</span>
+        <select data-filter="course">
+          <option value="">All</option>
+          {filterOptions.course.map((option) => <option value={option}>{option}</option>)}
+        </select>
+      </label>
+
+      <label>
+        <span>Cuisine</span>
+        <select data-filter="cuisine">
+          <option value="">All</option>
+          {filterOptions.cuisine.map((option) => <option value={option}>{option}</option>)}
+        </select>
+      </label>
+
+      <label>
+        <span>Family</span>
+        <select data-filter="family">
+          <option value="">All</option>
+          {filterOptions.family.map((option) => <option value={option}>{option}</option>)}
+        </select>
+      </label>
+
+      <label>
+        <span>Card type</span>
+        <select data-filter="cardType">
+          <option value="">All</option>
+          {filterOptions.cardType.map((option) => <option value={option}>{option}</option>)}
+        </select>
+      </label>
+    </div>
+
+    {filterOptions.proteins.length > 0 && (
+      <fieldset class="chip-set">
+        <legend>Proteins</legend>
+        {filterOptions.proteins.map((protein) => (
+          <label class="chip">
+            <input type="checkbox" value={protein} data-chip-filter="proteins" />
+            <span>{protein}</span>
+          </label>
+        ))}
+      </fieldset>
+    )}
+
+    {filterOptions.tags.length > 0 && (
+      <fieldset class="chip-set">
+        <legend>Tags</legend>
+        {filterOptions.tags.map((tag) => (
+          <label class="chip">
+            <input type="checkbox" value={tag} data-chip-filter="tags" />
+            <span>{tag}</span>
+          </label>
+        ))}
+      </fieldset>
+    )}
+
+    <div class="explorer__toggles">
+      <label class="toggle">
+        <input type="checkbox" data-toggle-filter="dessert" />
+        <span>Desserts only</span>
+      </label>
+      <button type="button" class="button button--ghost" id="clear-filters">Clear filters</button>
+      <p id="results-summary">{recipes.length} recipes loaded</p>
+    </div>
+  </div>
+
+  <div class="recipe-grid" id="recipe-grid">
+    {recipes.map(({ href, recipe }) => <RecipeCard href={href} recipe={recipe} />)}
+  </div>
+</section>
+
+<script is:inline define:vars={{ dataset }}>
+  const cards = Array.from(document.querySelectorAll(".recipe-grid .recipe-card"));
+  const searchInput = document.getElementById("recipe-search");
+  const selectFilters = Array.from(document.querySelectorAll("[data-filter]"));
+  const chipFilters = Array.from(document.querySelectorAll("[data-chip-filter]"));
+  const toggleFilters = Array.from(document.querySelectorAll("[data-toggle-filter]"));
+  const clearButton = document.getElementById("clear-filters");
+  const resultsSummary = document.getElementById("results-summary");
+
+  const entries = cards.map((card, index) => ({
+    card,
+    ...dataset[index]
+  }));
+
+  let pagefindModule;
+
+  async function loadPagefind() {
+    if (pagefindModule !== undefined) {
+      return pagefindModule;
+    }
+
+    try {
+      pagefindModule = await import("/pagefind/pagefind.js");
+    } catch (error) {
+      pagefindModule = null;
+    }
+
+    return pagefindModule;
+  }
+
+  function selectedValues(name) {
+    return chipFilters
+      .filter((input) => input.dataset.chipFilter === name && input.checked)
+      .map((input) => input.value);
+  }
+
+  function matchesFilters(entry, filters) {
+    const hasProteins = filters.proteins.every((protein) => entry.proteins.includes(protein));
+    const hasTags = filters.tags.every((tag) => entry.tags.includes(tag));
+    return (
+      (!filters.course || entry.course === filters.course) &&
+      (!filters.cuisine || entry.cuisine === filters.cuisine) &&
+      (!filters.family || entry.family === filters.family) &&
+      (!filters.cardType || entry.cardType === filters.cardType) &&
+      (!filters.dessert || entry.dessert === true) &&
+      hasProteins &&
+      hasTags
+    );
+  }
+
+  async function matchSearch(query) {
+    if (!query) {
+      return new Set(entries.map((entry) => entry.href));
+    }
+
+    const pagefind = await loadPagefind();
+    if (pagefind?.search) {
+      const result = await pagefind.search(query);
+      const urls = await Promise.all(
+        result.results.map(async (resultItem) => {
+          const data = await resultItem.data();
+          return new URL(data.url, window.location.origin).pathname.replace(/\/$/, "") || "/";
+        })
+      );
+      return new Set(urls);
+    }
+
+    return new Set(
+      entries
+        .filter((entry) => entry.haystack.includes(query.toLowerCase()))
+        .map((entry) => entry.href)
+    );
+  }
+
+  async function updateResults() {
+    const filters = {
+      course: document.querySelector('[data-filter="course"]').value,
+      cuisine: document.querySelector('[data-filter="cuisine"]').value,
+      family: document.querySelector('[data-filter="family"]').value,
+      cardType: document.querySelector('[data-filter="cardType"]').value,
+      dessert: document.querySelector('[data-toggle-filter="dessert"]').checked,
+      proteins: selectedValues("proteins"),
+      tags: selectedValues("tags")
+    };
+
+    const query = searchInput.value.trim();
+    const searchMatches = await matchSearch(query);
+
+    let visibleCount = 0;
+    for (const entry of entries) {
+      const pathname = entry.href.replace(/\/$/, "") || "/";
+      const isVisible = searchMatches.has(pathname) && matchesFilters(entry, filters);
+      entry.card.hidden = !isVisible;
+      if (isVisible) {
+        visibleCount += 1;
+      }
+    }
+
+    resultsSummary.textContent =
+      visibleCount === 1 ? "1 recipe matches" : `${visibleCount} recipes match`;
+  }
+
+  function clearFilters() {
+    searchInput.value = "";
+    for (const select of selectFilters) {
+      select.value = "";
+    }
+    for (const input of chipFilters) {
+      input.checked = false;
+    }
+    for (const input of toggleFilters) {
+      input.checked = false;
+    }
+    updateResults();
+  }
+
+  searchInput?.addEventListener("input", () => {
+    updateResults();
+  });
+  for (const select of selectFilters) {
+    select.addEventListener("change", () => updateResults());
+  }
+  for (const input of chipFilters) {
+    input.addEventListener("change", () => updateResults());
+  }
+  for (const input of toggleFilters) {
+    input.addEventListener("change", () => updateResults());
+  }
+  clearButton?.addEventListener("click", clearFilters);
+</script>

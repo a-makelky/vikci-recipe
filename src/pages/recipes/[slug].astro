@@ -1,0 +1,134 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const recipes = await getCollection("recipes", ({ data }) => data.review_status === "approved");
+  return recipes.map((recipe) => ({
+    params: { slug: recipe.slug },
+    props: { recipe }
+  }));
+}
+
+const { recipe } = Astro.props;
+const { Content } = await recipe.render();
+const previewAssets = recipe.data.scan_assets.filter((asset) => asset.role === "preview");
+const originalAssets = recipe.data.scan_assets.filter((asset) => asset.role === "original");
+const pageTitle = `${recipe.data.title} | Vicki's Recipe Archive`;
+const description = recipe.data.summary || `Digitized family recipe for ${recipe.data.title}.`;
+---
+
+<BaseLayout title={pageTitle} description={description} bodyClass="recipe-page">
+  <main class="recipe-detail" data-pagefind-body>
+    <a class="back-link" href="/">Back to all recipes</a>
+
+    <section class="recipe-detail__hero">
+      <div>
+        <p class="eyebrow">{recipe.data.source_family} family archive</p>
+        <h1>{recipe.data.title}</h1>
+        {recipe.data.summary && <p class="recipe-detail__summary">{recipe.data.summary}</p>}
+        <dl class="recipe-detail__facts">
+          <div>
+            <dt>Course</dt>
+            <dd>{recipe.data.course}</dd>
+          </div>
+          <div>
+            <dt>Cuisine</dt>
+            <dd>{recipe.data.cuisine}</dd>
+          </div>
+          <div>
+            <dt>Source</dt>
+            <dd>{recipe.data.source_name}</dd>
+          </div>
+          <div>
+            <dt>Card type</dt>
+            <dd>{recipe.data.card_type}</dd>
+          </div>
+        </dl>
+        <div class="recipe-detail__tags">
+          {recipe.data.proteins.map((protein) => <span>{protein}</span>)}
+          {recipe.data.tags.map((tag) => <span>{tag}</span>)}
+          {recipe.data.dessert && <span>dessert</span>}
+        </div>
+      </div>
+
+      <div class="recipe-detail__assets">
+        {previewAssets.length > 0 ? (
+          previewAssets.map((asset) => (
+            <a href={asset.path} class="scan-card" target="_blank" rel="noreferrer">
+              {asset.type === "image" ? (
+                <img src={asset.path} alt={`${asset.label} for ${recipe.data.title}`} loading="lazy" />
+              ) : (
+                <div class="scan-card__placeholder">Preview PDF</div>
+              )}
+              <span>{asset.label}</span>
+            </a>
+          ))
+        ) : (
+          <div class="scan-card scan-card--empty">
+            <div class="scan-card__placeholder">No preview generated</div>
+            <span>Original scan is still attached below.</span>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="recipe-detail__content">
+      <div>
+        <h2>Ingredients</h2>
+        <ul class="recipe-list">
+          {recipe.data.ingredients.map((ingredient) => <li>{ingredient}</li>)}
+        </ul>
+      </div>
+
+      <div>
+        <h2>Instructions</h2>
+        <ol class="recipe-list recipe-list--numbered">
+          {recipe.data.instructions.map((instruction) => <li>{instruction}</li>)}
+        </ol>
+      </div>
+    </section>
+
+    {recipe.data.notes.length > 0 && (
+      <section class="recipe-detail__notes">
+        <h2>Notes</h2>
+        <ul class="recipe-list">
+          {recipe.data.notes.map((note) => <li>{note}</li>)}
+        </ul>
+      </section>
+    )}
+
+    {originalAssets.length > 0 && (
+      <section class="recipe-detail__notes">
+        <h2>Original scans</h2>
+        <ul class="asset-links">
+          {originalAssets.map((asset) => (
+            <li>
+              <a href={asset.path} target="_blank" rel="noreferrer">
+                {asset.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {recipe.body && (
+      <section class="recipe-detail__notes">
+        <h2>Archivist notes</h2>
+        <Content />
+      </section>
+    )}
+
+    <div hidden aria-hidden="true">
+      <span data-pagefind-filter="course">{recipe.data.course}</span>
+      <span data-pagefind-filter="cuisine">{recipe.data.cuisine}</span>
+      <span data-pagefind-filter="family">{recipe.data.source_family}</span>
+      <span data-pagefind-filter="card_type">{recipe.data.card_type}</span>
+      {recipe.data.proteins.map((protein) => <span data-pagefind-filter="protein">{protein}</span>)}
+      {recipe.data.tags.map((tag) => <span data-pagefind-filter="tags">{tag}</span>)}
+      {recipe.data.dessert && <span data-pagefind-filter="dessert">dessert</span>}
+    </div>
+  </main>
+</BaseLayout>

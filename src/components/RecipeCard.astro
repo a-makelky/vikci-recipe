@@ -1,0 +1,45 @@
+---
+import type { RecipeFrontmatter } from "@/lib/recipe-schema";
+
+interface Props {
+  href: string;
+  recipe: RecipeFrontmatter;
+}
+
+const { href, recipe } = Astro.props;
+const previewImage = recipe.scan_assets.find((asset) => asset.role === "preview" && asset.type === "image");
+---
+
+<article class="recipe-card">
+  <a class="recipe-card__link" href={href}>
+    <div class="recipe-card__media">
+      {
+        previewImage ? (
+          <img src={previewImage.path} alt={`Recipe card preview for ${recipe.title}`} loading="lazy" />
+        ) : (
+          <div class="recipe-card__placeholder">
+            <span>{recipe.card_type}</span>
+            <strong>{recipe.course}</strong>
+          </div>
+        )
+      }
+    </div>
+    <div class="recipe-card__body">
+      <div class="recipe-card__eyebrow">
+        <span>{recipe.source_family}</span>
+        <span>{recipe.ocr_confidence} confidence</span>
+      </div>
+      <h2>{recipe.title}</h2>
+      {recipe.summary && <p>{recipe.summary}</p>}
+      <ul class="recipe-card__meta">
+        <li>{recipe.course}</li>
+        <li>{recipe.cuisine}</li>
+        {recipe.dessert && <li>dessert</li>}
+      </ul>
+      <div class="recipe-card__tags">
+        {recipe.proteins.map((protein) => <span>{protein}</span>)}
+        {recipe.tags.slice(0, 3).map((tag) => <span>{tag}</span>)}
+      </div>
+    </div>
+  </a>
+</article>

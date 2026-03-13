@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-labelledby="title">
+  <title>Dinner rolls recipe card placeholder</title>
+  <rect width="960" height="720" fill="#d7c3aa" />
+  <rect x="48" y="48" width="864" height="624" rx="26" fill="#fffdf7" stroke="#ceb08b" stroke-width="10" />
+  <text x="116" y="154" fill="#5d402f" font-family="'Bradley Hand', cursive" font-size="58">Sunday Dinner Rolls</text>
+  <text x="116" y="246" fill="#695449" font-family="Georgia, serif" font-size="34">2 cups warm milk</text>
+  <text x="116" y="296" fill="#695449" font-family="Georgia, serif" font-size="34">1/2 cup sugar</text>
+  <text x="116" y="346" fill="#695449" font-family="Georgia, serif" font-size="34">2 packets yeast</text>
+  <text x="116" y="396" fill="#695449" font-family="Georgia, serif" font-size="34">5 to 6 cups flour</text>
+  <text x="116" y="494" fill="#7f3419" font-family="'Bradley Hand', cursive" font-size="40">Let rise twice. Brush with butter.</text>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Vicki's Recipe Archive</title>
+  <rect width="64" height="64" rx="14" fill="#f5efe2" />
+  <path d="M16 20c0-3.314 2.686-6 6-6h18l8 8v22c0 3.314-2.686 6-6 6H22c-3.314 0-6-2.686-6-6V20Z" fill="#fffaf0" stroke="#bb5d35" stroke-width="2" />
+  <path d="M40 14v8h8" fill="none" stroke="#bb5d35" stroke-width="2" />
+  <path d="M22 30h20M22 36h20M22 42h12" stroke="#69754b" stroke-linecap="round" stroke-width="3" />
+</svg>
