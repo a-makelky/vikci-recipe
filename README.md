@@ -110,6 +110,7 @@ npm run recipes -- publish --id recipe-...
 
 - Use `|` between ingredient, instruction, note, or review-reason entries.
 - Use `,` or `|` between tags and proteins.
+- Setting `--review-status needs_review` on a published recipe will remove its current public page until it is approved and published again.
 - Example:
 
 ```bash

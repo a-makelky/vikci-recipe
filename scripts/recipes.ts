@@ -23,7 +23,10 @@ import {
   createSlugFromTitle,
   deriveRecipeId,
   ensureUniqueSlug,
+  markArtifactPublished,
+  markArtifactUnpublished,
   publishArtifact,
+  removePublishedRecipe,
   writeStageArtifact
 } from "./lib/publish";
 import { applyArtifactPatch, parseBooleanInput, parseDelimitedList } from "./lib/review";
@@ -153,7 +156,7 @@ async function ingestCommand(args: string[]) {
       const reviewReasons = evaluateReviewReasons(normalized, extraction.markdown);
       normalized.review_status = reviewReasons.length > 0 ? "needs_review" : "approved";
 
-      const artifact = stagedRecipeSchema.parse({
+      let artifact = stagedRecipeSchema.parse({
         version: 1,
         id,
         slug,
@@ -177,10 +180,18 @@ async function ingestCommand(args: string[]) {
         review: {
           status: normalized.review_status,
           reasons: reviewReasons
-        }
+        },
+        publication: existingArtifact?.publication
       });
 
-      const artifactPath = await writeStageArtifact(artifact, config.stagingDir);
+      if (!parsed.values["stage-only"] && artifact.review.status === "needs_review" && artifact.publication.is_published && artifact.publication.published_slug) {
+        const previousPublishedSlug = artifact.publication.published_slug;
+        await removePublishedRecipe(previousPublishedSlug, config);
+        artifact = markArtifactUnpublished(artifact);
+        console.log(`Unpublished recipe: ${previousPublishedSlug}`);
+      }
+
+      let artifactPath = await writeStageArtifact(artifact, config.stagingDir);
       console.log(`Staged artifact: ${artifactPath}`);
       report.processed += 1;
 
@@ -200,7 +211,13 @@ async function ingestCommand(args: string[]) {
       }
 
       if (!parsed.values["stage-only"]) {
+        if (artifact.publication.is_published && artifact.publication.published_slug && artifact.publication.published_slug !== artifact.slug) {
+          await removePublishedRecipe(artifact.publication.published_slug, config);
+          console.log(`Removed old slug: ${artifact.publication.published_slug}`);
+        }
         const published = await publishArtifact(artifact, config);
+        artifact = markArtifactPublished(artifact);
+        artifactPath = await writeStageArtifact(artifact, config.stagingDir);
         console.log(`Published recipe: ${published.recipePath}`);
         report.published += 1;
         report.files.push({
@@ -318,7 +335,7 @@ async function updateCommand(args: string[]) {
   });
 
   const artifact = await resolveArtifactFromArgs(args);
-  const nextArtifact = applyArtifactPatch(artifact, {
+  let nextArtifact = applyArtifactPatch(artifact, {
     title: parsed.values.title,
     summary: parsed.values.summary,
     slug: parsed.values.slug,
@@ -338,6 +355,13 @@ async function updateCommand(args: string[]) {
     review_reasons: parseDelimitedList(parsed.values["review-reasons"], /\|/g)
   });
 
+  if (nextArtifact.review.status !== "approved" && artifact.publication.is_published && artifact.publication.published_slug) {
+    const previousPublishedSlug = artifact.publication.published_slug;
+    await removePublishedRecipe(previousPublishedSlug, config);
+    nextArtifact = markArtifactUnpublished(nextArtifact);
+    console.log(`Unpublished recipe: ${previousPublishedSlug}`);
+  }
+
   await persistArtifact(nextArtifact);
   console.log(`Updated ${nextArtifact.id}`);
   console.log(formatArtifactSummary(nextArtifact, false));
@@ -347,7 +371,13 @@ async function updateCommand(args: string[]) {
       throw new Error(`Cannot publish ${nextArtifact.id} because it is marked ${nextArtifact.review.status}.`);
     }
 
+    if (artifact.publication.is_published && artifact.publication.published_slug && artifact.publication.published_slug !== nextArtifact.slug) {
+      await removePublishedRecipe(artifact.publication.published_slug, config);
+      console.log(`Removed old slug: ${artifact.publication.published_slug}`);
+    }
     const published = await publishArtifact(nextArtifact, config);
+    nextArtifact = markArtifactPublished(nextArtifact);
+    await persistArtifact(nextArtifact);
     console.log(`Published recipe: ${published.recipePath}`);
   }
 }
@@ -369,7 +399,7 @@ async function statusCommand() {
 }
 
 async function approveCommand(args: string[], publishAfterApproval: boolean) {
-  const artifact = await resolveArtifactFromArgs(args);
+  let artifact = await resolveArtifactFromArgs(args);
   artifact.review.status = "approved";
   artifact.review.reasons = [];
   artifact.recipe.review_status = "approved";
@@ -378,18 +408,30 @@ async function approveCommand(args: string[], publishAfterApproval: boolean) {
 
   console.log(`Approved ${artifact.id}`);
   if (publishAfterApproval) {
+    if (artifact.publication.is_published && artifact.publication.published_slug && artifact.publication.published_slug !== artifact.slug) {
+      await removePublishedRecipe(artifact.publication.published_slug, config);
+      console.log(`Removed old slug: ${artifact.publication.published_slug}`);
+    }
     const published = await publishArtifact(artifact, config);
+    artifact = markArtifactPublished(artifact);
+    await persistArtifact(artifact);
     console.log(`Published recipe: ${published.recipePath}`);
   }
 }
 
 async function publishCommand(args: string[]) {
-  const artifact = await resolveArtifactFromArgs(args);
+  let artifact = await resolveArtifactFromArgs(args);
   if (artifact.review.status !== "approved") {
     throw new Error(`Cannot publish ${artifact.id} because it is still marked ${artifact.review.status}.`);
   }
 
+  if (artifact.publication.is_published && artifact.publication.published_slug && artifact.publication.published_slug !== artifact.slug) {
+    await removePublishedRecipe(artifact.publication.published_slug, config);
+    console.log(`Removed old slug: ${artifact.publication.published_slug}`);
+  }
   const published = await publishArtifact(artifact, config);
+  artifact = markArtifactPublished(artifact);
+  await persistArtifact(artifact);
   console.log(`Published recipe: ${published.recipePath}`);
 }
 
@@ -459,6 +501,7 @@ function formatArtifactSummary(artifact: StagedRecipe, includeOcr: boolean): str
     `Title: ${artifact.recipe.title}`,
     `Slug: ${artifact.slug}`,
     `Review status: ${artifact.review.status}`,
+    `Published: ${artifact.publication.is_published ? `yes (${artifact.publication.published_slug})` : "no"}`,
     `OCR provider: ${artifact.ocr.provider}${artifact.ocr.fallback_used ? " (fallback used)" : ""}`,
     `Source file: ${artifact.source.input_path}`,
     `Course: ${artifact.recipe.course}`,

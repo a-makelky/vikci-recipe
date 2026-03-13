@@ -39,6 +39,16 @@ export const scanAssetSchema = z.object({
   role: z.enum(["preview", "original"]).default("original")
 });
 
+export const publicationStateSchema = z
+  .object({
+    is_published: z.boolean().default(false),
+    published_slug: z.string().optional(),
+    published_at: z.string().optional()
+  })
+  .default({
+    is_published: false
+  });
+
 export const recipeDataSchema = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
@@ -106,10 +116,12 @@ export const stagedRecipeSchema = z.object({
   review: z.object({
     status: z.enum(REVIEW_STATUS_VALUES),
     reasons: z.array(z.string()).default([])
-  })
+  }),
+  publication: publicationStateSchema
 });
 
 export type ScanAsset = z.infer<typeof scanAssetSchema>;
+export type PublicationState = z.infer<typeof publicationStateSchema>;
 export type RecipeFrontmatter = z.infer<typeof recipeFrontmatterSchema>;
 export type RecipeRecord = z.infer<typeof recipeRecordSchema>;
 export type ExtractedRecipe = z.infer<typeof extractedRecipeSchema>;

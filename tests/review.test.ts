@@ -44,6 +44,9 @@ function createArtifact(): StagedRecipe {
     review: {
       status: "needs_review",
       reasons: ["Needs ingredient cleanup."]
+    },
+    publication: {
+      is_published: false
     }
   };
 }

@@ -1,6 +1,6 @@
 import path from "node:path";
 import { basename } from "node:path";
-import { mkdtemp, readdir } from "node:fs/promises";
+import { mkdtemp, readdir, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { createHash } from "node:crypto";
 
@@ -42,6 +42,36 @@ export async function writeStageArtifact(
   const filePath = path.join(destinationDir, `${artifact.id}.json`);
   await writeJson(filePath, artifact);
   return filePath;
+}
+
+export async function removePublishedRecipe(slug: string, config: RuntimeConfig): Promise<void> {
+  await rm(path.join(config.projectRoot, "src/content/recipes", `${slug}.md`), {
+    force: true
+  });
+  await rm(path.join(config.publishedScanDir, slug), {
+    force: true,
+    recursive: true
+  });
+}
+
+export function markArtifactPublished(artifact: StagedRecipe): StagedRecipe {
+  return {
+    ...artifact,
+    publication: {
+      is_published: true,
+      published_slug: artifact.slug,
+      published_at: new Date().toISOString()
+    }
+  };
+}
+
+export function markArtifactUnpublished(artifact: StagedRecipe): StagedRecipe {
+  return {
+    ...artifact,
+    publication: {
+      is_published: false
+    }
+  };
 }
 
 export async function ensureUniqueSlug(baseSlug: string, projectRoot: string): Promise<string> {
