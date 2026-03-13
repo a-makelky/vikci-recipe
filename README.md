@@ -49,6 +49,7 @@ npm run recipes -- review
 npm run recipes -- show --id batch-01-recipe-0001-xxxxxxxx --ocr
 npm run recipes -- update --id batch-01-recipe-0001-xxxxxxxx --ingredients "2 cups flour|1 cup sugar|2 eggs" --review-reasons "Cleaned OCR list"
 npm run recipes -- status
+npm run recipes -- status --batch "2026-03-batch-01"
 npm run recipes -- republish-stale
 ```
 
@@ -77,8 +78,8 @@ npm run recipes -- ingest --input /path/to/scans [--stage-only] [--with-google-f
 npm run recipes -- review
 npm run recipes -- show --id recipe-...
 npm run recipes -- update --id recipe-... [--title "..."] [--ingredients "a|b|c"] [--publish]
+npm run recipes -- status [--batch batch-01] [--json]
 npm run recipes -- republish-stale
-npm run recipes -- status
 npm run recipes -- approve --id recipe-...
 npm run recipes -- publish --id recipe-...
 ```
@@ -98,7 +99,9 @@ npm run recipes -- publish --id recipe-...
 - `republish-stale`
   - republishes approved recipes whose public page no longer matches the staged artifact
 - `status`
-  - shows counts for approved recipes, staged artifacts, approved but unpublished items, stale published items, review queue items, and published scan sets
+  - shows counts for published, stale, unpublished, and review-needed artifacts
+  - supports `--batch` to inspect a single pilot batch
+  - supports `--json` for machine-readable output
 - `approve`
   - marks a staged artifact approved and publishes it
 - `publish`
@@ -117,6 +120,8 @@ npm run recipes -- publish --id recipe-...
 - Setting `--review-status needs_review` on a published recipe will remove its current public page until it is approved and published again.
 - A published artifact becomes `stale` when approved recipe fields change after publication.
 - Use `npm run recipes -- republish-stale` after batch review edits to refresh every stale public recipe in one pass.
+- Use `npm run recipes -- status --batch "2026-03-batch-01"` to check a specific pilot batch without mixing in older work.
+- Add `--json` when another agent or script needs structured status output.
 - Example:
 
 ```bash

@@ -32,6 +32,7 @@ import {
   writeStageArtifact
 } from "./lib/publish";
 import { applyArtifactPatch, parseBooleanInput, parseDelimitedList } from "./lib/review";
+import { filterArtifactsByBatch, formatStatusSummary, summarizeArtifacts } from "./lib/status";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const config = resolveRuntimeConfig(projectRoot);
@@ -43,7 +44,7 @@ Usage:
   npm run recipes -- show --id recipe-0001
   npm run recipes -- update --id recipe-0001 [--title \"...\"] [--ingredients \"a|b|c\"] [--publish]
   npm run recipes -- republish-stale
-  npm run recipes -- status
+  npm run recipes -- status [--batch batch-01] [--json]
   npm run recipes -- approve --id recipe-0001
   npm run recipes -- publish --id recipe-0001
 
@@ -53,7 +54,7 @@ Commands:
   show     Print a staged artifact with recipe fields and an OCR preview for manual review.
   update   Patch a staged artifact's recipe fields without hand-editing the raw JSON.
   republish-stale  Rebuild approved recipes whose published pages are out of date with their staged artifact.
-  status   Show repository counts for approved recipes, staged artifacts, and review queue items.
+  status   Show repository counts, OCR breakdowns, and optional batch-filtered pilot metrics.
   approve  Mark a staged recipe as approved and publish it to the site.
   publish  Re-publish an already approved staged recipe and refresh its public assets.
 `;
@@ -82,7 +83,7 @@ async function main() {
       await republishStaleCommand();
       break;
     case "status":
-      await statusCommand();
+      await statusCommand(rest);
       break;
     case "approve":
       await approveCommand(rest, true);
@@ -389,31 +390,48 @@ async function updateCommand(args: string[]) {
   }
 }
 
-async function statusCommand() {
-  const approvedRecipes = await listRecipeMarkdownFiles(path.join(config.projectRoot, "src/content/recipes"));
+async function statusCommand(args: string[]) {
+  const parsed = parseArgs({
+    args,
+    options: {
+      batch: { type: "string" },
+      json: { type: "boolean", default: false }
+    },
+    allowPositionals: true
+  });
+
+  const approvedRecipes = parsed.values.batch
+    ? undefined
+    : await listRecipeMarkdownFiles(path.join(config.projectRoot, "src/content/recipes"));
   const stagedArtifactPaths = await listJsonFiles(config.stagingDir);
   const stagedArtifacts = await Promise.all(stagedArtifactPaths.map((filePath) => readStagedRecipe(filePath)));
-  const reviewArtifacts = await listJsonFiles(config.reviewDir);
-  const publicScanEntries = await readdir(config.publishedScanDir, { withFileTypes: true }).catch(() => []);
+  const reviewArtifactPaths = await listJsonFiles(config.reviewDir);
+  const reviewArtifacts = await Promise.all(reviewArtifactPaths.map((filePath) => readStagedRecipe(filePath)));
+  const filteredArtifacts = filterArtifactsByBatch(stagedArtifacts, parsed.values.batch);
+  const filteredReviewArtifacts = filterArtifactsByBatch(reviewArtifacts, parsed.values.batch);
+  const publicScanEntries = parsed.values.batch
+    ? []
+    : await readdir(config.publishedScanDir, { withFileTypes: true }).catch(() => []);
   const publishedScanSets = publicScanEntries.filter((entry) => entry.isDirectory()).length;
-  const approvedArtifactCount = stagedArtifacts.filter((artifact) => artifact.review.status === "approved").length;
-  const stalePublishedCount = stagedArtifacts.filter(
-    (artifact) => artifact.review.status === "approved" && artifact.publication.is_published && !isArtifactPublishCurrent(artifact)
-  ).length;
-  const approvedUnpublishedCount = stagedArtifacts.filter(
-    (artifact) => artifact.review.status === "approved" && artifact.publication.is_published === false
-  ).length;
 
-  console.log([
-    "Recipe archive status",
-    `- Approved recipes: ${approvedRecipes.length}`,
-    `- Staged artifacts: ${stagedArtifacts.length}`,
-    `- Approved artifacts: ${approvedArtifactCount}`,
-    `- Approved but unpublished: ${approvedUnpublishedCount}`,
-    `- Published but stale: ${stalePublishedCount}`,
-    `- Review queue: ${reviewArtifacts.length}`,
-    `- Published scan sets: ${publishedScanSets}`
-  ].join("\n"));
+  const summary = summarizeArtifacts(
+    filteredArtifacts,
+    filteredReviewArtifacts.length,
+    parsed.values.batch
+      ? undefined
+      : {
+          approvedRecipesOnSite: approvedRecipes?.length ?? 0,
+          publishedScanSetsOnDisk: publishedScanSets
+        },
+    parsed.values.batch
+  );
+
+  if (parsed.values.json) {
+    console.log(JSON.stringify(summary, null, 2));
+    return;
+  }
+
+  console.log(formatStatusSummary(summary));
 }
 
 async function republishStaleCommand() {
