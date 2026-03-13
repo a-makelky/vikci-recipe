@@ -103,7 +103,7 @@ export const stagedRecipeSchema = z.object({
     ingested_at: z.string()
   }),
   ocr: z.object({
-    provider: z.enum(["glm-ocr", "google-vision"]),
+    provider: z.enum(["zai-vision", "glm-ocr", "google-vision"]),
     markdown: z.string(),
     raw_response: z.unknown(),
     fallback_used: z.boolean().default(false)

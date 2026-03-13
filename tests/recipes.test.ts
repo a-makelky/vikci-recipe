@@ -64,6 +64,37 @@ test("evaluateReviewReasons flags thin OCR output", () => {
   assert.ok(reasons.length >= 3);
 });
 
+test("evaluateReviewReasons flags OCR that appears to contain multiple recipes", () => {
+  const reasons = evaluateReviewReasons(
+    {
+      title: "Cabbage Casserole",
+      summary: "",
+      ingredients: ["1 cabbage", "1 lb hamburger", "1 can tomato soup"],
+      instructions: ["Layer ingredients.", "Bake until tender."],
+      notes: [],
+      source_name: "Mom",
+      source_family: "Unknown",
+      course: "main",
+      proteins: ["beef"],
+      cuisine: "american",
+      dessert: false,
+      tags: [],
+      card_type: "mixed",
+      ocr_confidence: "medium"
+    },
+    [
+      "Cabbage Casserole",
+      "Sliced Cabbage (1/2 head)",
+      "",
+      "Barbecued Hamburgers",
+      "1 lb hamburger"
+    ].join("\n")
+  );
+
+  assert.match(reasons.join(" "), /more than one recipe title/i);
+  assert.match(reasons.join(" "), /Barbecued Hamburgers/);
+});
+
 test("deriveRecipeId stays stable within a batch root and avoids collisions across batches", () => {
   const january = deriveRecipeId(
     "/tmp/vicki/batch-01/recipe-0001.pdf",

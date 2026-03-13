@@ -14,7 +14,7 @@ import type { RuntimeConfig } from "./environment";
 import { inferMimeType, readJson } from "./io";
 
 export interface OcrResult {
-  provider: "glm-ocr" | "google-vision";
+  provider: "zai-vision" | "glm-ocr" | "google-vision";
   markdown: string;
   rawResponse: unknown;
   fallbackUsed: boolean;
@@ -29,7 +29,7 @@ export async function extractRecipeFromFile(
     throw new Error("Missing ZAI_API_KEY. Add it to .env before running ingest.");
   }
 
-  let ocr = await callGlmOcr(filePath, config);
+  let ocr = await callPrimaryOcr(filePath, config);
 
   if (enableGoogleFallback && shouldAttemptGoogleFallback(ocr.markdown)) {
     try {
@@ -60,6 +60,12 @@ export function evaluateReviewReasons(recipe: ExtractedRecipe, ocrMarkdown: stri
   if (ocrMarkdown.trim().length < 120) {
     reasons.push("OCR output was unusually short.");
   }
+
+  const additionalTitles = findAdditionalRecipeTitles(recipe.title, ocrMarkdown);
+  if (additionalTitles.length > 0) {
+    reasons.push(`OCR text appears to contain more than one recipe title: ${additionalTitles.join(", ")}`);
+  }
+
   return reasons;
 }
 
@@ -110,6 +116,72 @@ async function callGlmOcr(filePath: string, config: RuntimeConfig): Promise<OcrR
   };
 }
 
+async function callPrimaryOcr(filePath: string, config: RuntimeConfig): Promise<OcrResult> {
+  const mimeType = inferMimeType(filePath);
+
+  if (!usesCodingPlanEndpoint(config.zaiBaseUrl)) {
+    return callGlmOcr(filePath, config);
+  }
+
+  if (mimeType === "application/pdf") {
+    throw new Error(
+      "Z.ai Coding Plan OCR in this repo currently supports local image files only. Export PDF pages as JPG/PNG, or override ZAI_BASE_URL to the paid GLM-OCR endpoint if you need direct PDF OCR."
+    );
+  }
+
+  return callZaiVisionOcr(filePath, config);
+}
+
+async function callZaiVisionOcr(filePath: string, config: RuntimeConfig): Promise<OcrResult> {
+  const buffer = await readFile(filePath);
+  const mimeType = inferMimeType(filePath);
+  const rawBase64 = buffer.toString("base64");
+  const rawResponse = await callZaiChatCompletions(config, {
+    model: config.zaiVisionModel,
+    temperature: 0.1,
+    messages: [
+      {
+        role: "system",
+        content: [
+          "You are an OCR engine for handwritten and printed recipe cards.",
+          "Return only the transcription visible in the image.",
+          "Preserve line breaks and reading order.",
+          "Do not summarize, explain, label sections, or add markdown fences.",
+          "If text is uncertain, write [unclear].",
+          "If multiple recipe cards are visible, transcribe all visible text in reading order."
+        ].join(" ")
+      },
+      {
+        role: "user",
+        content: [
+          {
+            type: "image_url",
+            image_url: {
+              url: `data:${mimeType};base64,${rawBase64}`
+            }
+          },
+          {
+            type: "text",
+            text: "Transcribe every visible word from this recipe card image. Return only the transcription."
+          }
+        ]
+      }
+    ]
+  }, "Z.ai vision OCR");
+
+  const markdown = extractVisionMarkdown(getChatCompletionText(rawResponse));
+  if (!markdown.trim()) {
+    throw new Error(`Z.ai vision OCR returned no transcription for ${path.basename(filePath)}`);
+  }
+
+  return {
+    provider: "zai-vision",
+    markdown,
+    rawResponse,
+    fallbackUsed: false
+  };
+}
+
 async function structureRecipe(markdown: string, filePath: string, config: RuntimeConfig): Promise<ExtractedRecipe> {
   const systemPrompt = [
     "You convert OCR output from handwritten and printed recipe cards into strict JSON.",
@@ -148,30 +220,16 @@ OCR markdown:
 ${markdown}
 `;
 
-  const response = await fetch(`${config.zaiBaseUrl}/chat/completions`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${config.zaiApiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: config.zaiStructuringModel,
-      temperature: 0.1,
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userPrompt }
-      ]
-    })
-  });
+  const rawResponse = await callZaiChatCompletions(config, {
+    model: config.zaiStructuringModel,
+    temperature: 0.1,
+    messages: [
+      { role: "system", content: systemPrompt },
+      { role: "user", content: userPrompt }
+    ]
+  }, "Recipe structuring");
 
-  if (!response.ok) {
-    const details = await safeJson(response);
-    throw new Error(`Recipe structuring failed with ${response.status}: ${JSON.stringify(details)}`);
-  }
-
-  const rawResponse = await response.json();
-  const content = rawResponse.choices?.[0]?.message?.content;
-  const parsed = extractedRecipeSchema.parse(JSON.parse(extractJson(String(content))));
+  const parsed = extractedRecipeSchema.parse(JSON.parse(extractJson(getChatCompletionText(rawResponse))));
   return parsed;
 }
 
@@ -312,4 +370,149 @@ async function safeJson(response: Response): Promise<unknown> {
   } catch (error) {
     return text;
   }
+}
+
+function usesCodingPlanEndpoint(baseUrl: string): boolean {
+  return baseUrl.includes("/api/coding/paas/v4");
+}
+
+async function callZaiChatCompletions(
+  config: RuntimeConfig,
+  body: object,
+  operationName: string
+): Promise<any> {
+  const url = `${config.zaiBaseUrl}/chat/completions`;
+
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${config.zaiApiKey}`,
+        "Content-Type": "application/json",
+        "X-Title": "Vicki Recipe Archive"
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (response.ok) {
+      return response.json();
+    }
+
+    const details = await safeJson(response);
+    if (!isRetryableZaiStatus(response.status) || attempt === 2) {
+      throw new Error(`${operationName} failed with ${response.status}: ${JSON.stringify(details)}`);
+    }
+
+    const retryDelayMs = 1000 * (attempt + 1);
+    console.warn(`${operationName} returned ${response.status}; retrying in ${retryDelayMs}ms`);
+    await sleep(retryDelayMs);
+  }
+
+  throw new Error(`${operationName} failed after retries.`);
+}
+
+function getChatCompletionText(rawResponse: any): string {
+  const content = rawResponse?.choices?.[0]?.message?.content;
+  if (typeof content === "string") {
+    return content;
+  }
+
+  if (Array.isArray(content)) {
+    return content
+      .map((part) => {
+        if (typeof part === "string") {
+          return part;
+        }
+
+        if (part && typeof part === "object" && "text" in part && typeof part.text === "string") {
+          return part.text;
+        }
+
+        return "";
+      })
+      .filter(Boolean)
+      .join("\n");
+  }
+
+  return String(content ?? "");
+}
+
+export function extractVisionMarkdown(content: string): string {
+  const normalized = content.replace(/\r\n/g, "\n").trim();
+  const extractedFence =
+    normalized.match(/\*\*Extracted Text\*\*\s*```(?:\w+)?\s*([\s\S]*?)```/i) ||
+    normalized.match(/^```(?:\w+)?\s*([\s\S]*?)```$/);
+  if (extractedFence?.[1]) {
+    return extractedFence[1].trim();
+  }
+
+  const extractedSection = normalized.match(
+    /\*\*Extracted Text\*\*\s*:?\s*([\s\S]*?)(?:\n\s*\*\*[A-Z][\s\S]*?\*\*|$)/i
+  );
+  if (extractedSection?.[1]) {
+    return extractedSection[1].trim();
+  }
+
+  return normalized;
+}
+
+function findAdditionalRecipeTitles(recipeTitle: string, ocrMarkdown: string): string[] {
+  const normalizedTitle = normalizeTitleCandidate(recipeTitle);
+  const seen = new Set<string>();
+  const matches: string[] = [];
+
+  for (const line of ocrMarkdown.split(/\r?\n/)) {
+    const candidate = line.trim();
+    if (!isRecipeTitleCandidate(candidate)) {
+      continue;
+    }
+
+    const normalizedCandidate = normalizeTitleCandidate(candidate);
+    if (normalizedCandidate === normalizedTitle || seen.has(normalizedCandidate)) {
+      continue;
+    }
+
+    seen.add(normalizedCandidate);
+    matches.push(candidate);
+  }
+
+  return matches;
+}
+
+function isRecipeTitleCandidate(line: string): boolean {
+  if (line.length < 6 || line.length > 40) {
+    return false;
+  }
+
+  if (/[0-9]/.test(line) || /[():,+#]/.test(line)) {
+    return false;
+  }
+
+  if (!/^[A-Za-z'& -]+$/.test(line)) {
+    return false;
+  }
+
+  if (/\b(recipe|kitchen|serves|prep|cook|bake|ingredient|instruction)\b/i.test(line)) {
+    return false;
+  }
+
+  const words = line.split(/\s+/).filter(Boolean);
+  if (words.length < 2 || words.length > 5) {
+    return false;
+  }
+
+  const titleCaseWords = words.filter((word) => /^[A-Z][A-Za-z'&-]*$/.test(word));
+  return titleCaseWords.length >= Math.max(2, words.length - 1);
+}
+
+function normalizeTitleCandidate(line: string): string {
+  return line.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function isRetryableZaiStatus(status: number): boolean {
+  return status === 429 || status >= 500;
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

@@ -9,6 +9,7 @@ export interface RuntimeConfig {
   publishedScanDir: string;
   zaiApiKey?: string;
   zaiBaseUrl: string;
+  zaiVisionModel: string;
   zaiStructuringModel: string;
   zaiOcrModel: string;
   googleCloudProject?: string;
@@ -57,9 +58,10 @@ export function resolveRuntimeConfig(projectRoot: string): RuntimeConfig {
     reviewDir: resolveProjectPath(projectRoot, process.env.REVIEW_DIR || "data/staging/review"),
     publishedScanDir: resolveProjectPath(projectRoot, process.env.PUBLISHED_SCAN_DIR || "public/scans"),
     zaiApiKey: process.env.ZAI_API_KEY,
-    zaiBaseUrl: trimTrailingSlash(process.env.ZAI_BASE_URL || "https://api.z.ai/api/paas/v4"),
+    zaiBaseUrl: trimTrailingSlash(process.env.ZAI_BASE_URL || "https://api.z.ai/api/coding/paas/v4"),
+    zaiVisionModel: process.env.ZAI_VISION_MODEL || process.env.ZAI_OCR_MODEL || "glm-4.6v",
     zaiStructuringModel: process.env.ZAI_STRUCTURING_MODEL || "glm-4.7-flash",
-    zaiOcrModel: process.env.ZAI_OCR_MODEL || "glm-ocr",
+    zaiOcrModel: process.env.ZAI_OCR_MODEL || process.env.ZAI_VISION_MODEL || "glm-ocr",
     googleCloudProject: process.env.GOOGLE_CLOUD_PROJECT,
     googleCloudLocation: process.env.GOOGLE_CLOUD_LOCATION || "us",
     googleCredentialsPath: process.env.GOOGLE_APPLICATION_CREDENTIALS,

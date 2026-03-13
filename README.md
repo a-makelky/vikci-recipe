@@ -7,7 +7,7 @@ A static, Git-backed archive for handwritten and printed recipe cards.
 - Publishes approved recipes as a static Astro site that can deploy on Netlify.
 - Indexes built pages with Pagefind for full-text search.
 - Ingests scan batches through a local CLI:
-  - OCR with `GLM-OCR`
+  - OCR with Z.ai Coding Plan vision models for local image scans
   - structured extraction into a typed recipe schema
   - low-confidence review queue
   - publish approved recipes and scan assets into the site
@@ -26,8 +26,9 @@ Raw scans should stay outside the repo in iCloud Drive or Google Drive. Point th
 
 1. Copy `.env.example` to `.env`.
 2. Fill in `ZAI_API_KEY`.
-3. Optionally add Google Vision credentials for fallback OCR.
-4. Install dependencies:
+3. Leave `ZAI_BASE_URL` on the Coding Plan endpoint unless you intentionally want the paid legacy OCR route.
+4. Optionally add Google Vision credentials for fallback OCR.
+5. Install dependencies:
 
 ```bash
 npm install
@@ -136,7 +137,10 @@ npm run recipes -- update \
 
 ## OCR notes
 
-- `GLM-OCR` is the primary backend and supports PDFs and images.
+- The default Z.ai OCR path uses `glm-4.6v` on `https://api.z.ai/api/coding/paas/v4`, which worked against the Coding Plan on the first live batch test.
+- Structured recipe extraction runs on the same Coding Plan endpoint and defaults to `glm-4.7-flash`.
+- In this repo, the Coding Plan OCR path currently supports local image files for ingest.
+- If you want direct PDF OCR, you must either export PDF pages to JPG/PNG first or intentionally point `ZAI_BASE_URL` back to the paid legacy `paas/v4` endpoint.
 - Google Vision fallback currently supports local image files only in this repo.
 - PDF preview generation uses macOS `qlmanage` when available.
 - Image previews use macOS `sips` when available.

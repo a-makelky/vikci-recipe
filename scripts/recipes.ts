@@ -504,7 +504,8 @@ async function resolveArtifactFromArgs(args: string[]): Promise<StagedRecipe> {
       id: { type: "string" },
       artifact: { type: "string" }
     },
-    allowPositionals: true
+    allowPositionals: true,
+    strict: false
   });
 
   if (parsed.values.artifact) {
