@@ -2,6 +2,7 @@ import path from "node:path";
 import { basename } from "node:path";
 import { mkdtemp, readdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
+import { createHash } from "node:crypto";
 
 import type { ScanAsset, StagedRecipe } from "../../src/lib/recipe-schema";
 import { slugify } from "../../src/lib/recipes";
@@ -59,13 +60,13 @@ export async function ensureUniqueSlug(baseSlug: string, projectRoot: string): P
   return `${baseSlug}-${counter}`;
 }
 
-export function deriveRecipeId(filePath: string): string {
-  const stem = path.basename(filePath, path.extname(filePath));
-  if (/^recipe-\d+$/i.test(stem)) {
-    return stem.toLowerCase();
-  }
-
-  return `recipe-${slugify(stem) || "untitled"}`;
+export function deriveRecipeId(filePath: string, rootPath?: string): string {
+  const relativeSource = rootPath ? path.relative(rootPath, filePath) : path.basename(filePath);
+  const normalizedRelative = relativeSource.startsWith("..") ? path.basename(filePath) : relativeSource;
+  const stem = normalizedRelative.slice(0, normalizedRelative.length - path.extname(normalizedRelative).length);
+  const slugBase = slugify(stem.split(path.sep).join("-")) || "untitled";
+  const digest = createHash("sha1").update(normalizedRelative).digest("hex").slice(0, 8);
+  return `${slugBase}-${digest}`;
 }
 
 export function createSlugFromTitle(title: string, id: string): string {

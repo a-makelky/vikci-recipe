@@ -46,12 +46,14 @@ npm run recipes -- ingest --input "/absolute/path/to/Vickis-Recipes/raw/2026-03-
 
 ```bash
 npm run recipes -- review
+npm run recipes -- show --id batch-01-recipe-0001-xxxxxxxx --ocr
+npm run recipes -- status
 ```
 
 4. Open the staged JSON artifact, make manual corrections if needed, then approve it:
 
 ```bash
-npm run recipes -- approve --id recipe-0001
+npm run recipes -- approve --id batch-01-recipe-0001-xxxxxxxx
 ```
 
 5. Start the site locally:
@@ -69,10 +71,12 @@ npm run build
 ## CLI commands
 
 ```bash
-npm run recipes -- ingest --input /path/to/scans [--stage-only] [--with-google-fallback]
+npm run recipes -- ingest --input /path/to/scans [--stage-only] [--with-google-fallback] [--report ./batch-report.json]
 npm run recipes -- review
-npm run recipes -- approve --id recipe-0001
-npm run recipes -- publish --id recipe-0001
+npm run recipes -- show --id recipe-...
+npm run recipes -- status
+npm run recipes -- approve --id recipe-...
+npm run recipes -- publish --id recipe-...
 ```
 
 ### Command behavior
@@ -83,10 +87,20 @@ npm run recipes -- publish --id recipe-0001
   - auto-publishes recipes unless they need review or `--stage-only` is set
 - `review`
   - lists staged recipes that still need correction
+- `show`
+  - prints one staged artifact, including ingredients, instructions, and optional OCR text
+- `status`
+  - shows counts for approved recipes, staged artifacts, review queue items, and published scan sets
 - `approve`
   - marks a staged artifact approved and publishes it
 - `publish`
   - refreshes the public recipe markdown and scan assets from an approved artifact
+
+## Artifact IDs
+
+- Artifact IDs are derived from the relative scan path, not just the filename.
+- This prevents collisions when different batches contain files like `recipe-0001.pdf`.
+- Example pattern: `batch-01-recipe-0001-1a2b3c4d`
 
 ## OCR notes
 

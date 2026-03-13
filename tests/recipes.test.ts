@@ -3,6 +3,7 @@ import test from "node:test";
 
 import { normalizeRecipeDraft, slugify } from "../src/lib/recipes";
 import { evaluateReviewReasons } from "../scripts/lib/ocr";
+import { deriveRecipeId } from "../scripts/lib/publish";
 
 test("slugify normalizes recipe titles", () => {
   assert.equal(slugify("Grandma's Sauerkraut Balls!"), "grandma-s-sauerkraut-balls");
@@ -61,4 +62,19 @@ test("evaluateReviewReasons flags thin OCR output", () => {
   );
 
   assert.ok(reasons.length >= 3);
+});
+
+test("deriveRecipeId stays stable within a batch root and avoids collisions across batches", () => {
+  const january = deriveRecipeId(
+    "/tmp/vicki/batch-01/recipe-0001.pdf",
+    "/tmp/vicki"
+  );
+  const february = deriveRecipeId(
+    "/tmp/vicki/batch-02/recipe-0001.pdf",
+    "/tmp/vicki"
+  );
+
+  assert.match(january, /^batch-01-recipe-0001-[a-f0-9]{8}$/);
+  assert.match(february, /^batch-02-recipe-0001-[a-f0-9]{8}$/);
+  assert.notEqual(january, february);
 });
