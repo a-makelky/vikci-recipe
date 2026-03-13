@@ -36,7 +36,8 @@ npm install
 
 ## Typical workflow
 
-1. Scan each card as a PDF or image from iPhone into your raw scan folder.
+1. Capture each card as a JPG image from iPhone into your raw scan folder.
+   Use `-front` and `-back` filenames for double-sided cards, for example `recipe-0002-front.jpg` and `recipe-0002-back.jpg`.
 2. Ingest a batch:
 
 ```bash
@@ -121,6 +122,7 @@ npm run recipes -- publish --id recipe-...
 
 - Artifact IDs are derived from the relative scan path, not just the filename.
 - This prevents collisions when different batches contain files like `recipe-0001.pdf`.
+- For paired image scans, `recipe-0002-front.jpg` and `recipe-0002-back.jpg` share one artifact ID and ingest together as one recipe.
 - Example pattern: `batch-01-recipe-0001-1a2b3c4d`
 
 ## Review editing helpers
@@ -148,6 +150,8 @@ npm run recipes -- update \
 
 ## OCR notes
 
+- The recommended intake format is JPG from iPhone. HEIC is not supported by this repo today.
+- Double-sided recipe cards should be saved as paired files like `recipe-0002-front.jpg` and `recipe-0002-back.jpg`.
 - The default Z.ai OCR path uses `glm-4.6v` on `https://api.z.ai/api/coding/paas/v4`, which worked against the Coding Plan on the first live batch test.
 - Structured recipe extraction runs on the same Coding Plan endpoint and defaults to `glm-4.7-flash`.
 - In this repo, the Coding Plan OCR path currently supports local image files for ingest.

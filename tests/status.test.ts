@@ -24,6 +24,7 @@ function createArtifact(
     slug: `${id}-slug`,
     source: {
       input_path: inputPath,
+      related_input_paths: [],
       file_name: inputPath.split("/").pop() ?? `${id}.pdf`,
       mime_type: "application/pdf",
       ingested_at: "2026-03-13T00:00:00.000Z"

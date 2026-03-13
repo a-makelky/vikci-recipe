@@ -11,6 +11,7 @@ function createArtifact(): StagedRecipe {
     slug: "fudgy-brownies",
     source: {
       input_path: "/tmp/vicki/batch-01/recipe-0001.pdf",
+      related_input_paths: [],
       file_name: "recipe-0001.pdf",
       mime_type: "application/pdf",
       ingested_at: "2026-03-13T00:00:00.000Z"

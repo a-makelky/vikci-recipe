@@ -12,6 +12,7 @@ import {
 } from "../../src/lib/recipe-schema";
 import type { RuntimeConfig } from "./environment";
 import { inferMimeType, readJson } from "./io";
+import { getScanSideLabel } from "./source-files";
 
 export interface OcrResult {
   provider: "zai-vision" | "glm-ocr" | "google-vision";
@@ -36,18 +37,37 @@ export async function extractRecipeFromFile(
     throw new Error("Missing ZAI_API_KEY. Add it to .env before running ingest.");
   }
 
-  let ocr = await callPrimaryOcr(filePath, config);
-
-  if (enableGoogleFallback && shouldAttemptGoogleFallback(ocr.markdown)) {
-    try {
-      ocr = await callGoogleVision(filePath, config);
-    } catch (error) {
-      console.warn(`Google Vision fallback skipped for ${path.basename(filePath)}: ${String(error)}`);
-    }
-  }
+  const ocr = await extractOcrFromFile(filePath, config, enableGoogleFallback);
 
   const recipe = await structureRecipeFromMarkdown(ocr.markdown, filePath, config);
   return { ...ocr, recipe };
+}
+
+export async function extractRecipeFromSourceFiles(
+  filePaths: string[],
+  config: RuntimeConfig,
+  enableGoogleFallback: boolean
+): Promise<OcrResult & { recipe: ExtractedRecipe }> {
+  if (filePaths.length === 1) {
+    return extractRecipeFromFile(filePaths[0]!, config, enableGoogleFallback);
+  }
+
+  if (!config.zaiApiKey) {
+    throw new Error("Missing ZAI_API_KEY. Add it to .env before running ingest.");
+  }
+
+  const ocrResults = await Promise.all(filePaths.map((filePath) => extractOcrFromFile(filePath, config, enableGoogleFallback)));
+  const combinedOcr = combineOcrResults(filePaths, ocrResults);
+  const recipe = await structureRecipeFromMarkdown(
+    combinedOcr.markdown,
+    filePaths.map((filePath) => path.basename(filePath)).join(" + "),
+    config
+  );
+
+  return {
+    ...combinedOcr,
+    recipe
+  };
 }
 
 export function evaluateReviewReasons(recipe: ExtractedRecipe, ocrMarkdown: string): string[] {
@@ -85,6 +105,45 @@ function shouldAttemptGoogleFallback(markdown: string): boolean {
     lowered.includes("[image]") ||
     lowered.includes("unable to read")
   );
+}
+
+async function extractOcrFromFile(
+  filePath: string,
+  config: RuntimeConfig,
+  enableGoogleFallback: boolean
+): Promise<OcrResult> {
+  let ocr = await callPrimaryOcr(filePath, config);
+
+  if (enableGoogleFallback && shouldAttemptGoogleFallback(ocr.markdown)) {
+    try {
+      ocr = await callGoogleVision(filePath, config);
+    } catch (error) {
+      console.warn(`Google Vision fallback skipped for ${path.basename(filePath)}: ${String(error)}`);
+    }
+  }
+
+  return ocr;
+}
+
+function combineOcrResults(filePaths: string[], results: OcrResult[]): OcrResult {
+  const combinedMarkdown = results
+    .map((result, index) => {
+      const label = capitalize(getScanSideLabel(filePaths[index]!, index, filePaths.length));
+      return [`${label} scan`, result.markdown].join("\n");
+    })
+    .join("\n\n");
+
+  return {
+    provider: results[0]?.provider ?? "zai-vision",
+    markdown: combinedMarkdown,
+    rawResponse: results.map((result, index) => ({
+      file_path: filePaths[index],
+      provider: result.provider,
+      raw_response: result.rawResponse,
+      fallback_used: result.fallbackUsed
+    })),
+    fallbackUsed: results.some((result) => result.fallbackUsed)
+  };
 }
 
 async function callGlmOcr(filePath: string, config: RuntimeConfig): Promise<OcrResult> {
@@ -559,4 +618,8 @@ function isRetryableZaiStatus(status: number): boolean {
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function capitalize(value: string): string {
+  return value ? value[0]!.toUpperCase() + value.slice(1) : value;
 }

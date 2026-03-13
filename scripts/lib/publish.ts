@@ -16,12 +16,14 @@ import {
   writeRecipeMarkdown,
   writeJson
 } from "./io";
+import { getScanSideLabel, stripScanSideSuffix } from "./source-files";
 
 export async function publishArtifact(artifact: StagedRecipe, config: RuntimeConfig): Promise<{
   recipePath: string;
   assetPaths: string[];
 }> {
-  const assetInfo = await publishScanAssets(artifact.source.input_path, artifact.recipe.slug, config);
+  const sourcePaths = [artifact.source.input_path, ...artifact.source.related_input_paths];
+  const assetInfo = await publishScanAssets(sourcePaths, artifact.recipe.slug, config);
   const recipe = {
     ...artifact.recipe,
     scan_assets: assetInfo.scanAssets
@@ -60,6 +62,7 @@ export function computePublicationHash(artifact: StagedRecipe): string {
       JSON.stringify({
         slug: artifact.slug,
         source_input_path: artifact.source.input_path,
+        related_input_paths: artifact.source.related_input_paths,
         title: artifact.recipe.title,
         summary: artifact.recipe.summary,
         ingredients: artifact.recipe.ingredients,
@@ -129,9 +132,13 @@ export async function ensureUniqueSlug(baseSlug: string, projectRoot: string): P
 export function deriveRecipeId(filePath: string, rootPath?: string): string {
   const relativeSource = rootPath ? path.relative(rootPath, filePath) : path.basename(filePath);
   const normalizedRelative = relativeSource.startsWith("..") ? path.basename(filePath) : relativeSource;
-  const stem = normalizedRelative.slice(0, normalizedRelative.length - path.extname(normalizedRelative).length);
-  const slugBase = slugify(stem.split(path.sep).join("-")) || "untitled";
-  const digest = createHash("sha1").update(normalizedRelative).digest("hex").slice(0, 8);
+  const parsed = path.parse(normalizedRelative);
+  const strippedStem = stripScanSideSuffix(parsed.name);
+  const usesPairedKey = strippedStem !== parsed.name;
+  const slugStem = path.join(parsed.dir, usesPairedKey ? strippedStem : parsed.name);
+  const digestSource = usesPairedKey ? path.join(parsed.dir, strippedStem) : normalizedRelative;
+  const slugBase = slugify(slugStem.split(path.sep).join("-")) || "untitled";
+  const digest = createHash("sha1").update(digestSource).digest("hex").slice(0, 8);
   return `${slugBase}-${digest}`;
 }
 
@@ -140,62 +147,69 @@ export function createSlugFromTitle(title: string, id: string): string {
 }
 
 async function publishScanAssets(
-  sourcePath: string,
+  sourcePaths: string[],
   slug: string,
   config: RuntimeConfig
 ): Promise<{ scanAssets: ScanAsset[]; assetPaths: string[] }> {
-  const extension = path.extname(sourcePath).toLowerCase();
   const scanDir = path.join(config.publishedScanDir, slug);
   await ensureDir(scanDir);
 
   const assetPaths: string[] = [];
-  const scanAssets: ScanAsset[] = [];
-  const originalDestination = path.join(scanDir, `original${extension}`);
-  await copyPublishedFile(sourcePath, originalDestination);
+  const originalAssets: ScanAsset[] = [];
+  const previewAssets: ScanAsset[] = [];
+  for (const [index, sourcePath] of sourcePaths.entries()) {
+    const extension = path.extname(sourcePath).toLowerCase();
+    const sideLabel = getScanSideLabel(sourcePath, index, sourcePaths.length);
+    const labelPrefix = sourcePaths.length === 1 ? "" : `${capitalize(sideLabel)} `;
+    const baseName = sourcePaths.length === 1 ? "original" : `${sideLabel}-original`;
+    const originalDestination = path.join(scanDir, `${baseName}${extension}`);
+    await copyPublishedFile(sourcePath, originalDestination);
 
-  const publicOriginalPath = toPublicPath(config.publishedScanDir, originalDestination);
-  assetPaths.push(originalDestination);
-  scanAssets.push({
-    path: publicOriginalPath,
-    label: "Original scan",
-    type: extension === ".pdf" ? "pdf" : "image",
-    role: "original"
-  });
+    const publicOriginalPath = toPublicPath(config.publishedScanDir, originalDestination);
+    assetPaths.push(originalDestination);
+    originalAssets.push({
+      path: publicOriginalPath,
+      label: `${labelPrefix}scan`.trim().replace(/^./, (value) => value.toUpperCase()),
+      type: extension === ".pdf" ? "pdf" : "image",
+      role: "original"
+    });
 
-  if (extension === ".pdf") {
-    const previewDestination = path.join(scanDir, "preview.png");
-    const previewCreated = await tryRenderPdfPreview(sourcePath, previewDestination);
-    if (previewCreated) {
-      assetPaths.push(previewDestination);
-      scanAssets.unshift({
-        path: toPublicPath(config.publishedScanDir, previewDestination),
-        label: "Scan preview",
-        type: "image",
-        role: "preview"
-      });
+    if (extension === ".pdf") {
+      const previewDestination = path.join(scanDir, sourcePaths.length === 1 ? "preview.png" : `${sideLabel}-preview.png`);
+      const previewCreated = await tryRenderPdfPreview(sourcePath, previewDestination);
+      if (previewCreated) {
+        assetPaths.push(previewDestination);
+        previewAssets.push({
+          path: toPublicPath(config.publishedScanDir, previewDestination),
+          label: `${labelPrefix}preview`.trim().replace(/^./, (value) => value.toUpperCase()),
+          type: "image",
+          role: "preview"
+        });
+      }
+      continue;
     }
-  } else {
-    const previewDestination = path.join(scanDir, "preview.jpg");
+
+    const previewDestination = path.join(scanDir, sourcePaths.length === 1 ? "preview.jpg" : `${sideLabel}-preview.jpg`);
     const previewCreated = await tryCreateImagePreview(sourcePath, previewDestination);
     if (previewCreated) {
       assetPaths.push(previewDestination);
-      scanAssets.unshift({
+      previewAssets.push({
         path: toPublicPath(config.publishedScanDir, previewDestination),
-        label: "Scan preview",
+        label: `${labelPrefix}preview`.trim().replace(/^./, (value) => value.toUpperCase()),
         type: "image",
         role: "preview"
       });
     } else {
-      scanAssets.unshift({
+      previewAssets.push({
         path: publicOriginalPath,
-        label: "Scan preview",
+        label: `${labelPrefix}preview`.trim().replace(/^./, (value) => value.toUpperCase()),
         type: "image",
         role: "preview"
       });
     }
   }
 
-  return { scanAssets, assetPaths };
+  return { scanAssets: [...previewAssets, ...originalAssets], assetPaths };
 }
 
 function buildRecipeBody(artifact: StagedRecipe): string {
@@ -242,4 +256,8 @@ async function tryRenderPdfPreview(sourcePath: string, destinationPath: string):
     console.warn(`Unable to create PDF preview for ${basename(sourcePath)}: ${String(error)}`);
     return false;
   }
+}
+
+function capitalize(value: string): string {
+  return value ? value[0]!.toUpperCase() + value.slice(1) : value;
 }

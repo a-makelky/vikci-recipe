@@ -18,7 +18,7 @@ import {
   readStagedRecipe,
   writeJson
 } from "./lib/io";
-import { detectRecipeSections, evaluateReviewReasons, extractRecipeFromFile, structureRecipeFromMarkdown } from "./lib/ocr";
+import { detectRecipeSections, evaluateReviewReasons, extractRecipeFromSourceFiles, structureRecipeFromMarkdown } from "./lib/ocr";
 import {
   computePublicationHash,
   createSlugFromTitle,
@@ -32,6 +32,7 @@ import {
   writeStageArtifact
 } from "./lib/publish";
 import { applyArtifactPatch, deriveSplitArtifactId, parseBooleanInput, parseDelimitedList } from "./lib/review";
+import { groupPairedScanFiles } from "./lib/source-files";
 import { filterArtifactsByBatch, formatStatusSummary, summarizeArtifacts } from "./lib/status";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -123,6 +124,7 @@ async function ingestCommand(args: string[]) {
     console.log(`No supported scan files found in ${inputPath}`);
     return;
   }
+  const sourceGroups = groupPairedScanFiles(files);
 
   await ensureDir(config.stagingDir);
   await ensureDir(config.reviewDir);
@@ -148,11 +150,17 @@ async function ingestCommand(args: string[]) {
     }>
   };
 
-  for (const filePath of files) {
-    console.log(`\nProcessing ${filePath}`);
+  for (const sourceGroup of sourceGroups) {
+    const primaryPath = sourceGroup.primaryPath;
+    const sourceLabel = sourceGroup.filePaths.join(" + ");
+    console.log(`\nProcessing ${sourceLabel}`);
     try {
-      const extraction = await extractRecipeFromFile(filePath, config, parsed.values["with-google-fallback"]);
-      const id = deriveRecipeId(filePath, idRoot);
+      const extraction = await extractRecipeFromSourceFiles(
+        sourceGroup.filePaths,
+        config,
+        parsed.values["with-google-fallback"]
+      );
+      const id = deriveRecipeId(primaryPath, idRoot);
       const existingArtifactPath = path.join(config.stagingDir, `${id}.json`);
       const existingArtifact = (await fileExists(existingArtifactPath)) ? await readStagedRecipe(existingArtifactPath) : null;
       const baseSlug = createSlugFromTitle(extraction.recipe.title, id);
@@ -174,9 +182,10 @@ async function ingestCommand(args: string[]) {
         id,
         slug,
         source: {
-          input_path: filePath,
-          file_name: path.basename(filePath),
-          mime_type: inferMimeType(filePath),
+          input_path: primaryPath,
+          related_input_paths: sourceGroup.filePaths.filter((filePath) => filePath !== primaryPath),
+          file_name: path.basename(primaryPath),
+          mime_type: inferMimeType(primaryPath),
           ingested_at: new Date().toISOString()
         },
         ocr: {
@@ -213,7 +222,7 @@ async function ingestCommand(args: string[]) {
         console.log(`Needs review: ${artifact.review.reasons.join(" ")}`);
         report.needs_review += 1;
         report.files.push({
-          file_path: filePath,
+          file_path: sourceLabel,
           id: artifact.id,
           title: artifact.recipe.title,
           status: "needs_review",
@@ -234,7 +243,7 @@ async function ingestCommand(args: string[]) {
         console.log(`Published recipe: ${published.recipePath}`);
         report.published += 1;
         report.files.push({
-          file_path: filePath,
+          file_path: sourceLabel,
           id: artifact.id,
           title: artifact.recipe.title,
           status: "published",
@@ -244,7 +253,7 @@ async function ingestCommand(args: string[]) {
       } else {
         report.staged_only += 1;
         report.files.push({
-          file_path: filePath,
+          file_path: sourceLabel,
           id: artifact.id,
           title: artifact.recipe.title,
           status: "staged",
@@ -253,11 +262,11 @@ async function ingestCommand(args: string[]) {
         });
       }
     } catch (error) {
-      console.error(`Failed to process ${filePath}: ${String(error)}`);
+      console.error(`Failed to process ${sourceLabel}: ${String(error)}`);
       report.processed += 1;
       report.failed += 1;
       report.files.push({
-        file_path: filePath,
+        file_path: sourceLabel,
         status: "failed",
         message: String(error)
       });
@@ -297,6 +306,9 @@ async function reviewCommand() {
     const artifact = await readStagedRecipe(filePath);
     console.log(`- ${artifact.id} (${artifact.recipe.title})`);
     console.log(`  source: ${artifact.source.input_path}`);
+    for (const relatedSource of artifact.source.related_input_paths) {
+      console.log(`  related source: ${relatedSource}`);
+    }
     console.log(`  artifact: ${filePath}`);
     for (const reason of artifact.review.reasons) {
       console.log(`  - ${reason}`);
@@ -858,6 +870,7 @@ function formatArtifactSummary(artifact: StagedRecipe, includeOcr: boolean): str
     `Current hash: ${computePublicationHash(artifact)}`,
     `OCR provider: ${artifact.ocr.provider}${artifact.ocr.fallback_used ? " (fallback used)" : ""}`,
     `Source file: ${artifact.source.input_path}`,
+    `Related source files: ${artifact.source.related_input_paths.join(" | ") || "none"}`,
     `Course: ${artifact.recipe.course}`,
     `Cuisine: ${artifact.recipe.cuisine}`,
     `Dessert: ${artifact.recipe.dessert ? "yes" : "no"}`,

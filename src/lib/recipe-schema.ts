@@ -98,6 +98,7 @@ export const stagedRecipeSchema = z.object({
   slug: z.string(),
   source: z.object({
     input_path: z.string(),
+    related_input_paths: z.array(z.string()).default([]),
     file_name: z.string(),
     mime_type: z.string(),
     ingested_at: z.string()
