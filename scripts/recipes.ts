@@ -26,6 +26,7 @@ import {
   publishArtifact,
   writeStageArtifact
 } from "./lib/publish";
+import { applyArtifactPatch, parseBooleanInput, parseDelimitedList } from "./lib/review";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const config = resolveRuntimeConfig(projectRoot);
@@ -35,6 +36,7 @@ Usage:
   npm run recipes -- ingest --input /path/to/scans [--stage-only] [--with-google-fallback] [--report ./path/to/report.json]
   npm run recipes -- review
   npm run recipes -- show --id recipe-0001
+  npm run recipes -- update --id recipe-0001 [--title \"...\"] [--ingredients \"a|b|c\"] [--publish]
   npm run recipes -- status
   npm run recipes -- approve --id recipe-0001
   npm run recipes -- publish --id recipe-0001
@@ -43,6 +45,7 @@ Commands:
   ingest   OCR one file or a directory of scans, stage artifacts, and publish approved entries.
   review   List staged recipes that still need manual review.
   show     Print a staged artifact with recipe fields and an OCR preview for manual review.
+  update   Patch a staged artifact's recipe fields without hand-editing the raw JSON.
   status   Show repository counts for approved recipes, staged artifacts, and review queue items.
   approve  Mark a staged recipe as approved and publish it to the site.
   publish  Re-publish an already approved staged recipe and refresh its public assets.
@@ -64,6 +67,9 @@ async function main() {
       break;
     case "show":
       await showCommand(rest);
+      break;
+    case "update":
+      await updateCommand(rest);
       break;
     case "status":
       await statusCommand();
@@ -283,6 +289,69 @@ async function showCommand(args: string[]) {
   console.log(formatArtifactSummary(artifact, parsed.values.ocr));
 }
 
+async function updateCommand(args: string[]) {
+  const parsed = parseArgs({
+    args,
+    options: {
+      id: { type: "string" },
+      artifact: { type: "string" },
+      title: { type: "string" },
+      summary: { type: "string" },
+      slug: { type: "string" },
+      "source-name": { type: "string" },
+      "source-family": { type: "string" },
+      course: { type: "string" },
+      cuisine: { type: "string" },
+      "card-type": { type: "string" },
+      "ocr-confidence": { type: "string" },
+      dessert: { type: "string" },
+      ingredients: { type: "string" },
+      instructions: { type: "string" },
+      notes: { type: "string" },
+      tags: { type: "string" },
+      proteins: { type: "string" },
+      "review-status": { type: "string" },
+      "review-reasons": { type: "string" },
+      publish: { type: "boolean", default: false }
+    },
+    allowPositionals: true
+  });
+
+  const artifact = await resolveArtifactFromArgs(args);
+  const nextArtifact = applyArtifactPatch(artifact, {
+    title: parsed.values.title,
+    summary: parsed.values.summary,
+    slug: parsed.values.slug,
+    source_name: parsed.values["source-name"],
+    source_family: parsed.values["source-family"],
+    course: parsed.values.course as StagedRecipe["recipe"]["course"] | undefined,
+    cuisine: parsed.values.cuisine,
+    card_type: parsed.values["card-type"] as StagedRecipe["recipe"]["card_type"] | undefined,
+    ocr_confidence: parsed.values["ocr-confidence"] as StagedRecipe["recipe"]["ocr_confidence"] | undefined,
+    dessert: parseBooleanInput(parsed.values.dessert),
+    ingredients: parseDelimitedList(parsed.values.ingredients, /\|/g),
+    instructions: parseDelimitedList(parsed.values.instructions, /\|/g),
+    notes: parseDelimitedList(parsed.values.notes, /\|/g),
+    tags: parseDelimitedList(parsed.values.tags, /[|,]/g),
+    proteins: parseDelimitedList(parsed.values.proteins, /[|,]/g) as StagedRecipe["recipe"]["proteins"] | undefined,
+    review_status: parsed.values["review-status"] as StagedRecipe["review"]["status"] | undefined,
+    review_reasons: parseDelimitedList(parsed.values["review-reasons"], /\|/g)
+  });
+
+  await persistArtifact(nextArtifact);
+  console.log(`Updated ${nextArtifact.id}`);
+  console.log(formatArtifactSummary(nextArtifact, false));
+
+  if (parsed.values.publish) {
+    if (nextArtifact.review.status !== "approved") {
+      throw new Error(`Cannot publish ${nextArtifact.id} because it is marked ${nextArtifact.review.status}.`);
+    }
+
+    const published = await publishArtifact(nextArtifact, config);
+    console.log(`Published recipe: ${published.recipePath}`);
+  }
+}
+
 async function statusCommand() {
   const approvedRecipes = await listRecipeMarkdownFiles(path.join(config.projectRoot, "src/content/recipes"));
   const stagedArtifacts = await listJsonFiles(config.stagingDir);
@@ -305,11 +374,7 @@ async function approveCommand(args: string[], publishAfterApproval: boolean) {
   artifact.review.reasons = [];
   artifact.recipe.review_status = "approved";
 
-  await writeStageArtifact(artifact, config.stagingDir);
-  const reviewCopy = path.join(config.reviewDir, `${artifact.id}.json`);
-  if (await fileExists(reviewCopy)) {
-    await unlink(reviewCopy);
-  }
+  await persistArtifact(artifact);
 
   console.log(`Approved ${artifact.id}`);
   if (publishAfterApproval) {
@@ -358,6 +423,19 @@ async function resolveArtifactFromArgs(args: string[]): Promise<StagedRecipe> {
   }
 
   throw new Error(`No artifact found for ${parsed.values.id}`);
+}
+
+async function persistArtifact(artifact: StagedRecipe): Promise<void> {
+  await writeStageArtifact(artifact, config.stagingDir);
+  const reviewCopy = path.join(config.reviewDir, `${artifact.id}.json`);
+  if (artifact.review.status === "needs_review") {
+    await writeStageArtifact(artifact, config.reviewDir);
+    return;
+  }
+
+  if (await fileExists(reviewCopy)) {
+    await unlink(reviewCopy);
+  }
 }
 
 function resolveIdRoot(inputPath: string): string {

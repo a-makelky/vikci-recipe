@@ -47,6 +47,7 @@ npm run recipes -- ingest --input "/absolute/path/to/Vickis-Recipes/raw/2026-03-
 ```bash
 npm run recipes -- review
 npm run recipes -- show --id batch-01-recipe-0001-xxxxxxxx --ocr
+npm run recipes -- update --id batch-01-recipe-0001-xxxxxxxx --ingredients "2 cups flour|1 cup sugar|2 eggs" --review-reasons "Cleaned OCR list"
 npm run recipes -- status
 ```
 
@@ -74,6 +75,7 @@ npm run build
 npm run recipes -- ingest --input /path/to/scans [--stage-only] [--with-google-fallback] [--report ./batch-report.json]
 npm run recipes -- review
 npm run recipes -- show --id recipe-...
+npm run recipes -- update --id recipe-... [--title "..."] [--ingredients "a|b|c"] [--publish]
 npm run recipes -- status
 npm run recipes -- approve --id recipe-...
 npm run recipes -- publish --id recipe-...
@@ -89,6 +91,8 @@ npm run recipes -- publish --id recipe-...
   - lists staged recipes that still need correction
 - `show`
   - prints one staged artifact, including ingredients, instructions, and optional OCR text
+- `update`
+  - patches a staged artifact from CLI flags and can optionally re-publish the approved recipe
 - `status`
   - shows counts for approved recipes, staged artifacts, review queue items, and published scan sets
 - `approve`
@@ -101,6 +105,22 @@ npm run recipes -- publish --id recipe-...
 - Artifact IDs are derived from the relative scan path, not just the filename.
 - This prevents collisions when different batches contain files like `recipe-0001.pdf`.
 - Example pattern: `batch-01-recipe-0001-1a2b3c4d`
+
+## Review editing helpers
+
+- Use `|` between ingredient, instruction, note, or review-reason entries.
+- Use `,` or `|` between tags and proteins.
+- Example:
+
+```bash
+npm run recipes -- update \
+  --id batch-01-recipe-0001-1a2b3c4d \
+  --title "Sunday Dinner Rolls" \
+  --ingredients "2 cups warm milk|1/2 cup sugar|2 packets yeast|5 to 6 cups flour" \
+  --instructions "Dissolve yeast in warm milk.|Mix in the rest and knead.|Let rise twice, then bake." \
+  --review-status approved \
+  --publish
+```
 
 ## OCR notes
 
