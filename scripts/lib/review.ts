@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+
 import type { StagedRecipe } from "../../src/lib/recipe-schema";
 import { stagedRecipeSchema } from "../../src/lib/recipe-schema";
 import { slugify, uniqueStrings } from "../../src/lib/recipes";
@@ -52,6 +54,12 @@ export function parseBooleanInput(value: string | undefined): boolean | undefine
   }
 
   throw new Error(`Expected boolean value like true/false, yes/no, or 1/0. Received "${value}".`);
+}
+
+export function deriveSplitArtifactId(sourceId: string, title: string): string {
+  const slug = slugify(title) || "split";
+  const digest = createHash("sha1").update(`${sourceId}:${slug}`).digest("hex").slice(0, 8);
+  return `${sourceId}-${slug}-${digest}`;
 }
 
 export function applyArtifactPatch(artifact: StagedRecipe, patch: ArtifactPatchInput): StagedRecipe {

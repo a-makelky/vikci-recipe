@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { extractVisionMarkdown } from "../scripts/lib/ocr";
+import { detectRecipeSections, extractVisionMarkdown } from "../scripts/lib/ocr";
 
 test("extractVisionMarkdown keeps plain OCR text unchanged", () => {
   const text = "Pasta Primavera\n1 can soup\n1/2 cup milk";
@@ -43,4 +43,21 @@ Two handwritten recipe cards
     extractVisionMarkdown(content),
     ["Here's what's cookin': Cabbage Casserole", "Recipe from the kitchen of: Mom", "Serves: 4"].join("\n")
   );
+});
+
+test("detectRecipeSections groups multi-recipe OCR into titled sections", () => {
+  const sections = detectRecipeSections([
+    "Cabbage Casserole",
+    "1/2 head cabbage",
+    "1 lb hamburger",
+    "",
+    "Barbecued Hamburgers",
+    "1 lb hamburger",
+    "1 cup ketchup"
+  ].join("\n"));
+
+  assert.equal(sections.length, 2);
+  assert.equal(sections[0]?.title, "Cabbage Casserole");
+  assert.equal(sections[1]?.title, "Barbecued Hamburgers");
+  assert.match(sections[1]?.markdown || "", /1 cup ketchup/);
 });

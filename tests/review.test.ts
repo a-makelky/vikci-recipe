@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import type { StagedRecipe } from "../src/lib/recipe-schema";
-import { applyArtifactPatch, parseBooleanInput, parseDelimitedList } from "../scripts/lib/review";
+import { applyArtifactPatch, deriveSplitArtifactId, parseBooleanInput, parseDelimitedList } from "../scripts/lib/review";
 
 function createArtifact(): StagedRecipe {
   return {
@@ -86,4 +86,14 @@ test("applyArtifactPatch keeps needs-review artifacts reviewable when reasons ar
 
   assert.equal(updated.review.status, "needs_review");
   assert.deepEqual(updated.review.reasons, ["Marked for manual review."]);
+});
+
+test("deriveSplitArtifactId stays stable for the same source/title pair", () => {
+  const first = deriveSplitArtifactId("batch-01-recipe-0001-abcd1234", "Barbecued Hamburgers");
+  const second = deriveSplitArtifactId("batch-01-recipe-0001-abcd1234", "Barbecued Hamburgers");
+  const third = deriveSplitArtifactId("batch-01-recipe-0001-abcd1234", "Cabbage Casserole");
+
+  assert.equal(first, second);
+  assert.match(first, /^batch-01-recipe-0001-abcd1234-barbecued-hamburgers-[a-f0-9]{8}$/);
+  assert.notEqual(first, third);
 });

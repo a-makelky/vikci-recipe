@@ -20,6 +20,13 @@ export interface OcrResult {
   fallbackUsed: boolean;
 }
 
+export interface RecipeOcrSection {
+  title: string;
+  markdown: string;
+  startLine: number;
+  endLine: number;
+}
+
 export async function extractRecipeFromFile(
   filePath: string,
   config: RuntimeConfig,
@@ -39,7 +46,7 @@ export async function extractRecipeFromFile(
     }
   }
 
-  const recipe = await structureRecipe(ocr.markdown, filePath, config);
+  const recipe = await structureRecipeFromMarkdown(ocr.markdown, filePath, config);
   return { ...ocr, recipe };
 }
 
@@ -182,7 +189,11 @@ async function callZaiVisionOcr(filePath: string, config: RuntimeConfig): Promis
   };
 }
 
-async function structureRecipe(markdown: string, filePath: string, config: RuntimeConfig): Promise<ExtractedRecipe> {
+export async function structureRecipeFromMarkdown(
+  markdown: string,
+  filePath: string,
+  config: RuntimeConfig
+): Promise<ExtractedRecipe> {
   const systemPrompt = [
     "You convert OCR output from handwritten and printed recipe cards into strict JSON.",
     "Preserve original wording where possible and do not invent missing content.",
@@ -458,25 +469,43 @@ export function extractVisionMarkdown(content: string): string {
 
 function findAdditionalRecipeTitles(recipeTitle: string, ocrMarkdown: string): string[] {
   const normalizedTitle = normalizeTitleCandidate(recipeTitle);
-  const seen = new Set<string>();
-  const matches: string[] = [];
+  return detectRecipeSections(ocrMarkdown)
+    .map((section) => section.title)
+    .filter((title) => normalizeTitleCandidate(title) !== normalizedTitle);
+}
 
-  for (const line of ocrMarkdown.split(/\r?\n/)) {
+export function detectRecipeSections(ocrMarkdown: string): RecipeOcrSection[] {
+  const lines = ocrMarkdown.replace(/\r\n/g, "\n").split("\n");
+  const candidates: Array<{ index: number; title: string; normalized: string }> = [];
+  const seen = new Set<string>();
+
+  for (const [index, line] of lines.entries()) {
     const candidate = line.trim();
     if (!isRecipeTitleCandidate(candidate)) {
       continue;
     }
 
-    const normalizedCandidate = normalizeTitleCandidate(candidate);
-    if (normalizedCandidate === normalizedTitle || seen.has(normalizedCandidate)) {
+    const normalized = normalizeTitleCandidate(candidate);
+    if (seen.has(normalized)) {
       continue;
     }
 
-    seen.add(normalizedCandidate);
-    matches.push(candidate);
+    seen.add(normalized);
+    candidates.push({ index, title: candidate, normalized });
   }
 
-  return matches;
+  return candidates
+    .map((candidate, index) => {
+      const endIndexExclusive = index + 1 < candidates.length ? candidates[index + 1].index : lines.length;
+      const sectionLines = trimBlankLines(lines.slice(candidate.index, endIndexExclusive));
+      return {
+        title: candidate.title,
+        markdown: sectionLines.join("\n").trim(),
+        startLine: candidate.index + 1,
+        endLine: endIndexExclusive
+      };
+    })
+    .filter((section) => section.markdown.length > 0);
 }
 
 function isRecipeTitleCandidate(line: string): boolean {
@@ -507,6 +536,21 @@ function isRecipeTitleCandidate(line: string): boolean {
 
 function normalizeTitleCandidate(line: string): string {
   return line.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function trimBlankLines(lines: string[]): string[] {
+  let start = 0;
+  let end = lines.length;
+
+  while (start < end && !lines[start]?.trim()) {
+    start += 1;
+  }
+
+  while (end > start && !lines[end - 1]?.trim()) {
+    end -= 1;
+  }
+
+  return lines.slice(start, end);
 }
 
 function isRetryableZaiStatus(status: number): boolean {

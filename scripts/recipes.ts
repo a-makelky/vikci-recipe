@@ -18,7 +18,7 @@ import {
   readStagedRecipe,
   writeJson
 } from "./lib/io";
-import { evaluateReviewReasons, extractRecipeFromFile } from "./lib/ocr";
+import { detectRecipeSections, evaluateReviewReasons, extractRecipeFromFile, structureRecipeFromMarkdown } from "./lib/ocr";
 import {
   computePublicationHash,
   createSlugFromTitle,
@@ -31,7 +31,7 @@ import {
   removePublishedRecipe,
   writeStageArtifact
 } from "./lib/publish";
-import { applyArtifactPatch, parseBooleanInput, parseDelimitedList } from "./lib/review";
+import { applyArtifactPatch, deriveSplitArtifactId, parseBooleanInput, parseDelimitedList } from "./lib/review";
 import { filterArtifactsByBatch, formatStatusSummary, summarizeArtifacts } from "./lib/status";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -43,6 +43,7 @@ Usage:
   npm run recipes -- review
   npm run recipes -- show --id recipe-0001
   npm run recipes -- update --id recipe-0001 [--title \"...\"] [--ingredients \"a|b|c\"] [--publish]
+  npm run recipes -- split --id recipe-0001 [--title \"Second Recipe\"] [--trim-current] [--manual]
   npm run recipes -- republish-stale
   npm run recipes -- status [--batch batch-01] [--json]
   npm run recipes -- approve --id recipe-0001
@@ -53,6 +54,7 @@ Commands:
   review   List staged recipes that still need manual review.
   show     Print a staged artifact with recipe fields and an OCR preview for manual review.
   update   Patch a staged artifact's recipe fields without hand-editing the raw JSON.
+  split    Preview or create split artifacts when one OCR scan contains multiple recipes.
   republish-stale  Rebuild approved recipes whose published pages are out of date with their staged artifact.
   status   Show repository counts, OCR breakdowns, and optional batch-filtered pilot metrics.
   approve  Mark a staged recipe as approved and publish it to the site.
@@ -78,6 +80,9 @@ async function main() {
       break;
     case "update":
       await updateCommand(rest);
+      break;
+    case "split":
+      await splitCommand(rest);
       break;
     case "republish-stale":
       await republishStaleCommand();
@@ -390,6 +395,123 @@ async function updateCommand(args: string[]) {
   }
 }
 
+async function splitCommand(args: string[]) {
+  const parsed = parseArgs({
+    args,
+    options: {
+      id: { type: "string" },
+      artifact: { type: "string" },
+      title: { type: "string" },
+      "trim-current": { type: "boolean", default: false },
+      manual: { type: "boolean", default: false },
+      publish: { type: "boolean", default: false }
+    },
+    allowPositionals: true
+  });
+
+  let sourceArtifact = await resolveArtifactFromArgs(args);
+  const sections = detectRecipeSections(sourceArtifact.ocr.markdown);
+  if (sections.length < 2) {
+    console.log([
+      `Detected ${sections.length} recipe section(s) in ${sourceArtifact.id}.`,
+      "No split candidates were found beyond the current recipe title."
+    ].join("\n"));
+    return;
+  }
+
+  if (!parsed.values.title) {
+    console.log(formatSplitSectionPreview(sourceArtifact, sections));
+    return;
+  }
+
+  const selectedSection = selectRecipeSection(sections, parsed.values.title);
+  if (!selectedSection) {
+    throw new Error(
+      `No OCR section matched "${parsed.values.title}". Available titles: ${sections.map((section) => section.title).join(", ")}`
+    );
+  }
+
+  const splitId = deriveSplitArtifactId(sourceArtifact.id, selectedSection.title);
+  const existingSplit = await findArtifactById(splitId);
+  if (existingSplit) {
+    throw new Error(`Split artifact ${splitId} already exists. Use show/update on it instead of creating it again.`);
+  }
+
+  const structuredRecipe = parsed.values.manual
+    ? buildManualSplitDraft(sourceArtifact, selectedSection)
+    : await structureRecipeFromMarkdown(
+        selectedSection.markdown,
+        `${path.basename(sourceArtifact.source.input_path)} :: ${selectedSection.title}`,
+        config
+      );
+  const normalizedRecipe = normalizeRecipeDraft(
+    splitId,
+    extractedRecipeSchema.parse(structuredRecipe),
+    [],
+    config.defaultSourceName,
+    config.defaultSourceFamily
+  );
+  const baseSlug = createSlugFromTitle(normalizedRecipe.title, splitId);
+  const splitSlug = await ensureUniqueSlugForArtifact(baseSlug, splitId);
+  normalizedRecipe.slug = splitSlug;
+
+  const reviewReasons = evaluateReviewReasons(normalizedRecipe, selectedSection.markdown);
+  normalizedRecipe.review_status = reviewReasons.length > 0 ? "needs_review" : "approved";
+
+  let splitArtifact = stagedRecipeSchema.parse({
+    version: 1,
+    id: splitId,
+    slug: splitSlug,
+    source: {
+      ...sourceArtifact.source,
+      ingested_at: new Date().toISOString()
+    },
+    ocr: {
+      provider: sourceArtifact.ocr.provider,
+      markdown: selectedSection.markdown,
+      raw_response: {
+        derived_from_artifact_id: sourceArtifact.id,
+        section_title: selectedSection.title,
+        section_start_line: selectedSection.startLine,
+        section_end_line: selectedSection.endLine
+      },
+      fallback_used: sourceArtifact.ocr.fallback_used
+    },
+    recipe: {
+      ...normalizedRecipe,
+      id: splitId,
+      slug: splitSlug
+    },
+    review: {
+      status: normalizedRecipe.review_status,
+      reasons: reviewReasons
+    },
+    publication: {
+      is_published: false
+    }
+  });
+
+  await persistArtifact(splitArtifact);
+  console.log(`Created split artifact: ${splitArtifact.id}`);
+  console.log(formatArtifactSummary(splitArtifact, false));
+
+  if (parsed.values.publish) {
+    if (splitArtifact.review.status !== "approved") {
+      throw new Error(`Cannot publish ${splitArtifact.id} because it is marked ${splitArtifact.review.status}.`);
+    }
+
+    const published = await publishArtifact(splitArtifact, config);
+    splitArtifact = markArtifactPublished(splitArtifact);
+    await persistArtifact(splitArtifact);
+    console.log(`Published recipe: ${published.recipePath}`);
+  }
+
+  if (parsed.values["trim-current"]) {
+    sourceArtifact = await trimArtifactToOwnSection(sourceArtifact, sections);
+    console.log(`Trimmed source artifact to its own OCR section: ${sourceArtifact.id}`);
+  }
+}
+
 async function statusCommand(args: string[]) {
   const parsed = parseArgs({
     args,
@@ -508,17 +630,20 @@ async function resolveArtifactFromArgs(args: string[]): Promise<StagedRecipe> {
     strict: false
   });
 
-  if (parsed.values.artifact) {
-    return readStagedRecipe(path.resolve(parsed.values.artifact));
+  const artifactPath = typeof parsed.values.artifact === "string" ? parsed.values.artifact : undefined;
+  const artifactId = typeof parsed.values.id === "string" ? parsed.values.id : undefined;
+
+  if (artifactPath) {
+    return readStagedRecipe(path.resolve(artifactPath));
   }
 
-  if (!parsed.values.id) {
+  if (!artifactId) {
     throw new Error("Pass --id recipe-0001 or --artifact /path/to/staged.json.");
   }
 
   const candidates = [
-    path.join(config.stagingDir, `${parsed.values.id}.json`),
-    path.join(config.reviewDir, `${parsed.values.id}.json`)
+    path.join(config.stagingDir, `${artifactId}.json`),
+    path.join(config.reviewDir, `${artifactId}.json`)
   ];
 
   for (const candidate of candidates) {
@@ -527,7 +652,22 @@ async function resolveArtifactFromArgs(args: string[]): Promise<StagedRecipe> {
     }
   }
 
-  throw new Error(`No artifact found for ${parsed.values.id}`);
+  throw new Error(`No artifact found for ${artifactId}`);
+}
+
+async function findArtifactById(id: string): Promise<StagedRecipe | null> {
+  const candidates = [
+    path.join(config.stagingDir, `${id}.json`),
+    path.join(config.reviewDir, `${id}.json`)
+  ];
+
+  for (const candidate of candidates) {
+    if (await fileExists(candidate)) {
+      return readStagedRecipe(candidate);
+    }
+  }
+
+  return null;
 }
 
 async function persistArtifact(artifact: StagedRecipe): Promise<void> {
@@ -556,6 +696,149 @@ function resolveIdRoot(inputPath: string): string {
   }
 
   return path.extname(inputPath) ? path.dirname(inputPath) : inputPath;
+}
+
+function formatSplitSectionPreview(artifact: StagedRecipe, sections: ReturnType<typeof detectRecipeSections>): string {
+  const lines = [
+    `Detected ${sections.length} recipe section(s) in ${artifact.id}:`,
+    ...sections.flatMap((section) => {
+      const previewLines = section.markdown
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .slice(0, 4);
+
+      return [
+        `- ${section.title} (lines ${section.startLine}-${section.endLine})`,
+        ...previewLines.map((line) => `  ${line}`)
+      ];
+    }),
+    "",
+    `Create a split artifact with: npm run recipes -- split --id ${artifact.id} --title "Recipe Title"`
+  ];
+
+  return lines.join("\n");
+}
+
+function selectRecipeSection(
+  sections: ReturnType<typeof detectRecipeSections>,
+  title: string
+): ReturnType<typeof detectRecipeSections>[number] | undefined {
+  const normalizedLookup = normalizeLookupValue(title);
+  return sections.find((section) => normalizeLookupValue(section.title) === normalizedLookup);
+}
+
+async function trimArtifactToOwnSection(
+  artifact: StagedRecipe,
+  sections: ReturnType<typeof detectRecipeSections>
+): Promise<StagedRecipe> {
+  const ownSection = selectRecipeSection(sections, artifact.recipe.title);
+  if (!ownSection) {
+    throw new Error(`Could not find an OCR section matching the current title "${artifact.recipe.title}".`);
+  }
+
+  let nextArtifact = stagedRecipeSchema.parse({
+    ...artifact,
+    ocr: {
+      ...artifact.ocr,
+      markdown: ownSection.markdown,
+      raw_response: {
+        trimmed_from_artifact_id: artifact.id,
+        section_title: ownSection.title,
+        section_start_line: ownSection.startLine,
+        section_end_line: ownSection.endLine
+      }
+    },
+    review: {
+      status: "approved",
+      reasons: []
+    },
+    recipe: {
+      ...artifact.recipe,
+      review_status: "approved"
+    }
+  });
+
+  const reviewReasons = evaluateReviewReasons(nextArtifact.recipe, ownSection.markdown);
+  nextArtifact = stagedRecipeSchema.parse({
+    ...nextArtifact,
+    review: {
+      status: reviewReasons.length > 0 ? "needs_review" : "approved",
+      reasons: reviewReasons
+    },
+    recipe: {
+      ...nextArtifact.recipe,
+      review_status: reviewReasons.length > 0 ? "needs_review" : "approved"
+    }
+  });
+
+  if (nextArtifact.review.status !== "approved" && artifact.publication.is_published && artifact.publication.published_slug) {
+    const previousPublishedSlug = artifact.publication.published_slug;
+    await removePublishedRecipe(previousPublishedSlug, config);
+    nextArtifact = markArtifactUnpublished(nextArtifact);
+    console.log(`Unpublished recipe: ${previousPublishedSlug}`);
+  }
+
+  await persistArtifact(nextArtifact);
+  return nextArtifact;
+}
+
+async function ensureUniqueSlugForArtifact(baseSlug: string, artifactId: string): Promise<string> {
+  const publishedSlugPath = (slug: string) => path.join(config.projectRoot, "src/content/recipes", `${slug}.md`);
+  const stagedArtifactPaths = await listJsonFiles(config.stagingDir);
+  const reviewArtifactPaths = await listJsonFiles(config.reviewDir);
+  const reservedSlugs = new Set<string>();
+
+  for (const filePath of [...stagedArtifactPaths, ...reviewArtifactPaths]) {
+    const artifact = await readStagedRecipe(filePath);
+    if (artifact.id !== artifactId) {
+      reservedSlugs.add(artifact.slug);
+    }
+  }
+
+  let candidate = baseSlug;
+  let counter = 2;
+  while (reservedSlugs.has(candidate) || (await fileExists(publishedSlugPath(candidate)))) {
+    candidate = `${baseSlug}-${counter}`;
+    counter += 1;
+  }
+
+  return candidate;
+}
+
+function normalizeLookupValue(value: string): string {
+  return value.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function buildManualSplitDraft(
+  sourceArtifact: StagedRecipe,
+  section: ReturnType<typeof detectRecipeSections>[number]
+) {
+  const detailLines = section.markdown
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .slice(1);
+
+  return extractedRecipeSchema.parse({
+    title: section.title,
+    summary: "",
+    ingredients: detailLines.length > 0 ? detailLines : ["Manual review required from OCR section."],
+    instructions: ["Manual review required before approval."],
+    notes: [
+      `Created as a manual split draft from ${sourceArtifact.id}.`,
+      "Update ingredients and instructions from the OCR text before approval."
+    ],
+    source_name: sourceArtifact.recipe.source_name || config.defaultSourceName,
+    source_family: sourceArtifact.recipe.source_family || config.defaultSourceFamily,
+    course: "other",
+    proteins: [],
+    cuisine: sourceArtifact.recipe.cuisine || "unknown",
+    dessert: false,
+    tags: [],
+    card_type: sourceArtifact.recipe.card_type,
+    ocr_confidence: "low"
+  });
 }
 
 function formatArtifactSummary(artifact: StagedRecipe, includeOcr: boolean): string {

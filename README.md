@@ -49,6 +49,9 @@ npm run recipes -- ingest --input "/absolute/path/to/Vickis-Recipes/raw/2026-03-
 npm run recipes -- review
 npm run recipes -- show --id batch-01-recipe-0001-xxxxxxxx --ocr
 npm run recipes -- update --id batch-01-recipe-0001-xxxxxxxx --ingredients "2 cups flour|1 cup sugar|2 eggs" --review-reasons "Cleaned OCR list"
+npm run recipes -- split --id batch-01-recipe-0001-xxxxxxxx
+npm run recipes -- split --id batch-01-recipe-0001-xxxxxxxx --title "Second Recipe Title" --trim-current
+npm run recipes -- split --id batch-01-recipe-0001-xxxxxxxx --title "Second Recipe Title" --manual
 npm run recipes -- status
 npm run recipes -- status --batch "2026-03-batch-01"
 npm run recipes -- republish-stale
@@ -79,6 +82,7 @@ npm run recipes -- ingest --input /path/to/scans [--stage-only] [--with-google-f
 npm run recipes -- review
 npm run recipes -- show --id recipe-...
 npm run recipes -- update --id recipe-... [--title "..."] [--ingredients "a|b|c"] [--publish]
+npm run recipes -- split --id recipe-... [--title "Second Recipe"] [--trim-current] [--manual] [--publish]
 npm run recipes -- status [--batch batch-01] [--json]
 npm run recipes -- republish-stale
 npm run recipes -- approve --id recipe-...
@@ -97,6 +101,11 @@ npm run recipes -- publish --id recipe-...
   - prints one staged artifact, including ingredients, instructions, and optional OCR text
 - `update`
   - patches a staged artifact from CLI flags and can optionally re-publish the approved recipe
+- `split`
+  - previews OCR-detected recipe sections when a single scan contains more than one recipe
+  - can create a second staged artifact from a selected OCR section
+  - supports `--trim-current` to shrink the current artifact's OCR text down to its own section before re-reviewing it
+  - supports `--manual` when you want to stage the split immediately without waiting on model structuring
 - `republish-stale`
   - republishes approved recipes whose public page no longer matches the staged artifact
 - `status`
@@ -123,6 +132,8 @@ npm run recipes -- publish --id recipe-...
 - Use `npm run recipes -- republish-stale` after batch review edits to refresh every stale public recipe in one pass.
 - Use `npm run recipes -- status --batch "2026-03-batch-01"` to check a specific pilot batch without mixing in older work.
 - Add `--json` when another agent or script needs structured status output.
+- Use `npm run recipes -- split --id ...` before manual cleanup when one scan contains multiple recipes. Add `--trim-current` if you want the current artifact's OCR text reduced to the section that matches its title.
+- Add `--manual` to `split` when OCR section detection worked but the structuring model is unavailable or you want to finish the split with hand review.
 - Example:
 
 ```bash
