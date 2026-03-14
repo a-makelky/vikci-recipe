@@ -452,8 +452,9 @@ async function callZaiChatCompletions(
   operationName: string
 ): Promise<any> {
   const url = `${config.zaiBaseUrl}/chat/completions`;
+  const maxAttempts = 5;
 
-  for (let attempt = 0; attempt < 3; attempt += 1) {
+  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -469,11 +470,11 @@ async function callZaiChatCompletions(
     }
 
     const details = await safeJson(response);
-    if (!isRetryableZaiStatus(response.status) || attempt === 2) {
+    if (!isRetryableZaiStatus(response.status) || attempt === maxAttempts - 1) {
       throw new Error(`${operationName} failed with ${response.status}: ${JSON.stringify(details)}`);
     }
 
-    const retryDelayMs = 1000 * (attempt + 1);
+    const retryDelayMs = getRetryDelayMs(response, attempt);
     console.warn(`${operationName} returned ${response.status}; retrying in ${retryDelayMs}ms`);
     await sleep(retryDelayMs);
   }
@@ -614,6 +615,27 @@ function trimBlankLines(lines: string[]): string[] {
 
 function isRetryableZaiStatus(status: number): boolean {
   return status === 429 || status >= 500;
+}
+
+function getRetryDelayMs(response: Response, attempt: number): number {
+  const retryAfterHeader = response.headers.get("retry-after");
+  if (retryAfterHeader) {
+    const retryAfterSeconds = Number.parseInt(retryAfterHeader, 10);
+    if (Number.isFinite(retryAfterSeconds) && retryAfterSeconds > 0) {
+      return retryAfterSeconds * 1000;
+    }
+
+    const retryAt = Date.parse(retryAfterHeader);
+    if (Number.isFinite(retryAt)) {
+      return Math.max(1000, retryAt - Date.now());
+    }
+  }
+
+  if (response.status === 429) {
+    return Math.min(60_000, 5_000 * 2 ** attempt);
+  }
+
+  return 1_000 * (attempt + 1);
 }
 
 function sleep(ms: number): Promise<void> {
