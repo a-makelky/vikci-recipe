@@ -53,6 +53,7 @@ npm run recipes -- update --id batch-01-recipe-0001-xxxxxxxx --ingredients "2 cu
 npm run recipes -- split --id batch-01-recipe-0001-xxxxxxxx
 npm run recipes -- split --id batch-01-recipe-0001-xxxxxxxx --title "Second Recipe Title" --trim-current
 npm run recipes -- split --id batch-01-recipe-0001-xxxxxxxx --title "Second Recipe Title" --manual
+npm run recipes -- reprocess --id batch-01-recipe-0001-xxxxxxxx
 npm run recipes -- status
 npm run recipes -- status --batch "2026-03-batch-01"
 npm run recipes -- republish-stale
@@ -84,6 +85,7 @@ npm run recipes -- review
 npm run recipes -- show --id recipe-...
 npm run recipes -- update --id recipe-... [--title "..."] [--ingredients "a|b|c"] [--publish]
 npm run recipes -- split --id recipe-... [--title "Second Recipe"] [--trim-current] [--manual] [--publish]
+npm run recipes -- reprocess --id recipe-... [--with-google-fallback] [--publish]
 npm run recipes -- status [--batch batch-01] [--json]
 npm run recipes -- republish-stale
 npm run recipes -- approve --id recipe-...
@@ -108,6 +110,11 @@ npm run recipes -- publish --id recipe-...
   - can create a second staged artifact from a selected OCR section
   - supports `--trim-current` to shrink the current artifact's OCR text down to its own section before re-reviewing it
   - supports `--manual` when you want to stage the split immediately without waiting on model structuring
+- `reprocess`
+  - re-runs OCR and structuring for a staged artifact from its original source scan
+  - automatically retries low-confidence image OCR with a rotation-aware recovery pass
+  - falls back to re-structuring the current OCR section for split-derived artifacts
+  - supports `--publish` when the refreshed artifact comes back approved
 - `republish-stale`
   - republishes approved recipes whose public page no longer matches the staged artifact
 - `status`
@@ -138,6 +145,7 @@ npm run recipes -- publish --id recipe-...
 - Use `npm run recipes -- split --id ...` before manual cleanup when one scan contains multiple recipes. Add `--trim-current` if you want the current artifact's OCR text reduced to the section that matches its title.
 - Add `--manual` to `split` when OCR section detection worked but the structuring model is unavailable or you want to finish the split with hand review.
 - After a partial batch run, rerun the same `ingest` command and it will skip already-staged recipes by default. Add `--reprocess-existing` only when you intentionally want to rebuild them from the source files.
+- Use `npm run recipes -- reprocess --id ...` when a single card looks wrong but you do not want to restage the whole batch.
 - Example:
 
 ```bash
@@ -157,6 +165,7 @@ npm run recipes -- update \
 - The default Z.ai OCR path uses `glm-4.6v` on `https://api.z.ai/api/coding/paas/v4`, which worked against the Coding Plan on the first live batch test.
 - Structured recipe extraction runs on the same Coding Plan endpoint and defaults to `glm-4.7-flash`.
 - In this repo, the Coding Plan OCR path currently supports local image files for ingest.
+- Low-confidence image OCR is automatically retried with a more careful prompt that asks the model to mentally rotate the card upright before transcribing it.
 - If you want direct PDF OCR, you must either export PDF pages to JPG/PNG first or intentionally point `ZAI_BASE_URL` back to the paid legacy `paas/v4` endpoint.
 - Google Vision fallback currently supports local image files only in this repo.
 - PDF preview generation uses macOS `qlmanage` when available.

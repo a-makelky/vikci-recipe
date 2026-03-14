@@ -1,6 +1,7 @@
-import { readFile } from "node:fs/promises";
+import { mkdtemp, readFile, rm } from "node:fs/promises";
 import path from "node:path";
 import { createSign } from "node:crypto";
+import { tmpdir } from "node:os";
 
 import type { ExtractedRecipe } from "../../src/lib/recipe-schema";
 import {
@@ -11,7 +12,7 @@ import {
   extractedRecipeSchema
 } from "../../src/lib/recipe-schema";
 import type { RuntimeConfig } from "./environment";
-import { inferMimeType, readJson } from "./io";
+import { inferMimeType, readJson, runCommand } from "./io";
 import { getScanSideLabel } from "./source-files";
 
 export interface OcrResult {
@@ -37,10 +38,10 @@ export async function extractRecipeFromFile(
     throw new Error("Missing ZAI_API_KEY. Add it to .env before running ingest.");
   }
 
-  const ocr = await extractOcrFromFile(filePath, config, enableGoogleFallback);
-
-  const recipe = await structureRecipeFromMarkdown(ocr.markdown, filePath, config);
-  return { ...ocr, recipe };
+  const initialOcr = await extractOcrFromFile(filePath, config, enableGoogleFallback);
+  const initialRecipe = await structureRecipeFromMarkdown(initialOcr.markdown, filePath, config);
+  const initialResult = { ...initialOcr, recipe: initialRecipe };
+  return recoverLowConfidenceRecipe(filePath, config, enableGoogleFallback, initialResult);
 }
 
 export async function extractRecipeFromSourceFiles(
@@ -199,6 +200,14 @@ async function callPrimaryOcr(filePath: string, config: RuntimeConfig): Promise<
 }
 
 async function callZaiVisionOcr(filePath: string, config: RuntimeConfig): Promise<OcrResult> {
+  return callZaiVisionOcrWithPrompt(filePath, config, false);
+}
+
+async function callZaiVisionOcrWithPrompt(
+  filePath: string,
+  config: RuntimeConfig,
+  recoveryMode: boolean
+): Promise<OcrResult> {
   const buffer = await readFile(filePath);
   const mimeType = inferMimeType(filePath);
   const rawBase64 = buffer.toString("base64");
@@ -210,11 +219,15 @@ async function callZaiVisionOcr(filePath: string, config: RuntimeConfig): Promis
         role: "system",
         content: [
           "You are an OCR engine for handwritten and printed recipe cards.",
+          "The image may be sideways or upside down. Determine the natural reading orientation before transcribing.",
           "Return only the transcription visible in the image.",
           "Preserve line breaks and reading order.",
           "Do not summarize, explain, label sections, or add markdown fences.",
           "If text is uncertain, write [unclear].",
-          "If multiple recipe cards are visible, transcribe all visible text in reading order."
+          "If multiple recipe cards are visible, transcribe all visible text in reading order.",
+          recoveryMode
+            ? "Be extra careful with faint pencil marks, rotated cards, and handwritten ingredient abbreviations."
+            : ""
         ].join(" ")
       },
       {
@@ -228,7 +241,9 @@ async function callZaiVisionOcr(filePath: string, config: RuntimeConfig): Promis
           },
           {
             type: "text",
-            text: "Transcribe every visible word from this recipe card image. Return only the transcription."
+            text: recoveryMode
+              ? "Transcribe every visible word from this recipe card image. If the card is rotated, mentally rotate it upright first. Return only the transcription."
+              : "Transcribe every visible word from this recipe card image. Return only the transcription."
           }
         ]
       }
@@ -243,9 +258,115 @@ async function callZaiVisionOcr(filePath: string, config: RuntimeConfig): Promis
   return {
     provider: "zai-vision",
     markdown,
-    rawResponse,
+    rawResponse: recoveryMode
+      ? {
+          recovery_mode: true,
+          response: rawResponse
+        }
+      : rawResponse,
     fallbackUsed: false
   };
+}
+
+async function recoverLowConfidenceRecipe(
+  filePath: string,
+  config: RuntimeConfig,
+  enableGoogleFallback: boolean,
+  initialResult: OcrResult & { recipe: ExtractedRecipe }
+): Promise<OcrResult & { recipe: ExtractedRecipe }> {
+  if (!shouldAttemptRecipeRecovery(initialResult, filePath, config)) {
+    return initialResult;
+  }
+
+  let bestResult = initialResult;
+  for (const rotation of [0, 90, 270] as const) {
+    try {
+      const candidate = await rerunRecipeWithVisionRecovery(filePath, config, enableGoogleFallback, rotation);
+      if (scoreRecipeCandidate(candidate) > scoreRecipeCandidate(bestResult)) {
+        bestResult = candidate;
+      }
+
+      if (candidate.recipe.ocr_confidence !== "low" && evaluateReviewReasons(candidate.recipe, candidate.markdown).length === 0) {
+        break;
+      }
+    } catch (error) {
+      console.warn(`Recovery OCR failed for ${path.basename(filePath)} at ${rotation}°: ${String(error)}`);
+    }
+  }
+
+  return bestResult;
+}
+
+function shouldAttemptRecipeRecovery(
+  result: OcrResult & { recipe: ExtractedRecipe },
+  filePath: string,
+  config: RuntimeConfig
+): boolean {
+  const mimeType = inferMimeType(filePath);
+  return (
+    result.provider === "zai-vision" &&
+    result.recipe.ocr_confidence === "low" &&
+    usesCodingPlanEndpoint(config.zaiBaseUrl) &&
+    mimeType !== "application/pdf"
+  );
+}
+
+async function rerunRecipeWithVisionRecovery(
+  filePath: string,
+  config: RuntimeConfig,
+  enableGoogleFallback: boolean,
+  rotationDegrees: 0 | 90 | 270
+): Promise<OcrResult & { recipe: ExtractedRecipe }> {
+  const sourcePath =
+    rotationDegrees === 0 ? filePath : await createRotatedImageVariant(filePath, rotationDegrees);
+
+  try {
+    let ocr = await callZaiVisionOcrWithPrompt(sourcePath, config, true);
+    if (enableGoogleFallback && shouldAttemptGoogleFallback(ocr.markdown)) {
+      try {
+        ocr = await callGoogleVision(sourcePath, config);
+      } catch (error) {
+        console.warn(`Google Vision recovery fallback skipped for ${path.basename(sourcePath)}: ${String(error)}`);
+      }
+    }
+
+    const recipe = await structureRecipeFromMarkdown(ocr.markdown, filePath, config);
+    return {
+      ...ocr,
+      rawResponse: {
+        rotation_degrees: rotationDegrees,
+        source_file: filePath,
+        response: ocr.rawResponse
+      },
+      recipe
+    };
+  } finally {
+    if (sourcePath !== filePath) {
+      await rm(path.dirname(sourcePath), { force: true, recursive: true }).catch(() => undefined);
+    }
+  }
+}
+
+async function createRotatedImageVariant(filePath: string, rotationDegrees: 90 | 270): Promise<string> {
+  const tempDir = await mkdtemp(path.join(tmpdir(), "vicki-rotate-"));
+  const destinationPath = path.join(tempDir, path.basename(filePath));
+  await runCommand("sips", ["-r", String(rotationDegrees), filePath, "--out", destinationPath]);
+  return destinationPath;
+}
+
+function scoreRecipeCandidate(candidate: OcrResult & { recipe: ExtractedRecipe }): number {
+  const confidenceScore = {
+    low: 0,
+    medium: 1,
+    high: 2
+  }[candidate.recipe.ocr_confidence];
+  const reviewPenalty = evaluateReviewReasons(candidate.recipe, candidate.markdown).length * 10;
+  const unclearPenalty = (candidate.markdown.match(/\[unclear\]/gi) ?? []).length * 3;
+  const ingredientBonus = Math.min(candidate.recipe.ingredients.length, 12);
+  const instructionBonus = Math.min(candidate.recipe.instructions.length, 8);
+  const textLengthBonus = Math.min(Math.floor(candidate.markdown.length / 80), 6);
+
+  return confidenceScore * 100 + ingredientBonus * 3 + instructionBonus * 4 + textLengthBonus - reviewPenalty - unclearPenalty;
 }
 
 export async function structureRecipeFromMarkdown(
@@ -453,17 +574,31 @@ async function callZaiChatCompletions(
 ): Promise<any> {
   const url = `${config.zaiBaseUrl}/chat/completions`;
   const maxAttempts = 5;
+  const requestTimeoutMs = 90_000;
 
   for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${config.zaiApiKey}`,
-        "Content-Type": "application/json",
-        "X-Title": "Vicki Recipe Archive"
-      },
-      body: JSON.stringify(body)
-    });
+    let response: Response;
+    try {
+      response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${config.zaiApiKey}`,
+          "Content-Type": "application/json",
+          "X-Title": "Vicki Recipe Archive"
+        },
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(requestTimeoutMs)
+      });
+    } catch (error) {
+      if (!isRetryableFetchError(error) || attempt === maxAttempts - 1) {
+        throw new Error(`${operationName} failed before receiving a response: ${String(error)}`);
+      }
+
+      const retryDelayMs = 1_000 * (attempt + 1);
+      console.warn(`${operationName} timed out or disconnected; retrying in ${retryDelayMs}ms`);
+      await sleep(retryDelayMs);
+      continue;
+    }
 
     if (response.ok) {
       return response.json();
@@ -531,7 +666,7 @@ function findAdditionalRecipeTitles(recipeTitle: string, ocrMarkdown: string): s
   const normalizedTitle = normalizeTitleCandidate(recipeTitle);
   return detectRecipeSections(ocrMarkdown)
     .map((section) => section.title)
-    .filter((title) => normalizeTitleCandidate(title) !== normalizedTitle);
+    .filter((title) => !looksLikeSameRecipeTitle(normalizedTitle, normalizeTitleCandidate(title)));
 }
 
 export function detectRecipeSections(ocrMarkdown: string): RecipeOcrSection[] {
@@ -598,6 +733,30 @@ function normalizeTitleCandidate(line: string): string {
   return line.trim().toLowerCase().replace(/\s+/g, " ");
 }
 
+function looksLikeSameRecipeTitle(currentTitle: string, candidateTitle: string): boolean {
+  if (candidateTitle === currentTitle) {
+    return true;
+  }
+
+  const currentWords = titleWords(currentTitle);
+  const candidateWords = titleWords(candidateTitle);
+  const overlapCount = candidateWords.filter((word) => currentWords.includes(word)).length;
+  const smallerWordCount = Math.min(currentWords.length, candidateWords.length);
+
+  if (smallerWordCount >= 2 && overlapCount === smallerWordCount) {
+    return true;
+  }
+
+  return false;
+}
+
+function titleWords(value: string): string[] {
+  return value
+    .split(/\s+/)
+    .map((word) => word.trim())
+    .filter(Boolean);
+}
+
 function trimBlankLines(lines: string[]): string[] {
   let start = 0;
   let end = lines.length;
@@ -644,4 +803,12 @@ function sleep(ms: number): Promise<void> {
 
 function capitalize(value: string): string {
   return value ? value[0]!.toUpperCase() + value.slice(1) : value;
+}
+
+function isRetryableFetchError(error: unknown): boolean {
+  if (!(error instanceof Error)) {
+    return false;
+  }
+
+  return error.name === "TimeoutError" || error.name === "AbortError" || error.name === "TypeError";
 }

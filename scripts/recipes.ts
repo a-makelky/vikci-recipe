@@ -46,6 +46,7 @@ Usage:
   npm run recipes -- show --id recipe-0001
   npm run recipes -- update --id recipe-0001 [--title \"...\"] [--ingredients \"a|b|c\"] [--publish]
   npm run recipes -- split --id recipe-0001 [--title \"Second Recipe\"] [--trim-current] [--manual]
+  npm run recipes -- reprocess --id recipe-0001 [--with-google-fallback] [--publish]
   npm run recipes -- republish-stale
   npm run recipes -- status [--batch batch-01] [--json]
   npm run recipes -- approve --id recipe-0001
@@ -57,6 +58,7 @@ Commands:
   show     Print a staged artifact with recipe fields and an OCR preview for manual review.
   update   Patch a staged artifact's recipe fields without hand-editing the raw JSON.
   split    Preview or create split artifacts when one OCR scan contains multiple recipes.
+  reprocess  Re-run OCR/structuring for an artifact from its source scan or current OCR section.
   republish-stale  Rebuild approved recipes whose published pages are out of date with their staged artifact.
   status   Show repository counts, OCR breakdowns, and optional batch-filtered pilot metrics.
   approve  Mark a staged recipe as approved and publish it to the site.
@@ -85,6 +87,9 @@ async function main() {
       break;
     case "split":
       await splitCommand(rest);
+      break;
+    case "reprocess":
+      await reprocessCommand(rest);
       break;
     case "republish-stale":
       await republishStaleCommand();
@@ -592,6 +597,62 @@ async function statusCommand(args: string[]) {
   console.log(formatStatusSummary(summary));
 }
 
+async function reprocessCommand(args: string[]) {
+  const parsed = parseArgs({
+    args,
+    options: {
+      id: { type: "string" },
+      artifact: { type: "string" },
+      "with-google-fallback": { type: "boolean", default: false },
+      publish: { type: "boolean", default: false }
+    },
+    allowPositionals: true
+  });
+
+  const artifact = await resolveArtifactFromArgs(args);
+  const sourceFiles = [artifact.source.input_path, ...artifact.source.related_input_paths];
+  const reprocessFromCurrentSection = artifact.source.related_input_paths.length === 0 && isDerivedArtifactOcr(artifact.ocr.raw_response);
+
+  const extraction = reprocessFromCurrentSection
+    ? {
+        provider: artifact.ocr.provider,
+        markdown: artifact.ocr.markdown,
+        rawResponse: artifact.ocr.raw_response,
+        fallbackUsed: artifact.ocr.fallback_used,
+        recipe: await structureRecipeFromMarkdown(artifact.ocr.markdown, path.basename(artifact.source.input_path), config)
+      }
+    : await extractRecipeFromSourceFiles(sourceFiles, config, parsed.values["with-google-fallback"]);
+
+  let nextArtifact = rebuildArtifactFromExtraction(artifact, extraction);
+
+  if (nextArtifact.review.status !== "approved" && artifact.publication.is_published && artifact.publication.published_slug) {
+    const previousPublishedSlug = artifact.publication.published_slug;
+    await removePublishedRecipe(previousPublishedSlug, config);
+    nextArtifact = markArtifactUnpublished(nextArtifact);
+    console.log(`Unpublished recipe: ${previousPublishedSlug}`);
+  }
+
+  await persistArtifact(nextArtifact);
+  console.log(`Reprocessed ${nextArtifact.id}`);
+  console.log(formatArtifactSummary(nextArtifact, false));
+
+  if (parsed.values.publish) {
+    if (nextArtifact.review.status !== "approved") {
+      throw new Error(`Cannot publish ${nextArtifact.id} because it is marked ${nextArtifact.review.status}.`);
+    }
+
+    if (artifact.publication.is_published && artifact.publication.published_slug && artifact.publication.published_slug !== nextArtifact.slug) {
+      await removePublishedRecipe(artifact.publication.published_slug, config);
+      console.log(`Removed old slug: ${artifact.publication.published_slug}`);
+    }
+
+    const published = await publishArtifact(nextArtifact, config);
+    nextArtifact = markArtifactPublished(nextArtifact);
+    await persistArtifact(nextArtifact);
+    console.log(`Published recipe: ${published.recipePath}`);
+  }
+}
+
 async function republishStaleCommand() {
   const stagedArtifactPaths = await listJsonFiles(config.stagingDir);
   const stagedArtifacts = await Promise.all(stagedArtifactPaths.map((filePath) => readStagedRecipe(filePath)));
@@ -875,6 +936,50 @@ function buildManualSplitDraft(
     card_type: sourceArtifact.recipe.card_type,
     ocr_confidence: "low"
   });
+}
+
+function rebuildArtifactFromExtraction(
+  artifact: StagedRecipe,
+  extraction: Awaited<ReturnType<typeof extractRecipeFromSourceFiles>>
+): StagedRecipe {
+  const normalized = normalizeRecipeDraft(
+    artifact.id,
+    extractedRecipeSchema.parse(extraction.recipe),
+    [],
+    config.defaultSourceName,
+    config.defaultSourceFamily
+  );
+
+  normalized.slug = artifact.slug;
+  const reviewReasons = evaluateReviewReasons(normalized, extraction.markdown);
+  normalized.review_status = reviewReasons.length > 0 ? "needs_review" : "approved";
+
+  return stagedRecipeSchema.parse({
+    ...artifact,
+    ocr: {
+      provider: extraction.provider,
+      markdown: extraction.markdown,
+      raw_response: extraction.rawResponse,
+      fallback_used: extraction.fallbackUsed
+    },
+    recipe: {
+      ...normalized,
+      id: artifact.id,
+      slug: artifact.slug
+    },
+    review: {
+      status: normalized.review_status,
+      reasons: reviewReasons
+    }
+  });
+}
+
+function isDerivedArtifactOcr(rawResponse: unknown): boolean {
+  if (!rawResponse || typeof rawResponse !== "object") {
+    return false;
+  }
+
+  return "derived_from_artifact_id" in rawResponse || "trimmed_from_artifact_id" in rawResponse;
 }
 
 function formatArtifactSummary(artifact: StagedRecipe, includeOcr: boolean): string {

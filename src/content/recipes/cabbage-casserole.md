@@ -33,11 +33,11 @@ ocr_confidence: medium
 review_status: approved
 scan_assets:
   - path: /scans/cabbage-casserole/preview.jpg
-    label: Scan preview
+    label: Preview
     type: image
     role: preview
   - path: /scans/cabbage-casserole/original.jpg
-    label: Original scan
+    label: Scan
     type: image
     role: original
 ---

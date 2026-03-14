@@ -95,6 +95,36 @@ test("evaluateReviewReasons flags OCR that appears to contain multiple recipes",
   assert.match(reasons.join(" "), /Barbecued Hamburgers/);
 });
 
+test("evaluateReviewReasons ignores title fragments and source-name lines that overlap the extracted title", () => {
+  const reasons = evaluateReviewReasons(
+    {
+      title: "Maggi Sampsel Sausage Souffle",
+      summary: "",
+      ingredients: ["1 lb sausage", "8 slices bread", "2 c. milk"],
+      instructions: ["Fry sausage and drain.", "Bake until set."],
+      notes: [],
+      source_name: "Maggi",
+      source_family: "Sampsel",
+      course: "main",
+      proteins: ["sausage"],
+      cuisine: "american",
+      dessert: false,
+      tags: [],
+      card_type: "handwritten",
+      ocr_confidence: "medium"
+    },
+    [
+      "Maggi",
+      "Sampsel",
+      "Sausage Souffle",
+      "1 lb link sausage",
+      "Bake @ 350°"
+    ].join("\n")
+  );
+
+  assert.doesNotMatch(reasons.join(" "), /more than one recipe title/i);
+});
+
 test("deriveRecipeId stays stable within a batch root and avoids collisions across batches", () => {
   const january = deriveRecipeId(
     "/tmp/vicki/batch-01/recipe-0001.pdf",

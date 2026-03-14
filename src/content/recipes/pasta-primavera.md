@@ -33,11 +33,11 @@ ocr_confidence: high
 review_status: approved
 scan_assets:
   - path: /scans/pasta-primavera/preview.jpg
-    label: Scan preview
+    label: Preview
     type: image
     role: preview
   - path: /scans/pasta-primavera/original.jpg
-    label: Original scan
+    label: Scan
     type: image
     role: original
 ---
