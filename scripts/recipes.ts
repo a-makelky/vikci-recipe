@@ -8,6 +8,7 @@ import type { StagedRecipe } from "../src/lib/recipe-schema";
 import { extractedRecipeSchema, stagedRecipeSchema } from "../src/lib/recipe-schema";
 import { normalizeRecipeDraft } from "../src/lib/recipes";
 import { resolveRuntimeConfig } from "./lib/environment";
+import { decideExistingArtifactAction } from "./lib/ingest";
 import {
   collectInputFiles,
   ensureDir,
@@ -40,7 +41,7 @@ const config = resolveRuntimeConfig(projectRoot);
 
 const helpText = `
 Usage:
-  npm run recipes -- ingest --input /path/to/scans [--stage-only] [--with-google-fallback] [--report ./path/to/report.json]
+  npm run recipes -- ingest --input /path/to/scans [--stage-only] [--with-google-fallback] [--reprocess-existing] [--report ./path/to/report.json]
   npm run recipes -- review
   npm run recipes -- show --id recipe-0001
   npm run recipes -- update --id recipe-0001 [--title \"...\"] [--ingredients \"a|b|c\"] [--publish]
@@ -109,6 +110,7 @@ async function ingestCommand(args: string[]) {
       input: { type: "string" },
       "stage-only": { type: "boolean", default: false },
       "with-google-fallback": { type: "boolean", default: false },
+      "reprocess-existing": { type: "boolean", default: false },
       report: { type: "string" }
     },
     allowPositionals: true
@@ -138,12 +140,13 @@ async function ingestCommand(args: string[]) {
     published: 0,
     staged_only: 0,
     needs_review: 0,
+    skipped_existing: 0,
     failed: 0,
     files: [] as Array<{
       file_path: string;
       id?: string;
       title?: string;
-      status: "published" | "staged" | "needs_review" | "failed";
+      status: "published" | "staged" | "needs_review" | "failed" | "skipped";
       artifact_path?: string;
       recipe_path?: string;
       message?: string;
@@ -153,6 +156,29 @@ async function ingestCommand(args: string[]) {
   for (const sourceGroup of sourceGroups) {
     const primaryPath = sourceGroup.primaryPath;
     const sourceLabel = sourceGroup.filePaths.join(" + ");
+    const id = deriveRecipeId(primaryPath, idRoot);
+    const existingArtifactPath = path.join(config.stagingDir, `${id}.json`);
+    const existingArtifact = (await fileExists(existingArtifactPath)) ? await readStagedRecipe(existingArtifactPath) : null;
+
+    if (existingArtifact) {
+      const decision = decideExistingArtifactAction(existingArtifact, parsed.values["reprocess-existing"]);
+      if (decision.skip) {
+        console.log(`\nSkipping ${sourceLabel}`);
+        console.log(`Existing artifact: ${existingArtifact.id}`);
+        console.log(decision.reason);
+        report.skipped_existing += 1;
+        report.files.push({
+          file_path: sourceLabel,
+          id: existingArtifact.id,
+          title: existingArtifact.recipe.title,
+          status: "skipped",
+          artifact_path: existingArtifactPath,
+          message: decision.reason
+        });
+        continue;
+      }
+    }
+
     console.log(`\nProcessing ${sourceLabel}`);
     try {
       const extraction = await extractRecipeFromSourceFiles(
@@ -160,9 +186,6 @@ async function ingestCommand(args: string[]) {
         config,
         parsed.values["with-google-fallback"]
       );
-      const id = deriveRecipeId(primaryPath, idRoot);
-      const existingArtifactPath = path.join(config.stagingDir, `${id}.json`);
-      const existingArtifact = (await fileExists(existingArtifactPath)) ? await readStagedRecipe(existingArtifactPath) : null;
       const baseSlug = createSlugFromTitle(extraction.recipe.title, id);
       const slug = existingArtifact?.slug || (await ensureUniqueSlug(baseSlug, config.projectRoot));
       const normalized = normalizeRecipeDraft(
@@ -278,6 +301,7 @@ async function ingestCommand(args: string[]) {
     "",
     "Batch summary",
     `- Processed: ${report.processed}`,
+    `- Skipped existing: ${report.skipped_existing}`,
     `- Published: ${report.published}`,
     `- Staged only: ${report.staged_only}`,
     `- Needs review: ${report.needs_review}`,

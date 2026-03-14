@@ -79,7 +79,7 @@ npm run build
 ## CLI commands
 
 ```bash
-npm run recipes -- ingest --input /path/to/scans [--stage-only] [--with-google-fallback] [--report ./batch-report.json]
+npm run recipes -- ingest --input /path/to/scans [--stage-only] [--with-google-fallback] [--reprocess-existing] [--report ./batch-report.json]
 npm run recipes -- review
 npm run recipes -- show --id recipe-...
 npm run recipes -- update --id recipe-... [--title "..."] [--ingredients "a|b|c"] [--publish]
@@ -96,6 +96,7 @@ npm run recipes -- publish --id recipe-...
   - OCRs all supported files under the input path
   - writes a staged artifact per scan
   - auto-publishes recipes unless they need review or `--stage-only` is set
+  - skips recipes that already have staged artifacts unless you pass `--reprocess-existing`
 - `review`
   - lists staged recipes that still need correction
 - `show`
@@ -136,6 +137,7 @@ npm run recipes -- publish --id recipe-...
 - Add `--json` when another agent or script needs structured status output.
 - Use `npm run recipes -- split --id ...` before manual cleanup when one scan contains multiple recipes. Add `--trim-current` if you want the current artifact's OCR text reduced to the section that matches its title.
 - Add `--manual` to `split` when OCR section detection worked but the structuring model is unavailable or you want to finish the split with hand review.
+- After a partial batch run, rerun the same `ingest` command and it will skip already-staged recipes by default. Add `--reprocess-existing` only when you intentionally want to rebuild them from the source files.
 - Example:
 
 ```bash
