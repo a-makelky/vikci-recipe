@@ -164,6 +164,7 @@ async function publishScanAssets(
     const baseName = sourcePaths.length === 1 ? "original" : `${sideLabel}-original`;
     const originalDestination = path.join(scanDir, `${baseName}${extension}`);
     await copyPublishedFile(sourcePath, originalDestination);
+    await stripJpegMetadata(originalDestination);
 
     const publicOriginalPath = toPublicPath(config.publishedScanDir, originalDestination);
     assetPaths.push(originalDestination);
@@ -192,6 +193,7 @@ async function publishScanAssets(
     const previewDestination = path.join(scanDir, sourcePaths.length === 1 ? "preview.jpg" : `${sideLabel}-preview.jpg`);
     const previewCreated = await tryCreateImagePreview(sourcePath, previewDestination);
     if (previewCreated) {
+      await stripJpegMetadata(previewDestination);
       assetPaths.push(previewDestination);
       previewAssets.push({
         path: toPublicPath(config.publishedScanDir, previewDestination),
@@ -255,6 +257,23 @@ async function tryRenderPdfPreview(sourcePath: string, destinationPath: string):
   } catch (error) {
     console.warn(`Unable to create PDF preview for ${basename(sourcePath)}: ${String(error)}`);
     return false;
+  }
+}
+
+async function stripJpegMetadata(filePath: string): Promise<void> {
+  const extension = path.extname(filePath).toLowerCase();
+  if (extension !== ".jpg" && extension !== ".jpeg") {
+    return;
+  }
+
+  const tempPath = `${filePath}.stripped`;
+  try {
+    await runCommand("jpegtran", ["-copy", "none", "-optimize", "-outfile", tempPath, filePath]);
+    await copyPublishedFile(tempPath, filePath);
+  } catch (error) {
+    console.warn(`Unable to strip JPEG metadata for ${basename(filePath)}: ${String(error)}`);
+  } finally {
+    await rm(tempPath, { force: true }).catch(() => undefined);
   }
 }
 
