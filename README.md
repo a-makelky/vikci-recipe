@@ -2,6 +2,18 @@
 
 A static, Git-backed archive for handwritten and printed recipe cards.
 
+## Current working copy
+
+Use the non-iCloud checkout at:
+
+```text
+/Users/aaronmakelky/code/vicki-recipe
+```
+
+The older iCloud checkout should be treated as a reference copy only. Raw scans can stay in iCloud Drive or
+Google Drive, but the repo itself should stay outside synced folders so Git, Astro, and Node do not stall on
+cloud file materialization.
+
 ## What this repo does
 
 - Publishes approved recipes as a static Astro site that can deploy on Netlify.
@@ -28,7 +40,8 @@ Raw scans should stay outside the repo in iCloud Drive or Google Drive. Point th
 2. Fill in `ZAI_API_KEY`.
 3. Leave `ZAI_BASE_URL` on the Coding Plan endpoint unless you intentionally want the paid legacy OCR route.
 4. Optionally add Google Vision credentials for fallback OCR.
-5. Install dependencies:
+5. Use Node 22 LTS. This repo includes `.nvmrc` and `.node-version`.
+6. Install dependencies:
 
 ```bash
 npm install
@@ -56,6 +69,7 @@ npm run recipes -- split --id batch-01-recipe-0001-xxxxxxxx --title "Second Reci
 npm run recipes -- reprocess --id batch-01-recipe-0001-xxxxxxxx
 npm run recipes -- status
 npm run recipes -- status --batch "2026-03-batch-01"
+npm run recipes -- verify
 npm run recipes -- republish-stale
 ```
 
@@ -87,6 +101,7 @@ npm run recipes -- update --id recipe-... [--title "..."] [--ingredients "a|b|c"
 npm run recipes -- split --id recipe-... [--title "Second Recipe"] [--trim-current] [--manual] [--publish]
 npm run recipes -- reprocess --id recipe-... [--with-google-fallback] [--publish]
 npm run recipes -- status [--batch batch-01] [--json]
+npm run recipes -- verify [--json]
 npm run recipes -- republish-stale
 npm run recipes -- approve --id recipe-...
 npm run recipes -- publish --id recipe-...
@@ -121,6 +136,10 @@ npm run recipes -- publish --id recipe-...
   - shows counts for published, stale, unpublished, and review-needed artifacts
   - supports `--batch` to inspect a single pilot batch
   - supports `--json` for machine-readable output
+- `verify`
+  - checks staged artifacts, public recipe markdown, scan folders, scan asset paths, and original source paths
+  - exits with an error when approved recipes are unpublished, published copies are stale, or scan assets are missing
+  - use this before and after each pilot batch so the archive does not drift quietly
 - `approve`
   - marks a staged artifact approved and publishes it
 - `publish`
@@ -140,6 +159,7 @@ npm run recipes -- publish --id recipe-...
 - Setting `--review-status needs_review` on a published recipe will remove its current public page until it is approved and published again.
 - A published artifact becomes `stale` when approved recipe fields change after publication.
 - Use `npm run recipes -- republish-stale` after batch review edits to refresh every stale public recipe in one pass.
+- Use `npm run recipes -- verify` after publishing to confirm staged artifacts, public recipes, and scan files still match.
 - Use `npm run recipes -- status --batch "2026-03-batch-01"` to check a specific pilot batch without mixing in older work.
 - Add `--json` when another agent or script needs structured status output.
 - Use `npm run recipes -- split --id ...` before manual cleanup when one scan contains multiple recipes. Add `--trim-current` if you want the current artifact's OCR text reduced to the section that matches its title.

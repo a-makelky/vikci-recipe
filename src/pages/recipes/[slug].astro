@@ -1,18 +1,18 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
   const recipes = await getCollection("recipes", ({ data }) => data.review_status === "approved");
   return recipes.map((recipe) => ({
-    params: { slug: recipe.slug },
+    params: { slug: recipe.id },
     props: { recipe }
   }));
 }
 
 const { recipe } = Astro.props;
-const { Content } = await recipe.render();
+const { Content } = await render(recipe);
 const previewAssets = recipe.data.scan_assets.filter((asset) => asset.role === "preview");
 const originalAssets = recipe.data.scan_assets.filter((asset) => asset.role === "original");
 const pageTitle = `${recipe.data.title} | Vicki's Recipe Archive`;

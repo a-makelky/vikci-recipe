@@ -35,6 +35,7 @@ import {
 import { applyArtifactPatch, deriveSplitArtifactId, parseBooleanInput, parseDelimitedList } from "./lib/review";
 import { groupPairedScanFiles } from "./lib/source-files";
 import { filterArtifactsByBatch, formatStatusSummary, summarizeArtifacts } from "./lib/status";
+import { formatVerificationSummary, verifyArchive } from "./lib/verify";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const config = resolveRuntimeConfig(projectRoot);
@@ -49,6 +50,7 @@ Usage:
   npm run recipes -- reprocess --id recipe-0001 [--with-google-fallback] [--publish]
   npm run recipes -- republish-stale
   npm run recipes -- status [--batch batch-01] [--json]
+  npm run recipes -- verify [--json]
   npm run recipes -- approve --id recipe-0001
   npm run recipes -- publish --id recipe-0001
 
@@ -61,6 +63,7 @@ Commands:
   reprocess  Re-run OCR/structuring for an artifact from its source scan or current OCR section.
   republish-stale  Rebuild approved recipes whose published pages are out of date with their staged artifact.
   status   Show repository counts, OCR breakdowns, and optional batch-filtered pilot metrics.
+  verify   Check pages, scans, staged artifacts, and source paths for drift.
   approve  Mark a staged recipe as approved and publish it to the site.
   publish  Re-publish an already approved staged recipe and refresh its public assets.
 `;
@@ -96,6 +99,9 @@ async function main() {
       break;
     case "status":
       await statusCommand(rest);
+      break;
+    case "verify":
+      await verifyCommand(rest);
       break;
     case "approve":
       await approveCommand(rest, true);
@@ -595,6 +601,27 @@ async function statusCommand(args: string[]) {
   }
 
   console.log(formatStatusSummary(summary));
+}
+
+async function verifyCommand(args: string[]) {
+  const parsed = parseArgs({
+    args,
+    options: {
+      json: { type: "boolean", default: false }
+    },
+    allowPositionals: true
+  });
+
+  const summary = await verifyArchive(config);
+  if (parsed.values.json) {
+    console.log(JSON.stringify(summary, null, 2));
+  } else {
+    console.log(formatVerificationSummary(summary));
+  }
+
+  if (!summary.passed) {
+    process.exitCode = 1;
+  }
 }
 
 async function reprocessCommand(args: string[]) {
