@@ -79,16 +79,17 @@
     "ocr_confidence": "high",
     "id": "2026-5-3-pilot-batch-img-3135-3d5d4162",
     "slug": "party-cheese-ball",
-    "review_status": "needs_review",
+    "review_status": "approved",
     "scan_assets": []
   },
   "review": {
-    "status": "needs_review",
-    "reasons": [
-      "Very few instructions were extracted."
-    ]
+    "status": "approved",
+    "reasons": []
   },
   "publication": {
-    "is_published": false
+    "is_published": true,
+    "published_slug": "party-cheese-ball",
+    "published_at": "2026-05-03T23:40:48.681Z",
+    "published_hash": "3763f317f2cff5daba54ddf8185526e255af6b11"
   }
 }

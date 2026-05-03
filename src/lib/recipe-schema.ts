@@ -32,6 +32,19 @@ export const CARD_TYPE_VALUES = ["handwritten", "printed", "mixed"] as const;
 export const OCR_CONFIDENCE_VALUES = ["high", "medium", "low"] as const;
 export const REVIEW_STATUS_VALUES = ["approved", "needs_review"] as const;
 
+const cardTypeSchema = z.preprocess((value) => {
+  if (typeof value !== "string") {
+    return value;
+  }
+
+  const normalized = value.trim().toLowerCase();
+  if (normalized === "" || normalized === "unknown" || normalized === "other") {
+    return "mixed";
+  }
+
+  return normalized;
+}, z.enum(CARD_TYPE_VALUES));
+
 export const scanAssetSchema = z.object({
   path: z.string(),
   label: z.string(),
@@ -64,7 +77,7 @@ export const recipeDataSchema = z.object({
   cuisine: z.string().min(1),
   dessert: z.boolean().default(false),
   tags: z.array(z.string().min(1)).default([]),
-  card_type: z.enum(CARD_TYPE_VALUES),
+  card_type: cardTypeSchema,
   ocr_confidence: z.enum(OCR_CONFIDENCE_VALUES),
   review_status: z.enum(REVIEW_STATUS_VALUES),
   scan_assets: z.array(scanAssetSchema).default([])
@@ -88,7 +101,7 @@ export const extractedRecipeSchema = z.object({
   cuisine: z.string().default("unknown"),
   dessert: z.boolean().default(false),
   tags: z.array(z.string().min(1)).default([]),
-  card_type: z.enum(CARD_TYPE_VALUES).default("mixed"),
+  card_type: cardTypeSchema.default("mixed"),
   ocr_confidence: z.enum(OCR_CONFIDENCE_VALUES).default("medium")
 });
 

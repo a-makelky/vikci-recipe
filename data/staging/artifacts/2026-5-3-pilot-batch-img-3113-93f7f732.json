@@ -80,16 +80,17 @@
     "ocr_confidence": "high",
     "id": "2026-5-3-pilot-batch-img-3113-93f7f732",
     "slug": "kellogg-s-crispix-mix",
-    "review_status": "needs_review",
+    "review_status": "approved",
     "scan_assets": []
   },
   "review": {
-    "status": "needs_review",
-    "reasons": [
-      "OCR text appears to contain more than one recipe title: Worcestershire Sauce"
-    ]
+    "status": "approved",
+    "reasons": []
   },
   "publication": {
-    "is_published": false
+    "is_published": true,
+    "published_slug": "kellogg-s-crispix-mix",
+    "published_at": "2026-05-03T23:40:45.408Z",
+    "published_hash": "2922f4777858913d7f18d342a90e684929b1951d"
   }
 }

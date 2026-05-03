@@ -84,16 +84,17 @@
     "ocr_confidence": "medium",
     "id": "2026-5-3-pilot-batch-img-3129-1e4da14d",
     "slug": "taco-dip",
-    "review_status": "needs_review",
+    "review_status": "approved",
     "scan_assets": []
   },
   "review": {
-    "status": "needs_review",
-    "reasons": [
-      "OCR text appears to contain more than one recipe title: Fern Garrick"
-    ]
+    "status": "approved",
+    "reasons": []
   },
   "publication": {
-    "is_published": false
+    "is_published": true,
+    "published_slug": "taco-dip",
+    "published_at": "2026-05-03T23:40:48.220Z",
+    "published_hash": "9c5d1e138586517c7f13e426fad5b111b24a83f1"
   }
 }

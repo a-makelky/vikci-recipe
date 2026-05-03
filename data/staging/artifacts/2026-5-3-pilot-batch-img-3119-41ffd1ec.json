@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "2026-5-3-pilot-batch-img-3119-41ffd1ec",
-  "slug": "dip",
+  "slug": "parmesan-almond-dip",
   "source": {
     "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3119.JPG",
     "related_input_paths": [],
@@ -44,8 +44,8 @@
     "fallback_used": false
   },
   "recipe": {
-    "title": "Dip",
-    "summary": "Cream cheese dip with green peppers, onions, pimento, and almonds.",
+    "title": "Parmesan Almond Dip",
+    "summary": "Cream cheese dip with Parmesan, green pepper, pimento, and toasted almonds.",
     "ingredients": [
       "1 pkg (8oz) Cream cheese",
       "2 T parmesan cheese",
@@ -58,30 +58,37 @@
     "instructions": [
       "Mix & chill for dip"
     ],
-    "notes": [],
+    "notes": [
+      "Original card title reads Dip; descriptive title added from ingredients."
+    ],
     "source_name": "Unknown",
     "source_family": "Unknown",
     "course": "appetizer",
     "proteins": [
-      "other"
+      "vegetarian"
     ],
-    "cuisine": "Unknown",
+    "cuisine": "american",
     "dessert": false,
-    "tags": [],
-    "card_type": "printed",
+    "tags": [
+      "appetizer",
+      "dip",
+      "cream cheese"
+    ],
+    "card_type": "mixed",
     "ocr_confidence": "high",
     "id": "2026-5-3-pilot-batch-img-3119-41ffd1ec",
-    "slug": "dip",
-    "review_status": "needs_review",
+    "slug": "parmesan-almond-dip",
+    "review_status": "approved",
     "scan_assets": []
   },
   "review": {
-    "status": "needs_review",
-    "reasons": [
-      "Very few instructions were extracted."
-    ]
+    "status": "approved",
+    "reasons": []
   },
   "publication": {
-    "is_published": false
+    "is_published": true,
+    "published_slug": "parmesan-almond-dip",
+    "published_at": "2026-05-03T23:40:46.339Z",
+    "published_hash": "1c3e83f7536b1d6381e77d42cdba3053d5a1e653"
   }
 }

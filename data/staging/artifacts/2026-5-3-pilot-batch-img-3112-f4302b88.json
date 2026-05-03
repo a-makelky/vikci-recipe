@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3112-f4302b88",
+  "slug": "review-needed-img-3112-jpg",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3112.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3112.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T23:23:32.434Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "[unclear]",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\n[unclear]",
+            "reasoning_content": "The image appears to be a blurry, gray-scale image with no discernible text or details that can be transcribed as a recipe. Since there is no visible text, the appropriate response is to indicate that the text is unclear.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777850405,
+      "id": "20260504071959472b9e1d8dfc446f",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "20260504071959472b9e1d8dfc446f",
+      "usage": {
+        "completion_tokens": 56,
+        "completion_tokens_details": {
+          "reasoning_tokens": 46
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 7
+        },
+        "total_tokens": 6199
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Review needed: IMG_3112.JPG",
+    "summary": "",
+    "ingredients": [
+      "Manual review required from OCR text."
+    ],
+    "instructions": [
+      "Manual review required from OCR text."
+    ],
+    "notes": [
+      "Structuring returned incomplete data; verify the OCR text and scan before approval."
+    ],
+    "source_name": "Unknown",
+    "source_family": "Unknown",
+    "course": "other",
+    "proteins": [],
+    "cuisine": "unknown",
+    "dessert": false,
+    "tags": [],
+    "card_type": "mixed",
+    "ocr_confidence": "low",
+    "id": "2026-5-3-pilot-batch-img-3112-f4302b88",
+    "slug": "review-needed-img-3112-jpg",
+    "review_status": "needs_review",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "needs_review",
+    "reasons": [
+      "Model marked this recipe as low confidence.",
+      "Very few ingredients were extracted.",
+      "Very few instructions were extracted.",
+      "OCR output was unusually short."
+    ]
+  },
+  "publication": {
+    "is_published": false
+  }
+}

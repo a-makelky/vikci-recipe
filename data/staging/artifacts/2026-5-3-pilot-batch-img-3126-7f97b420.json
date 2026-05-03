@@ -78,16 +78,17 @@
     "ocr_confidence": "high",
     "id": "2026-5-3-pilot-batch-img-3126-7f97b420",
     "slug": "cheese-ball",
-    "review_status": "needs_review",
+    "review_status": "approved",
     "scan_assets": []
   },
   "review": {
-    "status": "needs_review",
-    "reasons": [
-      "Very few instructions were extracted."
-    ]
+    "status": "approved",
+    "reasons": []
   },
   "publication": {
-    "is_published": false
+    "is_published": true,
+    "published_slug": "cheese-ball",
+    "published_at": "2026-05-03T23:40:46.798Z",
+    "published_hash": "a247ba6b73694c87ca7d7978e0e2d3ecf76976cb"
   }
 }

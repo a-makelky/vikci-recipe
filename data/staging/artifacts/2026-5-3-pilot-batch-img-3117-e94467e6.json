@@ -84,16 +84,17 @@
     "ocr_confidence": "high",
     "id": "2026-5-3-pilot-batch-img-3117-e94467e6",
     "slug": "toasted-almond-party-spread",
-    "review_status": "needs_review",
+    "review_status": "approved",
     "scan_assets": []
   },
   "review": {
-    "status": "needs_review",
-    "reasons": [
-      "OCR text appears to contain more than one recipe title: SWISS CHEESE"
-    ]
+    "status": "approved",
+    "reasons": []
   },
   "publication": {
-    "is_published": false
+    "is_published": true,
+    "published_slug": "toasted-almond-party-spread",
+    "published_at": "2026-05-03T23:40:45.873Z",
+    "published_hash": "f0a8010cb796a92c9c8221673d87081805c29f76"
   }
 }

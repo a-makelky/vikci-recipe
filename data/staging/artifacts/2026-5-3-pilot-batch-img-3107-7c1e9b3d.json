@@ -78,16 +78,17 @@
     "ocr_confidence": "high",
     "id": "2026-5-3-pilot-batch-img-3107-7c1e9b3d",
     "slug": "white-queso-dip-mexican-cheese-dip",
-    "review_status": "needs_review",
+    "review_status": "approved",
     "scan_assets": []
   },
   "review": {
-    "status": "needs_review",
-    "reasons": [
-      "OCR text appears to contain more than one recipe title: Total Time"
-    ]
+    "status": "approved",
+    "reasons": []
   },
   "publication": {
-    "is_published": false
+    "is_published": true,
+    "published_slug": "white-queso-dip-mexican-cheese-dip",
+    "published_at": "2026-05-03T23:40:44.477Z",
+    "published_hash": "d957974b1dd333a44153233735ad38654bd8fa9c"
   }
 }

@@ -70,16 +70,17 @@
     "ocr_confidence": "high",
     "id": "2026-5-3-pilot-batch-img-3127-4aade66f",
     "slug": "nachos",
-    "review_status": "needs_review",
+    "review_status": "approved",
     "scan_assets": []
   },
   "review": {
-    "status": "needs_review",
-    "reasons": [
-      "Very few instructions were extracted."
-    ]
+    "status": "approved",
+    "reasons": []
   },
   "publication": {
-    "is_published": false
+    "is_published": true,
+    "published_slug": "nachos",
+    "published_at": "2026-05-03T23:40:47.258Z",
+    "published_hash": "8496cd43dfb67b1ddf07488c71aeed8aa497f0eb"
   }
 }

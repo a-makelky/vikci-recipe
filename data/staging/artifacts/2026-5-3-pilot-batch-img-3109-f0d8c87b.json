@@ -71,16 +71,17 @@
     "ocr_confidence": "high",
     "id": "2026-5-3-pilot-batch-img-3109-f0d8c87b",
     "slug": "southwestern-style-bean-dip",
-    "review_status": "needs_review",
+    "review_status": "approved",
     "scan_assets": []
   },
   "review": {
-    "status": "needs_review",
-    "reasons": [
-      "Very few instructions were extracted."
-    ]
+    "status": "approved",
+    "reasons": []
   },
   "publication": {
-    "is_published": false
+    "is_published": true,
+    "published_slug": "southwestern-style-bean-dip",
+    "published_at": "2026-05-03T23:40:44.942Z",
+    "published_hash": "eb47248cbd55000023e4ee977a426c3b5fffc14e"
   }
 }

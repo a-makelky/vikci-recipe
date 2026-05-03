@@ -15,6 +15,64 @@ import type { RuntimeConfig } from "./environment";
 import { inferMimeType, readJson, runCommand } from "./io";
 import { getScanSideLabel } from "./source-files";
 
+const RECIPE_TITLE_WORDS = new Set([
+  "appetizer",
+  "appetizers",
+  "ball",
+  "balls",
+  "bar",
+  "bars",
+  "bake",
+  "bread",
+  "brownies",
+  "burger",
+  "burgers",
+  "cake",
+  "casserole",
+  "cheeseball",
+  "cookie",
+  "cookies",
+  "dip",
+  "eggs",
+  "hamburger",
+  "hamburgers",
+  "mix",
+  "nachos",
+  "pasta",
+  "pie",
+  "roll",
+  "rolls",
+  "salad",
+  "soup",
+  "souffle",
+  "spread"
+]);
+
+const METADATA_TITLE_LINES = new Set([
+  "bake time",
+  "calories",
+  "chill time",
+  "cook time",
+  "cooking time",
+  "course",
+  "cuisine",
+  "nutrition facts",
+  "prep time",
+  "preparation time",
+  "serving size",
+  "servings",
+  "total time",
+  "yield"
+]);
+
+const GENERIC_RECIPE_TITLES = new Set([
+  "appetizer",
+  "appetizers",
+  "dip",
+  "recipe",
+  "untitled"
+]);
+
 export interface OcrResult {
   provider: "zai-vision" | "glm-ocr" | "google-vision";
   markdown: string;
@@ -73,16 +131,25 @@ export async function extractRecipeFromSourceFiles(
 
 export function evaluateReviewReasons(recipe: ExtractedRecipe, ocrMarkdown: string): string[] {
   const reasons: string[] = [];
+  const hasEnoughBodyForOneStepRecipe =
+    recipe.ocr_confidence !== "low" &&
+    recipe.ingredients.length >= 3 &&
+    recipe.instructions.some((instruction) => instruction.trim().length >= 18) &&
+    ocrMarkdown.trim().length >= 120;
+
   if (recipe.ocr_confidence === "low") {
     reasons.push("Model marked this recipe as low confidence.");
   }
   if (recipe.title.trim().length < 3) {
     reasons.push("Recipe title looks incomplete.");
   }
+  if (GENERIC_RECIPE_TITLES.has(normalizeTitleCandidate(recipe.title))) {
+    reasons.push("Recipe title is too generic for publishing.");
+  }
   if (recipe.ingredients.length < 3) {
     reasons.push("Very few ingredients were extracted.");
   }
-  if (recipe.instructions.length < 2) {
+  if (recipe.instructions.length < 2 && !hasEnoughBodyForOneStepRecipe) {
     reasons.push("Very few instructions were extracted.");
   }
   if (ocrMarkdown.trim().length < 120) {
@@ -420,8 +487,72 @@ ${markdown}
     ]
   }, "Recipe structuring");
 
-  const parsed = extractedRecipeSchema.parse(JSON.parse(extractJson(getChatCompletionText(rawResponse))));
-  return parsed;
+  return parseStructuredRecipeResponse(getChatCompletionText(rawResponse), markdown, filePath);
+}
+
+export function parseStructuredRecipeResponse(responseText: string, markdown: string, filePath: string): ExtractedRecipe {
+  const rawRecipe = JSON.parse(extractJson(responseText));
+  const parsed = extractedRecipeSchema.safeParse(rawRecipe);
+  if (parsed.success) {
+    return parsed.data;
+  }
+
+  return buildIncompleteReviewDraft(rawRecipe, markdown, filePath);
+}
+
+function buildIncompleteReviewDraft(rawRecipe: unknown, markdown: string, filePath: string): ExtractedRecipe {
+  const raw = isRecord(rawRecipe) ? rawRecipe : {};
+  const title = readString(raw.title) || detectRecipeSections(markdown)[0]?.title || `Review needed: ${path.basename(filePath)}`;
+  const ingredients = readStringArray(raw.ingredients);
+  const instructions = readStringArray(raw.instructions);
+  const notes = readStringArray(raw.notes);
+
+  return extractedRecipeSchema.parse({
+    title,
+    summary: readString(raw.summary),
+    ingredients: ingredients.length > 0 ? ingredients : ["Manual review required from OCR text."],
+    instructions: instructions.length > 0 ? instructions : ["Manual review required from OCR text."],
+    notes: [
+      ...notes,
+      "Structuring returned incomplete data; verify the OCR text and scan before approval."
+    ],
+    source_name: readString(raw.source_name) || "Unknown",
+    source_family: readString(raw.source_family) || "Unknown",
+    course: readEnum(raw.course, COURSE_VALUES, "other"),
+    proteins: readEnumArray(raw.proteins, PROTEIN_VALUES),
+    cuisine: readString(raw.cuisine) || "unknown",
+    dessert: typeof raw.dessert === "boolean" ? raw.dessert : false,
+    tags: readStringArray(raw.tags),
+    card_type: readString(raw.card_type) || "mixed",
+    ocr_confidence: "low"
+  });
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function readString(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function readStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value.map(readString).filter(Boolean);
+}
+
+function readEnum<T extends readonly string[]>(value: unknown, values: T, fallback: T[number]): T[number] {
+  const normalized = readString(value).toLowerCase();
+  return values.includes(normalized as T[number]) ? normalized as T[number] : fallback;
+}
+
+function readEnumArray<T extends readonly string[]>(value: unknown, values: T): T[number][] {
+  return readStringArray(value)
+    .map((item) => item.toLowerCase())
+    .filter((item): item is T[number] => values.includes(item as T[number]));
 }
 
 async function callGoogleVision(filePath: string, config: RuntimeConfig): Promise<OcrResult> {
@@ -675,8 +806,8 @@ export function detectRecipeSections(ocrMarkdown: string): RecipeOcrSection[] {
   const seen = new Set<string>();
 
   for (const [index, line] of lines.entries()) {
-    const candidate = line.trim();
-    if (!isRecipeTitleCandidate(candidate)) {
+    const candidate = normalizeOcrTitleLine(line.trim());
+    if (!isRecipeTitleCandidate(candidate, index, lines)) {
       continue;
     }
 
@@ -703,7 +834,7 @@ export function detectRecipeSections(ocrMarkdown: string): RecipeOcrSection[] {
     .filter((section) => section.markdown.length > 0);
 }
 
-function isRecipeTitleCandidate(line: string): boolean {
+function isRecipeTitleCandidate(line: string, index: number, lines: string[]): boolean {
   if (line.length < 6 || line.length > 40) {
     return false;
   }
@@ -713,6 +844,11 @@ function isRecipeTitleCandidate(line: string): boolean {
   }
 
   if (!/^[A-Za-z'& -]+$/.test(line)) {
+    return false;
+  }
+
+  const normalized = normalizeTitleCandidate(line);
+  if (METADATA_TITLE_LINES.has(normalized)) {
     return false;
   }
 
@@ -726,11 +862,102 @@ function isRecipeTitleCandidate(line: string): boolean {
   }
 
   const titleCaseWords = words.filter((word) => /^[A-Z][A-Za-z'&-]*$/.test(word));
-  return titleCaseWords.length >= Math.max(2, words.length - 1);
+  const hasTitleShape = titleCaseWords.length >= Math.max(2, words.length - 1);
+  if (!hasTitleShape) {
+    return false;
+  }
+
+  const hasRecipeTitleWord = words.some((word) => RECIPE_TITLE_WORDS.has(cleanTitleWord(word)));
+  if (looksLikeSourceNameBeforeTitle(line, index, lines)) {
+    return false;
+  }
+  if (!hasRecipeTitleWord && looksLikeIngredientContinuation(index, lines)) {
+    return false;
+  }
+
+  return hasRecipeTitleWord || startsRecipeBody(index, lines);
+}
+
+function normalizeOcrTitleLine(line: string): string {
+  return line.replace(/^(?:here'?s what's cookin|recipe for)\s*:?\s*/i, "").trim() || line;
 }
 
 function normalizeTitleCandidate(line: string): string {
   return line.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function cleanTitleWord(word: string): string {
+  return word.toLowerCase().replace(/[^a-z]/g, "");
+}
+
+function startsRecipeBody(index: number, lines: string[]): boolean {
+  const next = nextNonEmptyLine(index, lines);
+  if (!next) {
+    return false;
+  }
+
+  return (
+    /^\d/.test(next) ||
+    /^[•*-]\s*/.test(next) ||
+    /^\(?\d+\/\d+/.test(next) ||
+    /\b(recipe from|serves|yield|preheat|combine|mix|stir|bake|cook|spread|serve)\b/i.test(next)
+  );
+}
+
+function looksLikeIngredientContinuation(index: number, lines: string[]): boolean {
+  const previous = lines[index - 1]?.trim();
+  if (!previous) {
+    return false;
+  }
+
+  return true;
+}
+
+function looksLikeSourceNameBeforeTitle(line: string, index: number, lines: string[]): boolean {
+  if (index > 1 || !/^[A-Z][a-z]+ [A-Z][a-z]+$/.test(line)) {
+    return false;
+  }
+
+  const next = nextNonEmptyLine(index, lines);
+  if (!next || !hasBasicTitleShape(next)) {
+    return false;
+  }
+
+  return next
+    .split(/\s+/)
+    .some((word) => RECIPE_TITLE_WORDS.has(cleanTitleWord(word)));
+}
+
+function hasBasicTitleShape(line: string): boolean {
+  if (line.length < 6 || line.length > 40 || /[0-9]/.test(line) || /[():,+#]/.test(line)) {
+    return false;
+  }
+
+  const words = line.split(/\s+/).filter(Boolean);
+  const titleCaseWords = words.filter((word) => /^[A-Z][A-Za-z'&-]*$/.test(word));
+  return words.length >= 2 && words.length <= 5 && titleCaseWords.length >= Math.max(2, words.length - 1);
+}
+
+function previousNonEmptyLine(index: number, lines: string[]): string | undefined {
+  for (let currentIndex = index - 1; currentIndex >= 0; currentIndex -= 1) {
+    const line = lines[currentIndex]?.trim();
+    if (line) {
+      return line;
+    }
+  }
+
+  return undefined;
+}
+
+function nextNonEmptyLine(index: number, lines: string[]): string | undefined {
+  for (let currentIndex = index + 1; currentIndex < lines.length; currentIndex += 1) {
+    const line = lines[currentIndex]?.trim();
+    if (line) {
+      return line;
+    }
+  }
+
+  return undefined;
 }
 
 function looksLikeSameRecipeTitle(currentTitle: string, candidateTitle: string): boolean {

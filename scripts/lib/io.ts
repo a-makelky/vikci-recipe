@@ -75,7 +75,11 @@ export function serializeRecipeMarkdown(recipe: RecipeFrontmatter, body = ""): s
   });
 
   const trimmedBody = body.trim();
-  return `---\n${frontmatter}---\n\n${trimmedBody ? `${trimmedBody}\n` : ""}`;
+  if (!trimmedBody) {
+    return `---\n${frontmatter}---\n`;
+  }
+
+  return `---\n${frontmatter}---\n\n${trimmedBody}\n`;
 }
 
 export async function writeRecipeMarkdown(filePath: string, recipe: RecipeFrontmatter, body = ""): Promise<void> {

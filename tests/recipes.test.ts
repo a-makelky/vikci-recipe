@@ -64,6 +64,91 @@ test("evaluateReviewReasons flags thin OCR output", () => {
   assert.ok(reasons.length >= 3);
 });
 
+test("evaluateReviewReasons allows complete one-step appetizer recipes", () => {
+  const reasons = evaluateReviewReasons(
+    {
+      title: "Southwestern Style Bean Dip",
+      summary: "",
+      ingredients: ["1 can refried beans", "1 cup cheese", "1/2 cup salsa", "corn chips"],
+      instructions: ["In a small saucepan, combine ingredients and stir over low heat until cheese melts."],
+      notes: [],
+      source_name: "Unknown",
+      source_family: "Unknown",
+      course: "appetizer",
+      proteins: ["vegetarian"],
+      cuisine: "american",
+      dessert: false,
+      tags: ["dip"],
+      card_type: "handwritten",
+      ocr_confidence: "medium"
+    },
+    [
+      "Southwestern Style Bean Dip",
+      "1 can refried beans",
+      "1 cup cheese",
+      "1/2 cup salsa",
+      "corn chips",
+      "In a small saucepan, combine ingredients and stir over low heat until cheese melts."
+    ].join("\n")
+  );
+
+  assert.doesNotMatch(reasons.join(" "), /Very few instructions/i);
+});
+
+test("evaluateReviewReasons still flags incomplete one-step OCR", () => {
+  const reasons = evaluateReviewReasons(
+    {
+      title: "Dip",
+      summary: "",
+      ingredients: ["cream cheese"],
+      instructions: ["Mix."],
+      notes: [],
+      source_name: "Unknown",
+      source_family: "Unknown",
+      course: "appetizer",
+      proteins: [],
+      cuisine: "american",
+      dessert: false,
+      tags: [],
+      card_type: "handwritten",
+      ocr_confidence: "medium"
+    },
+    "Dip\ncream cheese\nMix."
+  );
+
+  assert.match(reasons.join(" "), /Very few instructions/i);
+});
+
+test("evaluateReviewReasons flags generic titles that need editorial context", () => {
+  const reasons = evaluateReviewReasons(
+    {
+      title: "Dip",
+      summary: "",
+      ingredients: ["1 pkg cream cheese", "1 cup salsa", "1 cup cheddar"],
+      instructions: ["Mix ingredients and chill until ready to serve."],
+      notes: [],
+      source_name: "Unknown",
+      source_family: "Unknown",
+      course: "appetizer",
+      proteins: [],
+      cuisine: "american",
+      dessert: false,
+      tags: ["dip"],
+      card_type: "handwritten",
+      ocr_confidence: "medium"
+    },
+    [
+      "Dip",
+      "1 pkg cream cheese",
+      "1 cup salsa",
+      "1 cup cheddar",
+      "Mix ingredients and chill until ready to serve."
+    ].join("\n")
+  );
+
+  assert.match(reasons.join(" "), /too generic/i);
+});
+
 test("evaluateReviewReasons flags OCR that appears to contain multiple recipes", () => {
   const reasons = evaluateReviewReasons(
     {

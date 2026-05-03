@@ -81,16 +81,17 @@
     "ocr_confidence": "high",
     "id": "2026-5-3-pilot-batch-img-3128-187a8388",
     "slug": "season-s-best-shrimp-dip",
-    "review_status": "needs_review",
+    "review_status": "approved",
     "scan_assets": []
   },
   "review": {
-    "status": "needs_review",
-    "reasons": [
-      "OCR text appears to contain more than one recipe title: GREEN ONION"
-    ]
+    "status": "approved",
+    "reasons": []
   },
   "publication": {
-    "is_published": false
+    "is_published": true,
+    "published_slug": "season-s-best-shrimp-dip",
+    "published_at": "2026-05-03T23:40:47.729Z",
+    "published_hash": "95deff5d9710c94b843d1e70c15bb6885aa7b156"
   }
 }

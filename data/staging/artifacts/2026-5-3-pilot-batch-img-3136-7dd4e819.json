@@ -1,7 +1,7 @@
 {
   "version": 1,
   "id": "2026-5-3-pilot-batch-img-3136-7dd4e819",
-  "slug": "dip",
+  "slug": "chili-con-carne-dip",
   "source": {
     "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3136.JPG",
     "related_input_paths": [],
@@ -44,46 +44,49 @@
     "fallback_used": false
   },
   "recipe": {
-    "title": "Dip",
-    "summary": "Simmer the ingredients together and serve with tortilla or corn chips.",
+    "title": "Chili Con Carne Dip",
+    "summary": "Warm chili con carne, salsa, and cream cheese dip for tortilla or corn chips.",
     "ingredients": [
-      "2 cans chili con carne w beans (Hormell)",
-      "1 lb. ham, browned",
-      "1-8oz salsa or picante",
-      "1-8oz cream cheese"
+      "2 cans chili con carne with beans (Hormel)",
+      "1 lb hamburger, browned",
+      "1 (8 oz) jar salsa or picante",
+      "1 (8 oz) package cream cheese"
     ],
     "instructions": [
-      "Simmer & serve w tortilla or corn chips"
+      "Simmer and serve with tortilla or corn chips."
     ],
-    "notes": [],
+    "notes": [
+      "Original card title reads Dip; descriptive title added from ingredients."
+    ],
     "source_name": "Unknown",
     "source_family": "Unknown",
     "course": "appetizer",
     "proteins": [
-      "beef",
-      "ham"
+      "beef"
     ],
-    "cuisine": "Tex-Mex",
+    "cuisine": "american",
     "dessert": false,
     "tags": [
-      "chili",
+      "appetizer",
       "dip",
-      "snack"
+      "chili",
+      "cream cheese"
     ],
-    "card_type": "printed",
+    "card_type": "handwritten",
     "ocr_confidence": "high",
     "id": "2026-5-3-pilot-batch-img-3136-7dd4e819",
-    "slug": "dip",
-    "review_status": "needs_review",
+    "slug": "chili-con-carne-dip",
+    "review_status": "approved",
     "scan_assets": []
   },
   "review": {
-    "status": "needs_review",
-    "reasons": [
-      "Very few instructions were extracted."
-    ]
+    "status": "approved",
+    "reasons": []
   },
   "publication": {
-    "is_published": false
+    "is_published": true,
+    "published_slug": "chili-con-carne-dip",
+    "published_at": "2026-05-03T23:40:49.146Z",
+    "published_hash": "61b9ce09ee80d470d233eab5289c0dc2bde9d47f"
   }
 }

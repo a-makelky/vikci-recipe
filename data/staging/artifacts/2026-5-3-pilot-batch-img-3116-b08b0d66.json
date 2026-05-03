@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3116-b08b0d66",
+  "slug": "unknown",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3116.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3116.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T23:28:18.563Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "edges are evenly browned. Garlic is sliced. onions.",
+    "raw_response": {
+      "rotation_degrees": 270,
+      "source_file": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3116.JPG",
+      "response": {
+        "recovery_mode": true,
+        "response": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "content": "\nedges are evenly browned. Garlic is sliced. onions.",
+                "reasoning_content": "Got it, let's see. The image is a recipe card that's rotated, probably 90 degrees. I need to rotate it mentally to read it properly. Let's look at the text. The words are written vertically, so when I rotate the image 90 degrees clockwise, the text should be horizontal. Let's transcribe each line. Wait, the text is in blue ink, vertical. Let's parse each word. Let's see: the first word (top when rotated) is \"edges\", then \"are evenly\", \"browned.\", \"Garlic is\", \"sliced.\", \"onions.\" Wait, let's check again. Let's rotate the image 90 degrees clockwise so the text is horizontal. Let's write each line as per the vertical text. Wait, maybe the original is rotated 90 degrees counterclockwise? Let's think. If the card is sideways, rotating 90 degrees clockwise would make the text readable. Let's look at the vertical text: the first line (top) is \"edges\", then \"are evenly\", \"browned.\", \"Garlic is\", \"sliced.\", \"onions.\" Wait, let's check the order. Let's list the words as they appear vertically. Let's see: the topmost word (when the card is vertical) is \"edges\", then below it \"are evenly\", then \"browned.\", then \"Garlic is\", then \"sliced.\", then \"onions.\" So when rotated upright, the text would be:\n\nedges are evenly browned. Garlic is sliced. onions.\n\nWait, let's confirm. Let's look at the image again. The text is written vertically along the left edge. So when you rotate the card 90 degrees clockwise, the text becomes horizontal, left to right. Let's transcribe each word in order. Let's see: the first word (top) is \"edges\", then \"are evenly\", then \"browned.\", then \"Garlic is\", then \"sliced.\", then \"onions.\" Yes, that makes sense. Let's check the punctuation. The first sentence: \"edges are evenly browned.\" Then the next: \"Garlic is sliced. onions.\" Wait, maybe \"onions\" is part of the first sentence? No, the vertical text has \"onions\" at the bottom. Let's write it as per the vertical order. So the transcription should be:\n\nedges are evenly browned. Garlic is sliced. onions.\n\nWait, let's make sure. Let's look at the image again. The text is in blue, vertical. Let's parse each line:\n\n- Top: \"edges\"\n- Next: \"are evenly\"\n- Next: \"browned.\"\n- Next: \"Garlic is\"\n- Next: \"sliced.\"\n- Next: \"onions.\"\n\nYes, that's the order. So when rotated upright, that's the text.",
+                "role": "assistant"
+              }
+            }
+          ],
+          "created": 1777850839,
+          "id": "20260504072659b63a88a062cf4521",
+          "model": "glm-4.6v",
+          "object": "chat.completion",
+          "request_id": "20260504072659b63a88a062cf4521",
+          "usage": {
+            "completion_tokens": 611,
+            "completion_tokens_details": {
+              "reasoning_tokens": 593
+            },
+            "prompt_tokens": 6171,
+            "prompt_tokens_details": {
+              "cached_tokens": 110
+            },
+            "total_tokens": 6782
+          }
+        }
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Unknown",
+    "summary": "",
+    "ingredients": [
+      "Garlic",
+      "onions"
+    ],
+    "instructions": [
+      "edges are evenly browned",
+      "Garlic is sliced"
+    ],
+    "notes": [
+      "Structuring returned incomplete data; verify the OCR text and scan before approval."
+    ],
+    "source_name": "Unknown",
+    "source_family": "Unknown",
+    "course": "other",
+    "proteins": [],
+    "cuisine": "unknown",
+    "dessert": false,
+    "tags": [],
+    "card_type": "mixed",
+    "ocr_confidence": "low",
+    "id": "2026-5-3-pilot-batch-img-3116-b08b0d66",
+    "slug": "unknown",
+    "review_status": "needs_review",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "needs_review",
+    "reasons": [
+      "Model marked this recipe as low confidence.",
+      "Very few ingredients were extracted.",
+      "OCR output was unusually short."
+    ]
+  },
+  "publication": {
+    "is_published": false
+  }
+}
