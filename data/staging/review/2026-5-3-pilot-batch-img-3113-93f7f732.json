@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3113-93f7f732",
+  "slug": "kellogg-s-crispix-mix",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3113.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3113.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:12:43.038Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "7 cups Kellogg's® Crispix® cereal\n1 cup mixed nuts\n1 cup pretzels\n3 tablespoons margarine, melted\n1/4 teaspoon garlic salt\n1/4 teaspoon onion salt\n2 teaspoons lemon juice\n4 teaspoons French's®*\nWorcestershire Sauce\n\n1. Combine Kellogg's® Crispix® cereal, nuts and pretzels in 13 x 9 x 2-inch\n   baking pan. Set aside.\n2. Stir together remaining ingredients. Gently stir spices and margarine into\n   cereal mixture until evenly coated.\n3. Bake at 250°F about 45 minutes, stirring every 15 minutes. Spread on\n   paper towels to cool. Store in airtight container.\n\nYIELD: About 9 cups\n\nNUTRITION FACTS: Serving size 1/2 cup (28 grams) Calories 110 • Fat cal 54 • % Daily Value\nTotal fat 10% (6g) • Sat fat 5% (1g) • Cholest 0% (0mg) • Sodium 11% (260mg) • Total carb 5% (14g) •\nFiber 5% (1g) • Sugars 2g • Protein 2g • Vitamin A 10% • Vitamin C 10% • Calcium 0% • Iron 6%\n\nNOTE: Dry roasted mixed nuts may be used in place of regular mixed nuts and reduced calorie margarine\nfor regular margarine.\n\n® Kellogg Company © 1997 Kellogg Company\n* FRENCH'S and the pennant design are trademarks of Reckitt & Colman Inc.",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\n7 cups Kellogg's® Crispix® cereal\n1 cup mixed nuts\n1 cup pretzels\n3 tablespoons margarine, melted\n1/4 teaspoon garlic salt\n1/4 teaspoon onion salt\n2 teaspoons lemon juice\n4 teaspoons French's®*\nWorcestershire Sauce\n\n1. Combine Kellogg's® Crispix® cereal, nuts and pretzels in 13 x 9 x 2-inch\n   baking pan. Set aside.\n2. Stir together remaining ingredients. Gently stir spices and margarine into\n   cereal mixture until evenly coated.\n3. Bake at 250°F about 45 minutes, stirring every 15 minutes. Spread on\n   paper towels to cool. Store in airtight container.\n\nYIELD: About 9 cups\n\nNUTRITION FACTS: Serving size 1/2 cup (28 grams) Calories 110 • Fat cal 54 • % Daily Value\nTotal fat 10% (6g) • Sat fat 5% (1g) • Cholest 0% (0mg) • Sodium 11% (260mg) • Total carb 5% (14g) •\nFiber 5% (1g) • Sugars 2g • Protein 2g • Vitamin A 10% • Vitamin C 10% • Calcium 0% • Iron 6%\n\nNOTE: Dry roasted mixed nuts may be used in place of regular mixed nuts and reduced calorie margarine\nfor regular margarine.\n\n® Kellogg Company © 1997 Kellogg Company\n* FRENCH'S and the pennant design are trademarks of Reckitt & Colman Inc.",
+            "reasoning_content": "Got it, let's transcribe the recipe card exactly as it appears. First, I need to look at each line and make sure I capture all the text, including ingredients, steps, yield, nutrition facts, note, and the copyright info. Let's start with the ingredients:\n\n7 cups Kellogg's® Crispix® cereal\n1 cup mixed nuts\n1 cup pretzels\n3 tablespoons margarine, melted\n1/4 teaspoon garlic salt\n1/4 teaspoon onion salt\n2 teaspoons lemon juice\n4 teaspoons French's®*\nWorcestershire Sauce\n\nThen the steps:\n\n1. Combine Kellogg's® Crispix® cereal, nuts and pretzels in 13 x 9 x 2-inch\n   baking pan. Set aside.\n2. Stir together remaining ingredients. Gently stir spices and margarine into\n   cereal mixture until evenly coated.\n3. Bake at 250°F about 45 minutes, stirring every 15 minutes. Spread on\n   paper towels to cool. Store in airtight container.\n\nYIELD: About 9 cups\n\nNUTRITION FACTS: Serving size 1/2 cup (28 grams) Calories 110 • Fat cal 54 • % Daily Value\nTotal fat 10% (6g) • Sat fat 5% (1g) • Cholest 0% (0mg) • Sodium 11% (260mg) • Total carb 5% (14g) •\nFiber 5% (1g) • Sugars 2g • Protein 2g • Vitamin A 10% • Vitamin C 10% • Calcium 0% • Iron 6%\n\nNOTE: Dry roasted mixed nuts may be used in place of regular mixed nuts and reduced calorie margarine\nfor regular margarine.\n\n® Kellogg Company © 1997 Kellogg Company\n* FRENCH'S and the pennant design are trademarks of Reckitt & Colman Inc.\n\nI need to make sure all the symbols like ® and * are included, and the line breaks are preserved. Let me check each part again to ensure no mistakes. The ingredients are listed in two columns, so I'll keep the order as they appear. The steps are numbered 1-3, and the rest follows. Yeah, that should be it.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777846324,
+      "id": "20260504061141d261e9285f0641f0",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "20260504061141d261e9285f0641f0",
+      "usage": {
+        "completion_tokens": 827,
+        "completion_tokens_details": {
+          "reasoning_tokens": 477
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6970
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Kellogg's® Crispix® Mix",
+    "summary": "A savory snack mix made with Kellogg's® Crispix® cereal, mixed nuts, and pretzels, coated with a butter and spice mixture. Yields about 9 cups.",
+    "ingredients": [
+      "7 cups Kellogg's® Crispix® cereal",
+      "1 cup mixed nuts",
+      "1 cup pretzels",
+      "3 tablespoons margarine, melted",
+      "1/4 teaspoon garlic salt",
+      "1/4 teaspoon onion salt",
+      "2 teaspoons lemon juice",
+      "4 teaspoons French's®* Worcestershire Sauce"
+    ],
+    "instructions": [
+      "Combine Kellogg's® Crispix® cereal, nuts and pretzels in 13 x 9 x 2-inch baking pan. Set aside.",
+      "Stir together remaining ingredients. Gently stir spices and margarine into cereal mixture until evenly coated.",
+      "Bake at 250°F about 45 minutes, stirring every 15 minutes. Spread on paper towels to cool. Store in airtight container."
+    ],
+    "notes": [
+      "NOTE: Dry roasted mixed nuts may be used in place of regular mixed nuts and reduced calorie margarine for regular margarine."
+    ],
+    "source_name": "Kellogg Company",
+    "source_family": "Unknown",
+    "course": "snack",
+    "proteins": [],
+    "cuisine": "American",
+    "dessert": false,
+    "tags": [
+      "snack",
+      "mixture",
+      "savory",
+      "cereal"
+    ],
+    "card_type": "printed",
+    "ocr_confidence": "high",
+    "id": "2026-5-3-pilot-batch-img-3113-93f7f732",
+    "slug": "kellogg-s-crispix-mix",
+    "review_status": "needs_review",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "needs_review",
+    "reasons": [
+      "OCR text appears to contain more than one recipe title: Worcestershire Sauce"
+    ]
+  },
+  "publication": {
+    "is_published": false
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3122-6a56629c",
+  "slug": "cheeseball",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3122.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3122.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:28:22.933Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Combine cream cheese & cheddar cheese, mix @\nmed. speed till well blended, add all else, mix well.\nChill several hours. Shape into ball + roll in pecans.",
+    "raw_response": {
+      "rotation_degrees": 90,
+      "source_file": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3122.JPG",
+      "response": {
+        "recovery_mode": true,
+        "response": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "content": "\nCombine cream cheese & cheddar cheese, mix @\nmed. speed till well blended, add all else, mix well.\nChill several hours. Shape into ball + roll in pecans.",
+                "reasoning_content": "Got it, let's see. The image is a recipe card, and I need to transcribe the text. First, I should check the orientation. The text is written vertically, so I need to rotate it mentally to read it properly. Let me look at the words. The first line is \"Combine cream cheese & cheddar cheese, mix @\". Then the next line: \"med. speed till well blended, add all else, mix well.\" Then the next: \"Chill several hours. Shape into ball + roll in pecans.\" Wait, let me make sure. Let me parse each line. Let's write them as they appear, but since it's vertical, I need to read from top to bottom, right? Wait, no, when the card is rotated, the text is sideways. Wait, the image shows the card with text running vertically, so I need to rotate the image 90 degrees? Wait, no, looking at the image, the text is written in a vertical column on the right side of the card. So when you rotate the card 90 degrees clockwise, the text becomes horizontal. Let me do that mentally. So the first line (top of the vertical text) is \"Combine cream cheese & cheddar cheese, mix @\". Then next: \"med. speed till well blended, add all else, mix well.\" Then next: \"Chill several hours. Shape into ball + roll in pecans.\" Let me check each word. \"Combine\" – yes. \"cream cheese & cheddar cheese, mix @\" – yes. Then \"med. speed till well blended, add all else, mix well.\" Then \"Chill several hours. Shape into ball + roll in pecans.\" I think that's it. Let me make sure there are no typos. The handwriting is cursive, so I need to be careful. \"med.\" is medium, \"speed\" – yes. \"till\" – yes. \"well blended\" – yes. \"add all else\" – yes. \"mix well\" – yes. \"Chill\" – yes. \"several hours\" – yes. \"Shape into ball + roll in pecans\" – yes. So that's the transcription.",
+                "role": "assistant"
+              }
+            }
+          ],
+          "created": 1777847266,
+          "id": "202605040627319cd42c870c33486a",
+          "model": "glm-4.6v",
+          "object": "chat.completion",
+          "request_id": "202605040627319cd42c870c33486a",
+          "usage": {
+            "completion_tokens": 499,
+            "completion_tokens_details": {
+              "reasoning_tokens": 454
+            },
+            "prompt_tokens": 6171,
+            "prompt_tokens_details": {
+              "cached_tokens": 110
+            },
+            "total_tokens": 6670
+          }
+        }
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Cheeseball",
+    "summary": "A cheeseball made with cream cheese and cheddar cheese.",
+    "ingredients": [
+      "cream cheese & cheddar cheese",
+      "all else",
+      "pecans"
+    ],
+    "instructions": [
+      "Combine cream cheese & cheddar cheese, mix @ med. speed till well blended, add all else, mix well.",
+      "Chill several hours.",
+      "Shape into ball + roll in pecans."
+    ],
+    "notes": [],
+    "source_name": "Unknown",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [],
+    "cuisine": "American",
+    "dessert": false,
+    "tags": [
+      "appetizer",
+      "cheeseball",
+      "pecans"
+    ],
+    "card_type": "printed",
+    "ocr_confidence": "medium",
+    "id": "2026-5-3-pilot-batch-img-3122-6a56629c",
+    "slug": "cheeseball",
+    "review_status": "approved",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "approved",
+    "reasons": []
+  },
+  "publication": {
+    "is_published": true,
+    "published_slug": "cheeseball",
+    "published_at": "2026-05-03T22:28:23.036Z",
+    "published_hash": "3adf7f789d0005f372ddbdb042b0df210fe82102"
+  }
+}

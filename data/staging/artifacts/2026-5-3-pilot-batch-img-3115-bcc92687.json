@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3115-bcc92687",
+  "slug": "crab-rangoon-baked",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3115.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3115.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:16:19.476Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Crab Rangoon (Baked)\n8oz imitation crab or 1 can crabmeat or imitationcrd\n1/4 - 1/2 c. Mayo\n1 pkg cream cheese\n1/4 - 1/2 c. sliced gr. onion\n1 pkg square wonton wrappers (Pasta wrap - Produce section)\nCream together crab, mayo, cr. cheese + gr. onion.\nCarefully put wonton wrappers in muffin tin to form\n\"cup\". Place approx 1 tsp crabmeat mixture in each\n\"cup\". Bake in 350° oven for 15-18 min. or until wrapper",
+    "raw_response": {
+      "rotation_degrees": 0,
+      "source_file": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3115.JPG",
+      "response": {
+        "recovery_mode": true,
+        "response": {
+          "choices": [
+            {
+              "finish_reason": "stop",
+              "index": 0,
+              "message": {
+                "content": "\nCrab Rangoon (Baked)\n8oz imitation crab or 1 can crabmeat or imitationcrd\n1/4 - 1/2 c. Mayo\n1 pkg cream cheese\n1/4 - 1/2 c. sliced gr. onion\n1 pkg square wonton wrappers (Pasta wrap - Produce section)\nCream together crab, mayo, cr. cheese + gr. onion.\nCarefully put wonton wrappers in muffin tin to form\n\"cup\". Place approx 1 tsp crabmeat mixture in each\n\"cup\". Bake in 350° oven for 15-18 min. or until wrapper",
+                "reasoning_content": "Got it, let's transcribe the recipe card. First, I need to read each line carefully. The title is \"Crab Rangoon (Baked)\". Then the ingredients: \"8oz imitation crab or 1 can crabmeat or imitationcrd\" – wait, maybe \"imitation crab\" or \"imitation crabmeat\"? Wait, the original says \"8oz imitation crab or 1 can crabmeat or imitationcrd\" – maybe a typo, but I'll write as is. Then \"1/4 - 1/2 c. Mayo\", \"1 pkg cream cheese\", \"1/4 - 1/2 c. sliced gr. onion\", \"1 pkg square wonton wrappers (Pasta wrap - Produce section)\". Then the instructions: \"Cream together crab, mayo, cr. cheese + gr. onion. Carefully put wonton wrappers in muffin tin to form \"cup\". Place approx 1 tsp crabmeat mixture in each \"cup\". Bake in 350° oven for 15-18 min. or until wrapper\". Let me check each line again for accuracy. Make sure to preserve line breaks and reading order. Let's write it out exactly as seen.",
+                "role": "assistant"
+              }
+            }
+          ],
+          "created": 1777846549,
+          "id": "202605040615355bdd2c18675147c4",
+          "model": "glm-4.6v",
+          "object": "chat.completion",
+          "request_id": "202605040615355bdd2c18675147c4",
+          "usage": {
+            "completion_tokens": 388,
+            "completion_tokens_details": {
+              "reasoning_tokens": 250
+            },
+            "prompt_tokens": 6171,
+            "prompt_tokens_details": {
+              "cached_tokens": 90
+            },
+            "total_tokens": 6559
+          }
+        }
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Crab Rangoon (Baked)",
+    "summary": "Baked crab rangoon appetizers made with imitation crab, cream cheese, and mayo.",
+    "ingredients": [
+      "8oz imitation crab or 1 can crabmeat or imitationcrd",
+      "1/4 - 1/2 c. Mayo",
+      "1 pkg cream cheese",
+      "1/4 - 1/2 c. sliced gr. onion",
+      "1 pkg square wonton wrappers (Pasta wrap - Produce section)"
+    ],
+    "instructions": [
+      "Cream together crab, mayo, cr. cheese + gr. onion.",
+      "Carefully put wonton wrappers in muffin tin to form 'cup'.",
+      "Place approx 1 tsp crabmeat mixture in each 'cup'.",
+      "Bake in 350° oven for 15-18 min. or until wrapper"
+    ],
+    "notes": [],
+    "source_name": "Unknown",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [
+      "seafood"
+    ],
+    "cuisine": "American Chinese",
+    "dessert": false,
+    "tags": [
+      "appetizer",
+      "baked",
+      "chinese",
+      "crab",
+      "seafood",
+      "wonton"
+    ],
+    "card_type": "printed",
+    "ocr_confidence": "medium",
+    "id": "2026-5-3-pilot-batch-img-3115-bcc92687",
+    "slug": "crab-rangoon-baked",
+    "review_status": "approved",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "approved",
+    "reasons": []
+  },
+  "publication": {
+    "is_published": true,
+    "published_slug": "crab-rangoon-baked",
+    "published_at": "2026-05-03T22:16:19.583Z",
+    "published_hash": "f1cad64101961806de42aa3cef2f08a5440e80fc"
+  }
+}

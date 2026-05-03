@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3110-329783b9",
+  "slug": "the-best-cowboy-caviar",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3110.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3110.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:08:30.148Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "THE BEST COWBOY CAVIAR\nIngredients:\n·1/2 cup diced orange bell pepper\n·1/2 cup diced red bell pepper\n·1-2 cans of sweet corn;drained\n·1-2 cans of black beans; drained\n·1-2 cans of black-eyed peas;drained\n·1 cup Cilantro; diced fine\n·1/2 cup diced purple onion\n·1 tbsp fresh lime juice\n·1/4 tsp Garlic Powder\n·1 tsp Chili powder\n·1/2 tsp Salt\n·1/4 cup sugar\n·1/2 cup olive oil\n·1/3 cup white wine\nvinegar\n·1/2 tsp cayenne pepper\n(if wanting spice)\nInstructions:\n1. Add all ingredients into a large bowl\n2 mix well and place in fridge for a bit before\nserving.\n3. Serve with crackers or scoop tortilla chips.",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nTHE BEST COWBOY CAVIAR\nIngredients:\n·1/2 cup diced orange bell pepper\n·1/2 cup diced red bell pepper\n·1-2 cans of sweet corn;drained\n·1-2 cans of black beans; drained\n·1-2 cans of black-eyed peas;drained\n·1 cup Cilantro; diced fine\n·1/2 cup diced purple onion\n·1 tbsp fresh lime juice\n·1/4 tsp Garlic Powder\n·1 tsp Chili powder\n·1/2 tsp Salt\n·1/4 cup sugar\n·1/2 cup olive oil\n·1/3 cup white wine\nvinegar\n·1/2 tsp cayenne pepper\n(if wanting spice)\nInstructions:\n1. Add all ingredients into a large bowl\n2 mix well and place in fridge for a bit before\nserving.\n3. Serve with crackers or scoop tortilla chips.",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, check the orientation—looks like it's right-side up. The title is \"THE BEST COWBOY CAVIAR\" in orange. Then \"Ingredients:\" followed by the list. Then \"Instructions:\" with the steps. Let's go line by line.\n\nTitle: THE BEST COWBOY CAVIAR\n\nIngredients:\n- 1/2 cup diced orange bell pepper\n- 1/2 cup diced red bell pepper\n- 1-2 cans of sweet corn; drained\n- 1-2 cans of black beans; drained\n- 1-2 cans of black-eyed peas; drained\n- 1 cup Cilantro; diced fine\n- 1/2 cup diced purple onion\n- 1 tbsp fresh lime juice\n- 1/4 tsp Garlic Powder\n- 1 tsp Chili powder\n- 1/2 tsp Salt\n- 1/4 cup sugar\n- 1/2 cup olive oil\n- 1/3 cup white wine vinegar\n- 1/2 tsp cayenne pepper (if wanting spice)\n\nInstructions:\n1. Add all ingredients into a large bowl\n2 mix well and place in fridge for a bit before serving.\n3. Serve with crackers or scoop tortilla chips.\n\nWait, let's make sure each line is captured correctly. Let's check the handwriting. The \"1-2 cans\" for black-eyed peas—yes. The \"1/3 cup white wine vinegar\" is there. The instructions: step 1, 2, 3. Let's write exactly as seen, preserving line breaks.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777846061,
+      "id": "2026050406072337883c6c442a4fa9",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "2026050406072337883c6c442a4fa9",
+      "usage": {
+        "completion_tokens": 539,
+        "completion_tokens_details": {
+          "reasoning_tokens": 340
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6682
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "THE BEST COWBOY CAVIAR",
+    "summary": "A spicy and savory dip made with vegetables, corn, beans, and served with crackers or tortilla chips.",
+    "ingredients": [
+      "1/2 cup diced orange bell pepper",
+      "1/2 cup diced red bell pepper",
+      "1-2 cans of sweet corn;drained",
+      "1-2 cans of black beans; drained",
+      "1-2 cans of black-eyed peas;drained",
+      "1 cup Cilantro; diced fine",
+      "1/2 cup diced purple onion",
+      "1 tbsp fresh lime juice",
+      "1/4 tsp Garlic Powder",
+      "1 tsp Chili powder",
+      "1/2 tsp Salt",
+      "1/4 cup sugar",
+      "1/2 cup olive oil",
+      "1/3 cup white wine vinegar",
+      "1/2 tsp cayenne pepper (if wanting spice)"
+    ],
+    "instructions": [
+      "Add all ingredients into a large bowl",
+      "mix well and place in fridge for a bit before serving.",
+      "Serve with crackers or scoop tortilla chips."
+    ],
+    "notes": [],
+    "source_name": "Unknown",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [
+      "vegetarian"
+    ],
+    "cuisine": "American",
+    "dessert": false,
+    "tags": [
+      "caviar",
+      "dip",
+      "vegetarian",
+      "appetizer",
+      "easy",
+      "beans"
+    ],
+    "card_type": "printed",
+    "ocr_confidence": "high",
+    "id": "2026-5-3-pilot-batch-img-3110-329783b9",
+    "slug": "the-best-cowboy-caviar",
+    "review_status": "approved",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "approved",
+    "reasons": []
+  },
+  "publication": {
+    "is_published": true,
+    "published_slug": "the-best-cowboy-caviar",
+    "published_at": "2026-05-03T22:08:30.255Z",
+    "published_hash": "fb4a3872119857383998f0c9aa6c201561f34708"
+  }
+}

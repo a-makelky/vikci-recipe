@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3143-0c59ab42",
+  "slug": "dip",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3143.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3143.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:58:33.539Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Here's what's cookin':\nDip\nRecipe from the kitchen of:\nMom\n\nServes: _____\n\n1 8oz cream cheese\n2 T parmesan cheese\n1/4 C chopped green pepper\n1 T chopped onion\n2 + pimento\nDash ground red pepper\n(1/3 c slivered almonds, toasted)\n\nMix & chill",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nHere's what's cookin':\nDip\nRecipe from the kitchen of:\nMom\n\nServes: _____\n\n1 8oz cream cheese\n2 T parmesan cheese\n1/4 C chopped green pepper\n1 T chopped onion\n2 + pimento\nDash ground red pepper\n(1/3 c slivered almonds, toasted)\n\nMix & chill",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, check the orientation— it's right-side up. Now, read each line. The top says \"Here's what's cookin':\" then \"Dip\" under that. Then \"Recipe from the kitchen of: Mom\". Then \"Serves: ______\". Then the ingredients: \"1 8oz cream cheese\", \"2 T parmesan cheese\", \"1/4 C chopped green pepper\", \"1 T chopped onion\", \"2 + pimento\", \"Dash ground red pepper\", \"(1/3 c slivered almonds, toasted)\". Then on the right, \"Mix & chill\". Let's write each line as is, preserving line breaks.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777849056,
+      "id": "202605040657250bff60371cc349b3",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "202605040657250bff60371cc349b3",
+      "usage": {
+        "completion_tokens": 225,
+        "completion_tokens_details": {
+          "reasoning_tokens": 145
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6368
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Dip",
+    "summary": "",
+    "ingredients": [
+      "1 8oz cream cheese",
+      "2 T parmesan cheese",
+      "1/4 C chopped green pepper",
+      "1 T chopped onion",
+      "2 + pimento",
+      "Dash ground red pepper",
+      "(1/3 c slivered almonds, toasted)"
+    ],
+    "instructions": [
+      "Mix & chill"
+    ],
+    "notes": [
+      "Serves: _____"
+    ],
+    "source_name": "Mom",
+    "source_family": "Unknown",
+    "course": "other",
+    "proteins": [
+      "vegetarian"
+    ],
+    "cuisine": "other",
+    "dessert": false,
+    "tags": [],
+    "card_type": "printed",
+    "ocr_confidence": "high",
+    "id": "2026-5-3-pilot-batch-img-3143-0c59ab42",
+    "slug": "dip",
+    "review_status": "needs_review",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "needs_review",
+    "reasons": [
+      "Very few instructions were extracted."
+    ]
+  },
+  "publication": {
+    "is_published": false
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "started_at": "2026-05-03T22:02:58.000Z",
+  "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch",
+  "processed": 38,
+  "published": 13,
+  "staged_only": 0,
+  "needs_review": 14,
+  "skipped_existing": 0,
+  "failed": 11,
+  "files": [
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3107.JPG",
+      "id": "2026-5-3-pilot-batch-img-3107-7c1e9b3d",
+      "title": "White Queso Dip (Mexican Cheese Dip)",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3107-7c1e9b3d.json",
+      "message": "OCR text appears to contain more than one recipe title: Total Time"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3108.JPG",
+      "id": "2026-5-3-pilot-batch-img-3108-94ba7b97",
+      "title": "Tex Mex Dip",
+      "status": "published",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3108-94ba7b97.json",
+      "recipe_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/src/content/recipes/tex-mex-dip.md"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3109.JPG",
+      "id": "2026-5-3-pilot-batch-img-3109-f0d8c87b",
+      "title": "Southwestern Style Bean Dip",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3109-f0d8c87b.json",
+      "message": "Very few instructions were extracted."
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3110.JPG",
+      "id": "2026-5-3-pilot-batch-img-3110-329783b9",
+      "title": "THE BEST COWBOY CAVIAR",
+      "status": "published",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3110-329783b9.json",
+      "recipe_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/src/content/recipes/the-best-cowboy-caviar.md"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3111.JPG",
+      "id": "2026-5-3-pilot-batch-img-3111-7fdde108",
+      "title": "Chicken Enchilada Cups",
+      "status": "published",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3111-7fdde108.json",
+      "recipe_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/src/content/recipes/chicken-enchilada-cups.md"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3112.JPG",
+      "status": "failed",
+      "message": "[\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"string\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"String must contain at least 1 character(s)\",\n    \"path\": [\n      \"title\"\n    ]\n  },\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 1 element(s)\",\n    \"path\": [\n      \"ingredients\"\n    ]\n  },\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 1 element(s)\",\n    \"path\": [\n      \"instructions\"\n    ]\n  }\n]"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3113.JPG",
+      "id": "2026-5-3-pilot-batch-img-3113-93f7f732",
+      "title": "Kellogg's® Crispix® Mix",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3113-93f7f732.json",
+      "message": "OCR text appears to contain more than one recipe title: Worcestershire Sauce"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3114.JPG",
+      "id": "2026-5-3-pilot-batch-img-3114-a525649a",
+      "title": "THE ORIGINAL CHEX® PARTY MIX",
+      "status": "published",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3114-a525649a.json",
+      "recipe_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/src/content/recipes/the-original-chex-party-mix.md"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3115.JPG",
+      "id": "2026-5-3-pilot-batch-img-3115-bcc92687",
+      "title": "Crab Rangoon (Baked)",
+      "status": "published",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3115-bcc92687.json",
+      "recipe_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/src/content/recipes/crab-rangoon-baked.md"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3116.JPG",
+      "status": "failed",
+      "message": "[\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"string\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"String must contain at least 1 character(s)\",\n    \"path\": [\n      \"title\"\n    ]\n  },\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 1 element(s)\",\n    \"path\": [\n      \"ingredients\"\n    ]\n  },\n  {\n    \"received\": \"unknown\",\n    \"code\": \"invalid_enum_value\",\n    \"options\": [\n      \"handwritten\",\n      \"printed\",\n      \"mixed\"\n    ],\n    \"path\": [\n      \"card_type\"\n    ],\n    \"message\": \"Invalid enum value. Expected 'handwritten' | 'printed' | 'mixed', received 'unknown'\"\n  }\n]"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3117.JPG",
+      "id": "2026-5-3-pilot-batch-img-3117-e94467e6",
+      "title": "TOASTED ALMOND PARTY SPREAD",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3117-e94467e6.json",
+      "message": "OCR text appears to contain more than one recipe title: SWISS CHEESE"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3118.JPG",
+      "id": "2026-5-3-pilot-batch-img-3118-e14c2284",
+      "title": "Springtime Spinach Dip",
+      "status": "published",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3118-e14c2284.json",
+      "recipe_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/src/content/recipes/springtime-spinach-dip.md"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3119.JPG",
+      "id": "2026-5-3-pilot-batch-img-3119-41ffd1ec",
+      "title": "Dip",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3119-41ffd1ec.json",
+      "message": "Very few instructions were extracted."
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3120.JPG",
+      "id": "2026-5-3-pilot-batch-img-3120-fdc92be0",
+      "title": "Here's what's cookin': Taco Dip",
+      "status": "published",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3120-fdc92be0.json",
+      "recipe_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/src/content/recipes/here-s-what-s-cookin-taco-dip.md"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3121.JPG",
+      "status": "failed",
+      "message": "[\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 1 element(s)\",\n    \"path\": [\n      \"instructions\"\n    ]\n  }\n]"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3122.JPG",
+      "id": "2026-5-3-pilot-batch-img-3122-6a56629c",
+      "title": "Cheeseball",
+      "status": "published",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3122-6a56629c.json",
+      "recipe_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/src/content/recipes/cheeseball.md"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3123.PNG",
+      "status": "failed",
+      "message": "[\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 1 element(s)\",\n    \"path\": [\n      \"ingredients\"\n    ]\n  },\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 1 element(s)\",\n    \"path\": [\n      \"instructions\"\n    ]\n  },\n  {\n    \"received\": \"other\",\n    \"code\": \"invalid_enum_value\",\n    \"options\": [\n      \"handwritten\",\n      \"printed\",\n      \"mixed\"\n    ],\n    \"path\": [\n      \"card_type\"\n    ],\n    \"message\": \"Invalid enum value. Expected 'handwritten' | 'printed' | 'mixed', received 'other'\"\n  }\n]"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3124.JPG",
+      "status": "failed",
+      "message": "[\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 1 element(s)\",\n    \"path\": [\n      \"instructions\"\n    ]\n  }\n]"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3125.JPG",
+      "id": "2026-5-3-pilot-batch-img-3125-15c024fa",
+      "title": "Unknown",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3125-15c024fa.json",
+      "message": "Model marked this recipe as low confidence."
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3126.JPG",
+      "id": "2026-5-3-pilot-batch-img-3126-7f97b420",
+      "title": "Cheese Ball",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3126-7f97b420.json",
+      "message": "Very few instructions were extracted."
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3127.JPG",
+      "id": "2026-5-3-pilot-batch-img-3127-4aade66f",
+      "title": "Nachos",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3127-4aade66f.json",
+      "message": "Very few instructions were extracted."
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3128.JPG",
+      "id": "2026-5-3-pilot-batch-img-3128-187a8388",
+      "title": "SEASON'S BEST SHRIMP DIP",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3128-187a8388.json",
+      "message": "OCR text appears to contain more than one recipe title: GREEN ONION"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3129.JPG",
+      "id": "2026-5-3-pilot-batch-img-3129-1e4da14d",
+      "title": "Taco Dip",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3129-1e4da14d.json",
+      "message": "OCR text appears to contain more than one recipe title: Fern Garrick"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3130.JPG",
+      "id": "2026-5-3-pilot-batch-img-3130-8d10cd6d",
+      "title": "Appetizers",
+      "status": "published",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3130-8d10cd6d.json",
+      "recipe_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/src/content/recipes/appetizers.md"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3131.JPG",
+      "id": "2026-5-3-pilot-batch-img-3131-b8b4a303",
+      "title": "Garden Vegetable Dip",
+      "status": "published",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3131-b8b4a303.json",
+      "recipe_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/src/content/recipes/garden-vegetable-dip.md"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3132.JPG",
+      "id": "2026-5-3-pilot-batch-img-3132-36ffa7fc",
+      "title": "Here's what's cookin: Chip Dip",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3132-36ffa7fc.json",
+      "message": "OCR text appears to contain more than one recipe title: ANOTHER DIP"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3133.JPG",
+      "status": "failed",
+      "message": "[\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 1 element(s)\",\n    \"path\": [\n      \"instructions\"\n    ]\n  }\n]"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3134.JPG",
+      "status": "failed",
+      "message": "[\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 1 element(s)\",\n    \"path\": [\n      \"instructions\"\n    ]\n  }\n]"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3135.JPG",
+      "id": "2026-5-3-pilot-batch-img-3135-3d5d4162",
+      "title": "Party Cheese Ball",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3135-3d5d4162.json",
+      "message": "Very few instructions were extracted."
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3136.JPG",
+      "id": "2026-5-3-pilot-batch-img-3136-7dd4e819",
+      "title": "Dip",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3136-7dd4e819.json",
+      "message": "Very few instructions were extracted."
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3137.JPG",
+      "status": "failed",
+      "message": "[\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 1 element(s)\",\n    \"path\": [\n      \"ingredients\"\n    ]\n  }\n]"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3138.JPG",
+      "id": "2026-5-3-pilot-batch-img-3138-a3861dc1",
+      "title": "Here's what's cookin': Taco Dish Dip",
+      "status": "published",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3138-a3861dc1.json",
+      "recipe_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/src/content/recipes/here-s-what-s-cookin-taco-dish-dip.md"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3139.JPG",
+      "id": "2026-5-3-pilot-batch-img-3139-6a1fd16a",
+      "title": "RECIPE FOR Spicy Mexican Party Dip",
+      "status": "published",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3139-6a1fd16a.json",
+      "recipe_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/src/content/recipes/recipe-for-spicy-mexican-party-dip.md"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3140.JPG",
+      "status": "failed",
+      "message": "[\n  {\n    \"received\": \"Unknown\",\n    \"code\": \"invalid_enum_value\",\n    \"options\": [\n      \"handwritten\",\n      \"printed\",\n      \"mixed\"\n    ],\n    \"path\": [\n      \"card_type\"\n    ],\n    \"message\": \"Invalid enum value. Expected 'handwritten' | 'printed' | 'mixed', received 'Unknown'\"\n  }\n]"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3141.JPG",
+      "status": "failed",
+      "message": "[\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 1 element(s)\",\n    \"path\": [\n      \"instructions\"\n    ]\n  }\n]"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3142.JPG",
+      "id": "2026-5-3-pilot-batch-img-3142-a4eb6323",
+      "title": "Traditional Chex® Party Mix!",
+      "status": "published",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3142-a4eb6323.json",
+      "recipe_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/src/content/recipes/traditional-chex-party-mix.md"
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3143.JPG",
+      "id": "2026-5-3-pilot-batch-img-3143-0c59ab42",
+      "title": "Dip",
+      "status": "needs_review",
+      "artifact_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/Windsurf Projects Coding/vicki-recipe/data/staging/artifacts/2026-5-3-pilot-batch-img-3143-0c59ab42.json",
+      "message": "Very few instructions were extracted."
+    },
+    {
+      "file_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3144.JPG",
+      "status": "failed",
+      "message": "[\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 1 element(s)\",\n    \"path\": [\n      \"instructions\"\n    ]\n  }\n]"
+    }
+  ],
+  "completed_at": "2026-05-03T22:59:23.104Z"
+}

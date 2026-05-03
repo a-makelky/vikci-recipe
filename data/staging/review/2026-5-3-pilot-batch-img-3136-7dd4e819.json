@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3136-7dd4e819",
+  "slug": "dip",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3136.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3136.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:48:48.396Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Dip\n2 cans chili con carne w beans (Hormell)\n1 lb. ham, browned\n1-8oz salsa or picante\n1-8oz cream cheese\nSimmer & serve w tortilla or corn chips",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nDip\n2 cans chili con carne w beans (Hormell)\n1 lb. ham, browned\n1-8oz salsa or picante\n1-8oz cream cheese\nSimmer & serve w tortilla or corn chips",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, check the orientation—looks like it's upright. The title is \"Dip\". Then the ingredients: 2 cans chili con carne w beans (Hormell), 1 lb. ham, browned, 1-8oz salsa or picante, 1-8oz cream cheese. Then the instruction: Simmer & serve w tortilla or corn chips. Let me write each line as is, preserving line breaks.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777848497,
+      "id": "202605040648085fb5f13d868f44b1",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "202605040648085fb5f13d868f44b1",
+      "usage": {
+        "completion_tokens": 156,
+        "completion_tokens_details": {
+          "reasoning_tokens": 101
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6299
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Dip",
+    "summary": "Simmer the ingredients together and serve with tortilla or corn chips.",
+    "ingredients": [
+      "2 cans chili con carne w beans (Hormell)",
+      "1 lb. ham, browned",
+      "1-8oz salsa or picante",
+      "1-8oz cream cheese"
+    ],
+    "instructions": [
+      "Simmer & serve w tortilla or corn chips"
+    ],
+    "notes": [],
+    "source_name": "Unknown",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [
+      "beef",
+      "ham"
+    ],
+    "cuisine": "Tex-Mex",
+    "dessert": false,
+    "tags": [
+      "chili",
+      "dip",
+      "snack"
+    ],
+    "card_type": "printed",
+    "ocr_confidence": "high",
+    "id": "2026-5-3-pilot-batch-img-3136-7dd4e819",
+    "slug": "dip",
+    "review_status": "needs_review",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "needs_review",
+    "reasons": [
+      "Very few instructions were extracted."
+    ]
+  },
+  "publication": {
+    "is_published": false
+  }
+}

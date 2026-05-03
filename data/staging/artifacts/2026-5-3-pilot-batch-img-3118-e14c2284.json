@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3118-e14c2284",
+  "slug": "springtime-spinach-dip",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3118.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3118.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:20:20.933Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Here's what's cookin': Springtime Spinach Dip\nRecipe from the kitchen of: Mom        Serves:\n2 c. mayonnaise\n1 10oz frozen chopped spinach, cooked & drained\n½ c. chopped green onion\n½ c. chopped parsley\n1 tsp salt\n½ tsp pepper\nCombine mix well. Chill\nseveral hours or overnight.",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nHere's what's cookin': Springtime Spinach Dip\nRecipe from the kitchen of: Mom        Serves:\n2 c. mayonnaise\n1 10oz frozen chopped spinach, cooked & drained\n½ c. chopped green onion\n½ c. chopped parsley\n1 tsp salt\n½ tsp pepper\nCombine mix well. Chill\nseveral hours or overnight.",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, check the orientation—looks like it's upright. Now, read each line:\n\nHere's what's cookin': Springtime Spinach Dip\nRecipe from the kitchen of: Mom        Serves:\n2 c. mayonnaise\n1 10oz frozen chopped spinach, cooked & drained\n½ c. chopped green onion\n½ c. chopped parsley\n1 tsp salt\n½ tsp pepper\nCombine mix well. Chill\nseveral hours or overnight.\n\nWait, let's make sure each line is correct. Let's go step by step:\n\nFirst line: \"Here's what's cookin': Springtime Spinach Dip\"\nSecond: \"Recipe from the kitchen of: Mom        Serves:\"\nThird: \"2 c. mayonnaise\"\nFourth: \"1 10oz frozen chopped spinach, cooked & drained\"\nFifth: \"½ c. chopped green onion\"\nSixth: \"½ c. chopped parsley\"\nSeventh: \"1 tsp salt\"\nEighth: \"½ tsp pepper\"\nNinth: \"Combine mix well. Chill\"\nTenth: \"several hours or overnight.\"\n\nYes, that's all. Let's check for any unclear parts—no, all text is visible. So transcribe exactly as is, preserving line breaks.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777846763,
+      "id": "202605040619109dd542fbd2e54e27",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "202605040619109dd542fbd2e54e27",
+      "usage": {
+        "completion_tokens": 350,
+        "completion_tokens_details": {
+          "reasoning_tokens": 268
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6493
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Springtime Spinach Dip",
+    "summary": "A spinach dip suitable for appetizers.",
+    "ingredients": [
+      "2 c. mayonnaise",
+      "1 10oz frozen chopped spinach, cooked & drained",
+      "½ c. chopped green onion",
+      "½ c. chopped parsley",
+      "1 tsp salt",
+      "½ tsp pepper"
+    ],
+    "instructions": [
+      "Combine mix well.",
+      "Chill several hours or overnight."
+    ],
+    "notes": [
+      "Serves:"
+    ],
+    "source_name": "Mom",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [
+      "vegetarian"
+    ],
+    "cuisine": "Unknown",
+    "dessert": false,
+    "tags": [],
+    "card_type": "mixed",
+    "ocr_confidence": "high",
+    "id": "2026-5-3-pilot-batch-img-3118-e14c2284",
+    "slug": "springtime-spinach-dip",
+    "review_status": "approved",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "approved",
+    "reasons": []
+  },
+  "publication": {
+    "is_published": true,
+    "published_slug": "springtime-spinach-dip",
+    "published_at": "2026-05-03T22:20:21.032Z",
+    "published_hash": "3797294271de855346c41967d077ff817d18dee6"
+  }
+}

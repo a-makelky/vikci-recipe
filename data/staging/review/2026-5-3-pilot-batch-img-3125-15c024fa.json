@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3125-15c024fa",
+  "slug": "unknown",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3125.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3125.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:36:34.030Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Mix all of the filling mixture together thoroughly.\nDivide the filling - Spread evenly over the tortillas\nRoll up tortillas. Cover tightly with plastic wrap,\n3 twisting ends; refrigerate for several hours.\nUnwrap; cut in slices 1/2\" to 3/4\" wide.\nServe w/ salsa",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nMix all of the filling mixture together thoroughly.\nDivide the filling - Spread evenly over the tortillas\nRoll up tortillas. Cover tightly with plastic wrap,\n3 twisting ends; refrigerate for several hours.\nUnwrap; cut in slices 1/2\" to 3/4\" wide.\nServe w/ salsa",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, I need to read each line carefully. The handwriting is cursive, so let's go step by step.\n\nFirst line: \"Mix all of the filling mixture together thoroughly.\"\nSecond line: \"Divide the filling - Spread evenly over the tortillas\"\nThird line: \"Roll up tortillas. Cover tightly with plastic wrap,\"\nFourth line: \"3 twisting ends; refrigerate for several hours.\"\nFifth line: \"Unwrap; cut in slices 1/2\" to 3/4\" wide.\"\nSixth line: \"Serve w/ salsa\"\n\nWait, let's check each word. Let's make sure about the spelling. \"Mix\" – yes. \"filling mixture\" – yes. \"thoroughly\" – yes. \"Divide\" – yes. \"filling - Spread\" – the hyphen? Maybe a dash. \"evenly over the tortillas\" – yes. \"Roll up tortillas\" – yes. \"Cover tightly with plastic wrap\" – yes. \"3 twisting ends\" – wait, is that \"twisting\" or \"twist\"? Wait, the original says \"3 twisting ends\" – maybe. \"refrigerate for several hours\" – yes. \"Unwrap; cut in slices 1/2\" to 3/4\" wide.\" – yes. \"Serve w/ salsa\" – yes.\n\nLet me write each line as is, preserving line breaks.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777847467,
+      "id": "20260504063054415cde09bac045ef",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "20260504063054415cde09bac045ef",
+      "usage": {
+        "completion_tokens": 375,
+        "completion_tokens_details": {
+          "reasoning_tokens": 304
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6518
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Unknown",
+    "summary": "Filling mixture rolled inside tortillas, cut into slices, served with salsa",
+    "ingredients": [
+      "filling mixture",
+      "tortillas",
+      "plastic wrap",
+      "salsa"
+    ],
+    "instructions": [
+      "Mix all of the filling mixture together thoroughly.",
+      "Divide the filling - Spread evenly over the tortillas",
+      "Roll up tortillas. Cover tightly with plastic wrap,",
+      "3 twisting ends; refrigerate for several hours.",
+      "Unwrap; cut in slices 1/2\" to 3/4\" wide.",
+      "Serve w/ salsa"
+    ],
+    "notes": [],
+    "source_name": "Unknown",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [
+      "other"
+    ],
+    "cuisine": "Unknown",
+    "dessert": false,
+    "tags": [
+      "tortillas",
+      "salsa",
+      "rolls"
+    ],
+    "card_type": "printed",
+    "ocr_confidence": "low",
+    "id": "2026-5-3-pilot-batch-img-3125-15c024fa",
+    "slug": "unknown",
+    "review_status": "needs_review",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "needs_review",
+    "reasons": [
+      "Model marked this recipe as low confidence."
+    ]
+  },
+  "publication": {
+    "is_published": false
+  }
+}

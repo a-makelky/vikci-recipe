@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3132-36ffa7fc",
+  "slug": "here-s-what-s-cookin-chip-dip",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3132.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3132.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:45:02.978Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Here's what's cookin: Chip Dip\nRecipe from the kitchen of: Darlyne BraunServes:\n1 pkg Philadelphia cream cheese (small)\n2 tbsp mayonnaise\n1 tbsp chopped dill pickle\n1 tbsp chopped onion\nonion salt\nANOTHER DIP\n1 8oz cream cheese\n1 pkg Lipton onion soup mix\n1/2 c cream\nAdd a dash of garlic\n& onion salt. Beat w\nmixer til smooth.",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nHere's what's cookin: Chip Dip\nRecipe from the kitchen of: Darlyne BraunServes:\n1 pkg Philadelphia cream cheese (small)\n2 tbsp mayonnaise\n1 tbsp chopped dill pickle\n1 tbsp chopped onion\nonion salt\nANOTHER DIP\n1 8oz cream cheese\n1 pkg Lipton onion soup mix\n1/2 c cream\nAdd a dash of garlic\n& onion salt. Beat w\nmixer til smooth.",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, I need to read each line carefully. The card has \"Here's what's cookin': Chip Dip\" then \"Recipe from the kitchen of: Darlyne Braun\" and \"Serves:\". Then the ingredients for Chip Dip: \"1 pkg Philadelphia cream cheese (small)\", \"2 tbsp mayonnaise\", \"1 tbsp chopped dill pickle\", \"1 tbsp chopped onion\", \"onion salt\". Then \"ANOTHER DIP\" with ingredients: \"1 8oz cream cheese\", \"1 pkg Lipton onion soup mix\", \"1/2 c cream\". Then the instructions: \"Add a dash of garlic & onion salt. Beat w mixer til smooth.\" Wait, let's check each line again. Let's make sure to preserve line breaks and order. Let's list them as they appear:\n\nHere's what's cookin: Chip Dip\nRecipe from the kitchen of: Darlyne BraunServes:\n1 pkg Philadelphia cream cheese (small)\n2 tbsp mayonnaise\n1 tbsp chopped dill pickle\n1 tbsp chopped onion\nonion salt\nANOTHER DIP\n1 8oz cream cheese\n1 pkg Lipton onion soup mix\n1/2 c cream\nAdd a dash of garlic\n& onion salt. Beat w\nmixer til smooth.\n\nWait, let's check the original image again. The \"Serves:\" is next to \"Darlyne Braun\" maybe? Let's see: \"Recipe from the kitchen of: Darlyne BraunServes:\" – yes, that's how it's written. Then the ingredients for Chip Dip. Then \"ANOTHER DIP\" is a separate section. Then the ingredients for that, then the instructions. Let's make sure each line is transcribed correctly. Let's do it step by step:\n\n1. Here's what's cookin: Chip Dip\n2. Recipe from the kitchen of: Darlyne BraunServes:\n3. 1 pkg Philadelphia cream cheese (small)\n4. 2 tbsp mayonnaise\n5. 1 tbsp chopped dill pickle\n6. 1 tbsp chopped onion\n7. onion salt\n8. ANOTHER DIP\n9. 1 8oz cream cheese\n10. 1 pkg Lipton onion soup mix\n11. 1/2 c cream\n12. Add a dash of garlic\n13. & onion salt. Beat w\n14. mixer til smooth.\n\nYes, that's the order. Let's check for any unclear parts. The \"Darlyne Braun\" is clear, \"Serves:\" is there. The ingredients are as written. The \"ANOTHER DIP\" is a heading. Then the next ingredients, then the instructions. Let's make sure to include all visible text, including the ampersand and the \"w\" for \"with\". So the transcription should be exactly as above.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777848275,
+      "id": "2026050406441282a29fbbefb84f95",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "2026050406441282a29fbbefb84f95",
+      "usage": {
+        "completion_tokens": 704,
+        "completion_tokens_details": {
+          "reasoning_tokens": 600
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6847
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Here's what's cookin: Chip Dip",
+    "summary": "Chip dip recipe featuring Philadelphia cream cheese and mayonnaise.",
+    "ingredients": [
+      "1 pkg Philadelphia cream cheese (small)",
+      "2 tbsp mayonnaise",
+      "1 tbsp chopped dill pickle",
+      "1 tbsp chopped onion",
+      "onion salt",
+      "1 8oz cream cheese",
+      "1 pkg Lipton onion soup mix",
+      "1/2 c cream"
+    ],
+    "instructions": [
+      "Add a dash of garlic & onion salt.",
+      "Beat w mixer til smooth."
+    ],
+    "notes": [
+      "Serves:",
+      "ANOTHER DIP"
+    ],
+    "source_name": "Darlyne Braun",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [
+      "vegetarian"
+    ],
+    "cuisine": "American",
+    "dessert": false,
+    "tags": [
+      "dip",
+      "chip dip",
+      "cream cheese",
+      "mayo"
+    ],
+    "card_type": "mixed",
+    "ocr_confidence": "medium",
+    "id": "2026-5-3-pilot-batch-img-3132-36ffa7fc",
+    "slug": "here-s-what-s-cookin-chip-dip",
+    "review_status": "needs_review",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "needs_review",
+    "reasons": [
+      "OCR text appears to contain more than one recipe title: ANOTHER DIP"
+    ]
+  },
+  "publication": {
+    "is_published": false
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3108-94ba7b97",
+  "slug": "tex-mex-dip",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3108.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3108.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:06:14.773Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "9\" pie plate\nTex Mex Dip\nSpread can of beandip in bottom.\nMix + add 8 oz sourcream, ½ c. mayo +\n1 pkg taco seasoning\nGr. onions, chopped\nBlk olives, chopped\nChopped tomatoes\nShredded cheddar cheese\nChill + serve w taco chips",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\n9\" pie plate\nTex Mex Dip\nSpread can of beandip in bottom.\nMix + add 8 oz sourcream, ½ c. mayo +\n1 pkg taco seasoning\nGr. onions, chopped\nBlk olives, chopped\nChopped tomatoes\nShredded cheddar cheese\nChill + serve w taco chips",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, check the orientation—looks like it's right-side up. Let's go line by line.\n\nFirst line: \"9\" pie plate\" then \"Tex Mex Dip\"\n\nNext: \"Spread can of beandip in bottom.\"\n\nThen: \"Mix + add 8 oz sourcream, ½ c. mayo +\"\n\nNext: \"1 pkg taco seasoning\"\n\nThen: \"Gr. onions, chopped\"\n\n\"Blk olives, chopped\"\n\n\"Chopped tomatoes\"\n\n\"Shredded cheddar cheese\"\n\n\"Chill + serve w taco chips\"\n\nWait, let's make sure each line is captured. Let's write them as they appear, preserving line breaks. Let's check the handwriting:\n\n- 9\" pie plate\n- Tex Mex Dip\n- Spread can of beandip in bottom.\n- Mix + add 8 oz sourcream, ½ c. mayo +\n- 1 pkg taco seasoning\n- Gr. onions, chopped\n- Blk olives, chopped\n- Chopped tomatoes\n- Shredded cheddar cheese\n- Chill + serve w taco chips\n\nYes, that's all. Let's make sure no words are missed. The underlined parts are just formatting, but we transcribe the text as is.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777845893,
+      "id": "20260504060440f4f83c25d85d4253",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "20260504060440f4f83c25d85d4253",
+      "usage": {
+        "completion_tokens": 342,
+        "completion_tokens_details": {
+          "reasoning_tokens": 267
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6485
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Tex Mex Dip",
+    "summary": "Spread can of beandip in bottom. Mix + add 8 oz sourcream, ½ c. mayo + 1 pkg taco seasoning. Add toppings and chill.",
+    "ingredients": [
+      "can of beandip",
+      "8 oz sourcream",
+      "½ c. mayo",
+      "1 pkg taco seasoning",
+      "Gr. onions, chopped",
+      "Blk olives, chopped",
+      "Chopped tomatoes",
+      "Shredded cheddar cheese"
+    ],
+    "instructions": [
+      "Spread can of beandip in bottom.",
+      "Mix + add 8 oz sourcream, ½ c. mayo + 1 pkg taco seasoning",
+      "Chill + serve w taco chips"
+    ],
+    "notes": [
+      "9\" pie plate"
+    ],
+    "source_name": "Unknown",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [
+      "vegetarian"
+    ],
+    "cuisine": "Tex Mex",
+    "dessert": false,
+    "tags": [],
+    "card_type": "printed",
+    "ocr_confidence": "high",
+    "id": "2026-5-3-pilot-batch-img-3108-94ba7b97",
+    "slug": "tex-mex-dip",
+    "review_status": "approved",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "approved",
+    "reasons": []
+  },
+  "publication": {
+    "is_published": true,
+    "published_slug": "tex-mex-dip",
+    "published_at": "2026-05-03T22:06:14.879Z",
+    "published_hash": "105e72c090e5344f66ff92cb3faf8930c121b6ea"
+  }
+}

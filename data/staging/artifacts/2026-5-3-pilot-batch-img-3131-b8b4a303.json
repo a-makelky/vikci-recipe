@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3131-b8b4a303",
+  "slug": "garden-vegetable-dip",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3131.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3131.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:43:55.425Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Here's what's cookin': Garden Vegetable Dip\nRecipe from the kitchen of: Jane Frank  Serves:\n2 c. creamed cottage cheese\n4 tbsp. skim milk\n2 tbsp green pepper, chopped\n2 tbsp chopped green onion\n2 tbsp chopped radish\nBeat cottage cheese with milk\nin blender, till real creamy\nStir in rest of ingredients &\nchill 1 hr. Suggested\nseasoning: Dry soup\nmix or ranch dressing\nmix .",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nHere's what's cookin': Garden Vegetable Dip\nRecipe from the kitchen of: Jane Frank  Serves:\n2 c. creamed cottage cheese\n4 tbsp. skim milk\n2 tbsp green pepper, chopped\n2 tbsp chopped green onion\n2 tbsp chopped radish\nBeat cottage cheese with milk\nin blender, till real creamy\nStir in rest of ingredients &\nchill 1 hr. Suggested\nseasoning: Dry soup\nmix or ranch dressing\nmix .",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, check the orientation—looks like it's right-side up. Now, go line by line.\n\nFirst line: \"Here's what's cookin': Garden Vegetable Dip\"\nSecond line: \"Recipe from the kitchen of: Jane Frank  Serves:\"\nThen ingredients:\n\"2 c. creamed cottage cheese\"\n\"4 tbsp. skim milk\"\n\"2 tbsp green pepper, chopped\"\n\"2 tbsp chopped green onion\"\n\"2 tbsp chopped radish\"\nThen instructions:\n\"Beat cottage cheese with milk in blender, till real creamy\"\n\"Stir in rest of ingredients & chill 1 hr. Suggested\"\n\"seasoning: Dry soup mix or ranch dressing mix .\"\n\nWait, let's make sure each line is captured. Let's list them as they appear, preserving line breaks. Let's check the handwriting:\n\n- \"Here's what's cookin': Garden Vegetable Dip\"\n- \"Recipe from the kitchen of: Jane Frank  Serves:\"\n- \"2 c. creamed cottage cheese\"\n- \"4 tbsp. skim milk\"\n- \"2 tbsp green pepper, chopped\"\n- \"2 tbsp chopped green onion\"\n- \"2 tbsp chopped radish\"\n- \"Beat cottage cheese with milk in blender, till real creamy\"\n- \"Stir in rest of ingredients & chill 1 hr. Suggested\"\n- \"seasoning: Dry soup mix or ranch dressing mix .\"\n\nYes, that's the order. Let's write it out exactly as seen, including spaces and punctuation.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777848201,
+      "id": "20260504064306b3c327c668bd4585",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "20260504064306b3c327c668bd4585",
+      "usage": {
+        "completion_tokens": 418,
+        "completion_tokens_details": {
+          "reasoning_tokens": 314
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6561
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Garden Vegetable Dip",
+    "summary": "",
+    "ingredients": [
+      "2 c. creamed cottage cheese",
+      "4 tbsp. skim milk",
+      "2 tbsp green pepper, chopped",
+      "2 tbsp chopped green onion",
+      "2 tbsp chopped radish"
+    ],
+    "instructions": [
+      "Beat cottage cheese with milk in blender, till real creamy",
+      "Stir in rest of ingredients & chill 1 hr."
+    ],
+    "notes": [
+      "Serves:",
+      "Suggested seasoning: Dry soup mix or ranch dressing mix"
+    ],
+    "source_name": "Jane Frank",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [
+      "vegetarian"
+    ],
+    "cuisine": "American",
+    "dessert": false,
+    "tags": [
+      "vegetable",
+      "dip"
+    ],
+    "card_type": "printed",
+    "ocr_confidence": "high",
+    "id": "2026-5-3-pilot-batch-img-3131-b8b4a303",
+    "slug": "garden-vegetable-dip",
+    "review_status": "approved",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "approved",
+    "reasons": []
+  },
+  "publication": {
+    "is_published": true,
+    "published_slug": "garden-vegetable-dip",
+    "published_at": "2026-05-03T22:43:55.532Z",
+    "published_hash": "d9cb0acf4f2e75ead917367d9c6fe40978ee03fa"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3114-a525649a",
+  "slug": "the-original-chex-party-mix",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3114.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3114.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:14:00.363Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "THE ORIGINAL CHEX® PARTY MIX\n6 tablespoons butter*\n2 tablespoons Original Lea & Perrins®Worcestershire sauce\n1½ teaspoons seasoned salt\n¾ teaspoon garlic powder\n½ teaspoon onion powder\n3 cups Corn Chex® cereal\n3 cups Rice Chex® cereal\n3 cups Wheat Chex® cereal\n1 cup mixed nuts\n1 cup pretzels\n1 cup garlic-flavor bite-size bagel chips or regular-size bagel chips,\nbroken into 1-inch pieces\nHeat oven to 250°. Melt butter in large roasting pan in oven. Stir in seasonings.\nGradually stir in remaining ingredients until evenly coated. Bake 1 hour, stirring every 15 minutes.\nSpread on paper towels to cool. Store in airtight container. Makes 12 cups.\n*Do not use spread or tub products.\nMicrowave Directions: Melt butter in large microwavable bowl uncovered on High. Stir in\nseasonings. Gradually stir in remaining ingredients until evenly coated. Microwave uncovered on\nHigh 5 to 6 minutes, thoroughly stirring every 2 minutes. Spread on paper towels to cool. Store\nin airtight container.\nImportant: Because microwaves cook differently, time is approximate.",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nTHE ORIGINAL CHEX® PARTY MIX\n6 tablespoons butter*\n2 tablespoons Original Lea & Perrins®Worcestershire sauce\n1½ teaspoons seasoned salt\n¾ teaspoon garlic powder\n½ teaspoon onion powder\n3 cups Corn Chex® cereal\n3 cups Rice Chex® cereal\n3 cups Wheat Chex® cereal\n1 cup mixed nuts\n1 cup pretzels\n1 cup garlic-flavor bite-size bagel chips or regular-size bagel chips,\nbroken into 1-inch pieces\nHeat oven to 250°. Melt butter in large roasting pan in oven. Stir in seasonings.\nGradually stir in remaining ingredients until evenly coated. Bake 1 hour, stirring every 15 minutes.\nSpread on paper towels to cool. Store in airtight container. Makes 12 cups.\n*Do not use spread or tub products.\nMicrowave Directions: Melt butter in large microwavable bowl uncovered on High. Stir in\nseasonings. Gradually stir in remaining ingredients until evenly coated. Microwave uncovered on\nHigh 5 to 6 minutes, thoroughly stirring every 2 minutes. Spread on paper towels to cool. Store\nin airtight container.\nImportant: Because microwaves cook differently, time is approximate.",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, I need to read each line carefully. The title is \"THE ORIGINAL CHEX® PARTY MIX\". Then the ingredients: 6 tablespoons butter*, 2 tablespoons Original Lea & Perrins®Worcestershire sauce, 1½ teaspoons seasoned salt, ¾ teaspoon garlic powder, ½ teaspoon onion powder, 3 cups Corn Chex® cereal, 3 cups Rice Chex® cereal, 3 cups Wheat Chex® cereal, 1 cup mixed nuts, 1 cup pretzels, 1 cup garlic-flavor bite-size bagel chips or regular-size bagel chips, broken into 1-inch pieces. Then the oven directions: Heat oven to 250°. Melt butter in large roasting pan in oven. Stir in seasonings. Gradually stir in remaining ingredients until evenly coated. Bake 1 hour, stirring every 15 minutes. Spread on paper towels to cool. Store in airtight container. Makes 12 cups. Then the note: *Do not use spread or tub products. Microwave Directions: Melt butter in large microwavable bowl uncovered on High. Stir in seasonings. Gradually stir in remaining ingredients until evenly coated. Microwave uncovered on High 5 to 6 minutes, thoroughly stirring every 2 minutes. Spread on paper towels to cool. Store in airtight container. Important: Because microwaves cook differently, time is approximate. I need to make sure all lines are included and preserve the order. Let me check each part again. Yep, that's all. Now write it out exactly as seen.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777846387,
+      "id": "202605040612474292a968cbc742f2",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "202605040612474292a968cbc742f2",
+      "usage": {
+        "completion_tokens": 596,
+        "completion_tokens_details": {
+          "reasoning_tokens": 335
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6739
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "THE ORIGINAL CHEX® PARTY MIX",
+    "summary": "Makes 12 cups.",
+    "ingredients": [
+      "6 tablespoons butter*",
+      "2 tablespoons Original Lea & Perrins® Worcestershire sauce",
+      "1½ teaspoons seasoned salt",
+      "¾ teaspoon garlic powder",
+      "½ teaspoon onion powder",
+      "3 cups Corn Chex® cereal",
+      "3 cups Rice Chex® cereal",
+      "3 cups Wheat Chex® cereal",
+      "1 cup mixed nuts",
+      "1 cup pretzels",
+      "1 cup garlic-flavor bite-size bagel chips or regular-size bagel chips, broken into 1-inch pieces"
+    ],
+    "instructions": [
+      "Heat oven to 250°. Melt butter in large roasting pan in oven. Stir in seasonings. Gradually stir in remaining ingredients until evenly coated. Bake 1 hour, stirring every 15 minutes. Spread on paper towels to cool. Store in airtight container.",
+      "Microwave Directions: Melt butter in large microwavable bowl uncovered on High. Stir in seasonings. Gradually stir in remaining ingredients until evenly coated. Microwave uncovered on High 5 to 6 minutes, thoroughly stirring every 2 minutes. Spread on paper towels to cool. Store in airtight container."
+    ],
+    "notes": [
+      "*Do not use spread or tub products.",
+      "Important: Because microwaves cook differently, time is approximate."
+    ],
+    "source_name": "Unknown",
+    "source_family": "Unknown",
+    "course": "snack",
+    "proteins": [],
+    "cuisine": "American",
+    "dessert": false,
+    "tags": [
+      "party mix"
+    ],
+    "card_type": "printed",
+    "ocr_confidence": "high",
+    "id": "2026-5-3-pilot-batch-img-3114-a525649a",
+    "slug": "the-original-chex-party-mix",
+    "review_status": "approved",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "approved",
+    "reasons": []
+  },
+  "publication": {
+    "is_published": true,
+    "published_slug": "the-original-chex-party-mix",
+    "published_at": "2026-05-03T22:14:00.468Z",
+    "published_hash": "8c51079a3359500062651f6ec97105860b1f33a5"
+  }
+}

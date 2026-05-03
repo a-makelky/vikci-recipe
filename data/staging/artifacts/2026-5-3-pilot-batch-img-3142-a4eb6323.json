@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3142-a4eb6323",
+  "slug": "traditional-chex-party-mix",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3142.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3142.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:57:22.670Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Traditional Chex® Party Mix!\nbrand\nPreheat oven to 250°. In open roasting pan melt margarine in\noven. Stir in seasoned salt and Worcestershire sauce. Gradually\nadd cereals, nuts and pretzels, stirring until all pieces are evenly\ncoated. Bake 1 hour, stirring every 15 minutes. Spread on\nabsorbent paper to cool. Store in airtight container.\nMicrowave Directions*: In large microwave-safe bowl melt\nmargarine on HIGH 1 minute. Stir in seasoned salt and\nWorcestershire sauce. Gradually add cereals, nuts and pretzels,\nstirring until all pieces are evenly coated. Microwave on HIGH 5\nto 6 minutes, stirring every 2 minutes. Spread on absorbent paper\nto cool. Store in airtight container.\n*Due to differences in microwave ovens, cooking time may need\nadjustment. These directions were developed using 625 to\n700 watt ovens.\nMakes 9 cups.\nCheckerboard Kitchens  © 1990 Ralston Purina Company\n00906 01",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nTraditional Chex® Party Mix!\nbrand\nPreheat oven to 250°. In open roasting pan melt margarine in\noven. Stir in seasoned salt and Worcestershire sauce. Gradually\nadd cereals, nuts and pretzels, stirring until all pieces are evenly\ncoated. Bake 1 hour, stirring every 15 minutes. Spread on\nabsorbent paper to cool. Store in airtight container.\nMicrowave Directions*: In large microwave-safe bowl melt\nmargarine on HIGH 1 minute. Stir in seasoned salt and\nWorcestershire sauce. Gradually add cereals, nuts and pretzels,\nstirring until all pieces are evenly coated. Microwave on HIGH 5\nto 6 minutes, stirring every 2 minutes. Spread on absorbent paper\nto cool. Store in airtight container.\n*Due to differences in microwave ovens, cooking time may need\nadjustment. These directions were developed using 625 to\n700 watt ovens.\nMakes 9 cups.\nCheckerboard Kitchens  © 1990 Ralston Purina Company\n00906 01",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, check the orientation— it's right-side up. Now, read each line carefully.\n\nThe title is \"Traditional Chex® Party Mix!\" Then the brand \"brand\" below that. Next, the oven directions: \"Preheat oven to 250°. In open roasting pan melt margarine in oven. Stir in seasoned salt and Worcestershire sauce. Gradually add cereals, nuts and pretzels, stirring until all pieces are evenly coated. Bake 1 hour, stirring every 15 minutes. Spread on absorbent paper to cool. Store in airtight container.\"\n\nThen \"Microwave Directions*: In large microwave-safe bowl melt margarine on HIGH 1 minute. Stir in seasoned salt and Worcestershire sauce. Gradually add cereals, nuts and pretzels, stirring until all pieces are evenly coated. Microwave on HIGH 5 to 6 minutes, stirring every 2 minutes. Spread on absorbent paper to cool. Store in airtight container.\"\n\nThen the note: \"*Due to differences in microwave ovens, cooking time may need adjustment. These directions were developed using 625 to 700 watt ovens.\"\n\nThen \"Makes 9 cups.\"\n\nThen \"Checkerboard Kitchens © 1990 Ralston Purina Company\"\n\nAt the bottom, there's \"00906 01\" (wait, the last part looks like \"00906 01\" but maybe reversed? Wait, no, looking at the image, the bottom has \"00906 01\" but maybe it's \"10 90600\"? Wait, no, the image shows \"00906 01\" but let's check again. Wait, the user said to preserve line breaks and reading order. Let me look again.\n\nWait, the bottom line: \"00906 01\" — maybe it's a code. Let's transcribe exactly as seen.\n\nSo putting it all together:\n\nTraditional Chex® Party Mix!\nbrand\nPreheat oven to 250°. In open roasting pan melt margarine in\noven. Stir in seasoned salt and Worcestershire sauce. Gradually\nadd cereals, nuts and pretzels, stirring until all pieces are evenly\ncoated. Bake 1 hour, stirring every 15 minutes. Spread on\nabsorbent paper to cool. Store in airtight container.\nMicrowave Directions*: In large microwave-safe bowl melt\nmargarine on HIGH 1 minute. Stir in seasoned salt and\nWorcestershire sauce. Gradually add cereals, nuts and pretzels,\nstirring until all pieces are evenly coated. Microwave on HIGH 5\nto 6 minutes, stirring every 2 minutes. Spread on absorbent paper\nto cool. Store in airtight container.\n*Due to differences in microwave ovens, cooking time may need\nadjustment. These directions were developed using 625 to\n700 watt ovens.\nMakes 9 cups.\nCheckerboard Kitchens  © 1990 Ralston Purina Company\n00906 01\n\nWait, let's check each line again. The \"brand\" is under the title. Then the oven directions, then microwave, then the note, then makes 9 cups, then the company, then the code. Yes, that's the order. Let's make sure no typos. The \"Worcestershire\" is spelled correctly. The numbers: 250°, 1 hour, 15 minutes, 1 minute, 5 to 6 minutes, 2 minutes, 625 to 700 watt, 9 cups, 1990. The code at the bottom is \"00906 01\". Yep, that's what's visible.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777848999,
+      "id": "20260504065609f713e00e779049ba",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "20260504065609f713e00e779049ba",
+      "usage": {
+        "completion_tokens": 1019,
+        "completion_tokens_details": {
+          "reasoning_tokens": 778
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 7162
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Traditional Chex® Party Mix!",
+    "summary": "Preheat oven to 250°. In open roasting pan melt margarine in oven. Stir in seasoned salt and Worcestershire sauce. Gradually add cereals, nuts and pretzels, stirring until all pieces are evenly coated. Bake 1 hour, stirring every 15 minutes. Spread on absorbent paper to cool. Store in airtight container.",
+    "ingredients": [
+      "margarine",
+      "seasoned salt",
+      "Worcestershire sauce",
+      "cereals",
+      "nuts",
+      "pretzels"
+    ],
+    "instructions": [
+      "Preheat oven to 250°. In open roasting pan melt margarine in oven. Stir in seasoned salt and Worcestershire sauce. Gradually add cereals, nuts and pretzels, stirring until all pieces are evenly coated. Bake 1 hour, stirring every 15 minutes. Spread on absorbent paper to cool. Store in airtight container.",
+      "In large microwave-safe bowl melt margarine on HIGH 1 minute. Stir in seasoned salt and Worcestershire sauce. Gradually add cereals, nuts and pretzels, stirring until all pieces are evenly coated. Microwave on HIGH 5 to 6 minutes, stirring every 2 minutes. Spread on absorbent paper to cool. Store in airtight container."
+    ],
+    "notes": [
+      "*Due to differences in microwave ovens, cooking time may need adjustment. These directions were developed using 625 to 700 watt ovens.",
+      "Makes 9 cups."
+    ],
+    "source_name": "Checkerboard Kitchens",
+    "source_family": "Ralston Purina Company",
+    "course": "snack",
+    "proteins": [
+      "vegetarian"
+    ],
+    "cuisine": "American",
+    "dessert": false,
+    "tags": [
+      "party mix",
+      "snack",
+      "chex"
+    ],
+    "card_type": "printed",
+    "ocr_confidence": "high",
+    "id": "2026-5-3-pilot-batch-img-3142-a4eb6323",
+    "slug": "traditional-chex-party-mix",
+    "review_status": "approved",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "approved",
+    "reasons": []
+  },
+  "publication": {
+    "is_published": true,
+    "published_slug": "traditional-chex-party-mix",
+    "published_at": "2026-05-03T22:57:22.777Z",
+    "published_hash": "722923c25b0e15cccbf38e45b91e3441cc7e2259"
+  }
+}

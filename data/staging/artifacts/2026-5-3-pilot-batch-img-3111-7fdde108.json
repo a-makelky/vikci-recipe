@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3111-7fdde108",
+  "slug": "chicken-enchilada-cups",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3111.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3111.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:10:23.579Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Chicken Enchilada Cups\nINGREDIENTS\n24 wonton wrappers\n3 cups Fire-Grilled Chicken Breast Strips (496), prepared according to package instructions\n1/2 cup black beans, drained and rinsed\n1/2 cup Super-Sweet Corn (755), frozen\n1/2 cup enchilada sauce\n1 cup shredded Mexican-style cheese\nChopped fresh cilantro and green onions\nSour cream\nINSTRUCTIONS\n1. Preheat oven to 350°F.\n2. Press wonton wrappers into mini muffin pan cups to form cups.\n3. Bake for 5-7 minutes, or until lightly golden brown.\n4. Mix together chicken, beans, corn and enchilada sauce.\n5. Place mixture into the prepared wonton cups.\n6. Top with cheese and bake an additional 5-7 minutes or until cheese has melted.\n7. Garnish with sliced cilantro, onions and sour cream.",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nChicken Enchilada Cups\nINGREDIENTS\n24 wonton wrappers\n3 cups Fire-Grilled Chicken Breast Strips (496), prepared according to package instructions\n1/2 cup black beans, drained and rinsed\n1/2 cup Super-Sweet Corn (755), frozen\n1/2 cup enchilada sauce\n1 cup shredded Mexican-style cheese\nChopped fresh cilantro and green onions\nSour cream\nINSTRUCTIONS\n1. Preheat oven to 350°F.\n2. Press wonton wrappers into mini muffin pan cups to form cups.\n3. Bake for 5-7 minutes, or until lightly golden brown.\n4. Mix together chicken, beans, corn and enchilada sauce.\n5. Place mixture into the prepared wonton cups.\n6. Top with cheese and bake an additional 5-7 minutes or until cheese has melted.\n7. Garnish with sliced cilantro, onions and sour cream.",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, check the orientation—looks like it's right-side up. The title is \"Chicken Enchilada Cups\". Then ingredients and instructions. Let's list each part as is.\n\nStarting with the title: \"Chicken Enchilada Cups\"\n\nThen \"INGREDIENTS\" section:\n24 wonton wrappers\n3 cups Fire-Grilled Chicken Breast Strips (496), prepared according to package instructions\n1/2 cup black beans, drained and rinsed\n1/2 cup Super-Sweet Corn (755), frozen\n1/2 cup enchilada sauce\n1 cup shredded Mexican-style cheese\nChopped fresh cilantro and green onions\nSour cream\n\nThen \"INSTRUCTIONS\" section:\n1. Preheat oven to 350°F.\n2. Press wonton wrappers into mini muffin pan cups to form cups.\n3. Bake for 5-7 minutes, or until lightly golden brown.\n4. Mix together chicken, beans, corn and enchilada sauce.\n5. Place mixture into the prepared wonton cups.\n6. Top with cheese and bake an additional 5-7 minutes or until cheese has melted.\n7. Garnish with sliced cilantro, onions and sour cream.\n\nMake sure to preserve line breaks and order. Let's write it out exactly as seen.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777846148,
+      "id": "202605040608535014f7fc340744ca",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "202605040608535014f7fc340744ca",
+      "usage": {
+        "completion_tokens": 479,
+        "completion_tokens_details": {
+          "reasoning_tokens": 277
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6622
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Chicken Enchilada Cups",
+    "summary": "",
+    "ingredients": [
+      "24 wonton wrappers",
+      "3 cups Fire-Grilled Chicken Breast Strips (496), prepared according to package instructions",
+      "1/2 cup black beans, drained and rinsed",
+      "1/2 cup Super-Sweet Corn (755), frozen",
+      "1/2 cup enchilada sauce",
+      "1 cup shredded Mexican-style cheese",
+      "Chopped fresh cilantro and green onions",
+      "Sour cream"
+    ],
+    "instructions": [
+      "1. Preheat oven to 350°F.",
+      "2. Press wonton wrappers into mini muffin pan cups to form cups.",
+      "3. Bake for 5-7 minutes, or until lightly golden brown.",
+      "4. Mix together chicken, beans, corn and enchilada sauce.",
+      "5. Place mixture into the prepared wonton cups.",
+      "6. Top with cheese and bake an additional 5-7 minutes or until cheese has melted.",
+      "7. Garnish with sliced cilantro, onions and sour cream."
+    ],
+    "notes": [],
+    "source_name": "Unknown",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [
+      "chicken"
+    ],
+    "cuisine": "Mexican",
+    "dessert": false,
+    "tags": [],
+    "card_type": "printed",
+    "ocr_confidence": "high",
+    "id": "2026-5-3-pilot-batch-img-3111-7fdde108",
+    "slug": "chicken-enchilada-cups",
+    "review_status": "approved",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "approved",
+    "reasons": []
+  },
+  "publication": {
+    "is_published": true,
+    "published_slug": "chicken-enchilada-cups",
+    "published_at": "2026-05-03T22:10:23.692Z",
+    "published_hash": "7cc46c596f76efe59a25e269b3a1c81e3b39ed36"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3120-fdc92be0",
+  "slug": "here-s-what-s-cookin-taco-dip",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3120.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3120.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:23:34.956Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Here's what's cookin': Taco Dip\nRecipe from the kitchen of: Mom    Serves:\n1 8oz cream cheese\n1 16oz small curd cottage cheese\n1 pkg taco seasoning mix\nMix above ingredients thoroughly.\nSpread in oblong Pyrex dish or pan, and over the top layer:\nlettuce\ntomatoes\nolives\nshredded cheese\nServe w Dorito Nacho Cheese chips.",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nHere's what's cookin': Taco Dip\nRecipe from the kitchen of: Mom    Serves:\n1 8oz cream cheese\n1 16oz small curd cottage cheese\n1 pkg taco seasoning mix\nMix above ingredients thoroughly.\nSpread in oblong Pyrex dish or pan, and over the top layer:\nlettuce\ntomatoes\nolives\nshredded cheese\nServe w Dorito Nacho Cheese chips.",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, check the orientation—looks like it's right-side up. Now, go line by line.\n\nFirst line: \"Here's what's cookin': Taco Dip\"\nNext: \"Recipe from the kitchen of: Mom    Serves:\"\nThen ingredients: \"1 8oz cream cheese\"\n\"1 16oz small curd cottage cheese\"\n\"1 pkg taco seasoning mix\"\nThen instructions: \"Mix above ingredients thoroughly.\"\n\"Spread in oblong Pyrex dish or pan, and over the top layer:\"\nThen toppings: \"lettuce\"\n\"tomatoes\"\n\"olives\"\n\"shredded cheese\"\n\"Serve w Dorito Nacho Cheese chips.\"\n\nWait, let's make sure each line is captured. Let's list them as they appear:\n\nHere's what's cookin': Taco Dip\nRecipe from the kitchen of: Mom    Serves:\n1 8oz cream cheese\n1 16oz small curd cottage cheese\n1 pkg taco seasoning mix\nMix above ingredients thoroughly.\nSpread in oblong Pyrex dish or pan, and over the top layer:\nlettuce\ntomatoes\nolives\nshredded cheese\nServe w Dorito Nacho Cheese chips.\n\nYes, that's all. Let's check for any unclear parts—no, all text is visible. So transcribe exactly as is.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777846953,
+      "id": "202605040622192b30e5480ec34131",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "202605040622192b30e5480ec34131",
+      "usage": {
+        "completion_tokens": 375,
+        "completion_tokens_details": {
+          "reasoning_tokens": 281
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6518
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Here's what's cookin': Taco Dip",
+    "summary": "Taco dip made with cream cheese, cottage cheese, and taco seasoning.",
+    "ingredients": [
+      "1 8oz cream cheese",
+      "1 16oz small curd cottage cheese",
+      "1 pkg taco seasoning mix"
+    ],
+    "instructions": [
+      "Mix above ingredients thoroughly.",
+      "Spread in oblong Pyrex dish or pan, and over the top layer: lettuce tomatoes olives shredded cheese"
+    ],
+    "notes": [
+      "Recipe from the kitchen of: Mom",
+      "Serves:",
+      "Serve w Dorito Nacho Cheese chips."
+    ],
+    "source_name": "Mom",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [],
+    "cuisine": "Mexican",
+    "dessert": false,
+    "tags": [
+      "taco dip",
+      "dip",
+      "appetizer"
+    ],
+    "card_type": "printed",
+    "ocr_confidence": "high",
+    "id": "2026-5-3-pilot-batch-img-3120-fdc92be0",
+    "slug": "here-s-what-s-cookin-taco-dip",
+    "review_status": "approved",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "approved",
+    "reasons": []
+  },
+  "publication": {
+    "is_published": true,
+    "published_slug": "here-s-what-s-cookin-taco-dip",
+    "published_at": "2026-05-03T22:23:35.061Z",
+    "published_hash": "5f79d440b0478dcbc6dce109047e1cb5ae4f3c62"
+  }
+}

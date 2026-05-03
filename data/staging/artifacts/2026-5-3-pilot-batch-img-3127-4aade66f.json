@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3127-4aade66f",
+  "slug": "nachos",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3127.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3127.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:38:27.196Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Recipe: Nachos\nFrom the Kitchen of: Bernie (microwave)\nPrepare on wax paper\n16 lg. tortilla chips\n3/4 c. shredded Monterey Jack (3oz)\n1/4 c. shredded cheddar cheese (1oz)\nMicrowave on Medium 1'1/2 - 2 min.",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nRecipe: Nachos\nFrom the Kitchen of: Bernie (microwave)\nPrepare on wax paper\n16 lg. tortilla chips\n3/4 c. shredded Monterey Jack (3oz)\n1/4 c. shredded cheddar cheese (1oz)\nMicrowave on Medium 1'1/2 - 2 min.",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, check the orientation—looks like it's upright. Now, read each line:\n\nRecipe: Nachos\nFrom the Kitchen of: Bernie (microwave)\nPrepare on wax paper\n16 lg. tortilla chips\n3/4 c. shredded Monterey Jack (3oz)\n1/4 c. shredded cheddar cheese (1oz)\nMicrowave on Medium 1'1/2 - 2 min.\n\nWait, let's make sure each line is correct. Let's go step by step. The first line: \"Recipe: Nachos\". Then \"From the Kitchen of: Bernie (microwave)\". Next: \"Prepare on wax paper\". Then ingredients: \"16 lg. tortilla chips\", \"3/4 c. shredded Monterey Jack (3oz)\", \"1/4 c. shredded cheddar cheese (1oz)\". Then the cooking instruction: \"Microwave on Medium 1'1/2 - 2 min.\" (note the apostrophe in 1'1/2, maybe a typo but that's what's there). Let's check for any unclear parts—no, all text is visible. So transcribe exactly as is, preserving line breaks.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777847865,
+      "id": "20260504063731b4677d01f5304e6e",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "20260504063731b4677d01f5304e6e",
+      "usage": {
+        "completion_tokens": 325,
+        "completion_tokens_details": {
+          "reasoning_tokens": 252
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6468
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Nachos",
+    "summary": "",
+    "ingredients": [
+      "16 lg. tortilla chips",
+      "3/4 c. shredded Monterey Jack (3oz)",
+      "1/4 c. shredded cheddar cheese (1oz)"
+    ],
+    "instructions": [
+      "Microwave on Medium 1'1/2 - 2 min."
+    ],
+    "notes": [
+      "Prepare on wax paper"
+    ],
+    "source_name": "Bernie",
+    "source_family": "Unknown",
+    "course": "snack",
+    "proteins": [
+      "vegetarian"
+    ],
+    "cuisine": "Mexican",
+    "dessert": false,
+    "tags": [],
+    "card_type": "handwritten",
+    "ocr_confidence": "high",
+    "id": "2026-5-3-pilot-batch-img-3127-4aade66f",
+    "slug": "nachos",
+    "review_status": "needs_review",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "needs_review",
+    "reasons": [
+      "Very few instructions were extracted."
+    ]
+  },
+  "publication": {
+    "is_published": false
+  }
+}

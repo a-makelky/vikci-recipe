@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3138-a3861dc1",
+  "slug": "here-s-what-s-cookin-taco-dish-dip",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3138.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3138.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:51:52.013Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Here's what's cookin': Taco Dish Dip\nRecipe from the kitchen of: Mom      Serves: Cake pan\n1st layer\n1# hamb. Brown w salt+pepper + onion\nAdd: 1 can refried beans\n1/2 jar med. or hot taco sauce      (put over hamb)\n2nd layer\nMix together: 1 c. sour cream\n1/2 c. real mayonaise\n1 envelope taco seasoning mix\n3rd layer\ngrated cheese, onions,\nblack olives\nDip w round tortilla chips",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nHere's what's cookin': Taco Dish Dip\nRecipe from the kitchen of: Mom      Serves: Cake pan\n1st layer\n1# hamb. Brown w salt+pepper + onion\nAdd: 1 can refried beans\n1/2 jar med. or hot taco sauce      (put over hamb)\n2nd layer\nMix together: 1 c. sour cream\n1/2 c. real mayonaise\n1 envelope taco seasoning mix\n3rd layer\ngrated cheese, onions,\nblack olives\nDip w round tortilla chips",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, check the orientation—looks like it's right-side up. Now, read each line carefully.\n\nStarting with \"Here's what's cookin': Taco Dish Dip\" then \"Recipe from the kitchen of: Mom\" and \"Serves: Cake pan\". Then the layers:\n\n1st layer: \"1# hamb. Brown w salt+pepper + onion\" then \"Add: 1 can refried beans\" then \"1/2 jar med. or hot taco sauce (put over hamb)\"\n\n2nd layer: \"Mix together: 1 c. sour cream\" then \"1/2 c. real mayonaise\" then \"1 envelope taco seasoning mix\"\n\n3rd layer: \"grated cheese, onions, black olives\" then \"Dip w round tortilla chips\"\n\nWait, let's make sure each line is captured. Let's list them as per the card:\n\nHere's what's cookin': Taco Dish Dip\nRecipe from the kitchen of: Mom      Serves: Cake pan\n1st layer\n1# hamb. Brown w salt+pepper + onion\nAdd: 1 can refried beans\n1/2 jar med. or hot taco sauce      (put over hamb)\n2nd layer\nMix together: 1 c. sour cream\n1/2 c. real mayonaise\n1 envelope taco seasoning mix\n3rd layer\ngrated cheese, onions,\nblack olives\nDip w round tortilla chips\n\nYes, that's the text. Let's check for any unclear parts—maybe \"hamb\" is \"hamburger\", but the card has \"hamb.\" so we keep it. \"taco sauce\" is clear. \"mayonaise\" is spelled that way. \"tortilla chips\" is clear. Let's transcribe exactly as seen.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777848652,
+      "id": "202605040650365822151fd6354939",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "202605040650365822151fd6354939",
+      "usage": {
+        "completion_tokens": 516,
+        "completion_tokens_details": {
+          "reasoning_tokens": 390
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6659
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Here's what's cookin': Taco Dish Dip",
+    "summary": "Recipe from the kitchen of: Mom Serves: Cake pan",
+    "ingredients": [
+      "1# hamb.",
+      "salt+pepper",
+      "onion",
+      "1 can refried beans",
+      "1/2 jar med. or hot taco sauce",
+      "1 c. sour cream",
+      "1/2 c. real mayonaise",
+      "1 envelope taco seasoning mix",
+      "grated cheese",
+      "onions",
+      "black olives",
+      "round tortilla chips"
+    ],
+    "instructions": [
+      "Brown hamb. w salt+pepper + onion",
+      "Add: 1 can refried beans",
+      "Add: 1/2 jar med. or hot taco sauce (put over hamb)",
+      "Mix together: 1 c. sour cream, 1/2 c. real mayonaise, 1 envelope taco seasoning mix",
+      "Dip w round tortilla chips"
+    ],
+    "notes": [
+      "Recipe from the kitchen of: Mom",
+      "Serves: Cake pan"
+    ],
+    "source_name": "Mom",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [
+      "ham"
+    ],
+    "cuisine": "Mexican",
+    "dessert": false,
+    "tags": [
+      "taco",
+      "dip",
+      "tortilla chips"
+    ],
+    "card_type": "printed",
+    "ocr_confidence": "medium",
+    "id": "2026-5-3-pilot-batch-img-3138-a3861dc1",
+    "slug": "here-s-what-s-cookin-taco-dish-dip",
+    "review_status": "approved",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "approved",
+    "reasons": []
+  },
+  "publication": {
+    "is_published": true,
+    "published_slug": "here-s-what-s-cookin-taco-dish-dip",
+    "published_at": "2026-05-03T22:51:52.117Z",
+    "published_hash": "552d61b32dcca11cd004de4ecef900cd5df6ca38"
+  }
+}

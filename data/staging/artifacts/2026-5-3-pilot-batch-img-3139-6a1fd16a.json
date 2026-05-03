@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3139-6a1fd16a",
+  "slug": "recipe-for-spicy-mexican-party-dip",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3139.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3139.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:53:21.340Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "RECIPE FOR Spicy Mexican Party Dip\nMix:\n1 lg. can beans dip        1-8oz sour cream\n1/2 pkg taco seasoning    10 drops Tabasco\n1-8oz pkg cream cheese    Diced onion to taste\nSpread Monterey Jack cheese on top.\nBake @ 300° until bubbly.\nServe with taco or potato chips.",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nRECIPE FOR Spicy Mexican Party Dip\nMix:\n1 lg. can beans dip        1-8oz sour cream\n1/2 pkg taco seasoning    10 drops Tabasco\n1-8oz pkg cream cheese    Diced onion to taste\nSpread Monterey Jack cheese on top.\nBake @ 300° until bubbly.\nServe with taco or potato chips.",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, check the orientation— it's right-side up. The title is \"RECIPE FOR Spicy Mexican Party Dip\". Then the \"Mix:\" section. Let's list each line:\n\nFirst line: RECIPE FOR Spicy Mexican Party Dip\nThen Mix:\nNext lines:\n1 lg. can beans dip        1-8oz sour cream\n1/2 pkg taco seasoning    10 drops Tabasco\n1-8oz pkg cream cheese    Diced onion to taste\nThen:\nSpread Monterey Jack cheese on top.\nBake @ 300° until bubbly.\nServe with taco or potato chips.\n\nWait, let's make sure each line is captured. Let's go step by step. The first line is \"RECIPE FOR Spicy Mexican Party Dip\". Then \"Mix:\". Then the ingredients: first ingredient line \"1 lg. can beans dip\" and \"1-8oz sour cream\" (maybe a typo, 1-8oz? Or 1 8oz? But as written). Then \"1/2 pkg taco seasoning\" and \"10 drops Tabasco\". Then \"1-8oz pkg cream cheese\" and \"Diced onion to taste\". Then the instructions: \"Spread Monterey Jack cheese on top.\" \"Bake @ 300° until bubbly.\" \"Serve with taco or potato chips.\"\n\nLet me write each line exactly as visible, preserving line breaks.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777848744,
+      "id": "20260504065210dbb1ac5a867b4b92",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "20260504065210dbb1ac5a867b4b92",
+      "usage": {
+        "completion_tokens": 382,
+        "completion_tokens_details": {
+          "reasoning_tokens": 298
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6525
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "RECIPE FOR Spicy Mexican Party Dip",
+    "summary": "A Spicy Mexican Party Dip composed of beans, sour cream, cream cheese, taco seasoning, Tabasco, and diced onion, topped with Monterey Jack cheese and served with chips.",
+    "ingredients": [
+      "Mix:",
+      "1 lg. can beans dip",
+      "1-8oz sour cream",
+      "1/2 pkg taco seasoning",
+      "10 drops Tabasco",
+      "1-8oz pkg cream cheese",
+      "Diced onion to taste"
+    ],
+    "instructions": [
+      "Spread Monterey Jack cheese on top.",
+      "Bake @ 300° until bubbly.",
+      "Serve with taco or potato chips."
+    ],
+    "notes": [],
+    "source_name": "Unknown",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [
+      "other"
+    ],
+    "cuisine": "Mexican",
+    "dessert": false,
+    "tags": [
+      "spicy",
+      "mexican",
+      "dip"
+    ],
+    "card_type": "mixed",
+    "ocr_confidence": "medium",
+    "id": "2026-5-3-pilot-batch-img-3139-6a1fd16a",
+    "slug": "recipe-for-spicy-mexican-party-dip",
+    "review_status": "approved",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "approved",
+    "reasons": []
+  },
+  "publication": {
+    "is_published": true,
+    "published_slug": "recipe-for-spicy-mexican-party-dip",
+    "published_at": "2026-05-03T22:53:21.444Z",
+    "published_hash": "c292df95503d6d7288f21c4956eac37647999aa0"
+  }
+}

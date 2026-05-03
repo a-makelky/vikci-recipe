@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3130-8d10cd6d",
+  "slug": "appetizers",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3130.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3130.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:42:47.564Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "Here's what's cookin: Appetizers\nRecipe from the kitchen of: Bernice Mueler) Serves:\nRitz crackers\n(parmesan, worcestershire\njack)\n1/4 c dry beef (bag)\n1/4 oz shredded cheddar\n1/4 c. mayonnaise\nMix in bowl + let stand.\nHeat oven to 350° + bake\ncrackers 6-8 min.",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nHere's what's cookin: Appetizers\nRecipe from the kitchen of: Bernice Mueler) Serves:\nRitz crackers\n(parmesan, worcestershire\njack)\n1/4 c dry beef (bag)\n1/4 oz shredded cheddar\n1/4 c. mayonnaise\nMix in bowl + let stand.\nHeat oven to 350° + bake\ncrackers 6-8 min.",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, check the orientation—looks like it's right-side up. Now, go line by line.\n\nFirst line: \"Here's what's cookin: Appetizers\" (pink and blue)\nSecond line: \"Recipe from the kitchen of: Bernice Mueler) Serves:\" (pink and blue)\nThird line: \"Ritz crackers\" (blue)\nFourth line: (parentheses) \"parmesan, worcestershire jack\" (blue)\nFifth line: \"1/4 c dry beef (bag)\" (blue)\nSixth line: \"1/4 oz shredded cheddar\" (blue)\nSeventh line: \"1/4 c. mayonnaise\" (blue)\nEighth line: \"Mix in bowl + let stand.\" (blue)\nNinth line: \"Heat oven to 350° + bake\" (blue)\nTenth line: \"crackers 6-8 min.\" (blue)\n\nWait, let's make sure each line is captured. Let's list them as they appear:\n\nHere's what's cookin: Appetizers\nRecipe from the kitchen of: Bernice Mueler) Serves:\nRitz crackers\n(parmesan, worcestershire\njack)\n1/4 c dry beef (bag)\n1/4 oz shredded cheddar\n1/4 c. mayonnaise\nMix in bowl + let stand.\nHeat oven to 350° + bake\ncrackers 6-8 min.\n\nYes, that's the order. Let's check for any unclear parts. The name \"Bernice Mueler\" is clear. The ingredients and steps are as written. Let's transcribe exactly.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777848120,
+      "id": "20260504064144d047936d407b41c2",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "20260504064144d047936d407b41c2",
+      "usage": {
+        "completion_tokens": 451,
+        "completion_tokens_details": {
+          "reasoning_tokens": 355
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 94
+        },
+        "total_tokens": 6594
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "Appetizers",
+    "summary": "Recipe from the kitchen of: Bernice Mueler. Serves:",
+    "ingredients": [
+      "Ritz crackers (parmesan, worcestershire jack)",
+      "1/4 c dry beef (bag)",
+      "1/4 oz shredded cheddar",
+      "1/4 c. mayonnaise"
+    ],
+    "instructions": [
+      "Mix in bowl + let stand.",
+      "Heat oven to 350° + bake crackers 6-8 min."
+    ],
+    "notes": [],
+    "source_name": "Bernice Mueler",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [],
+    "cuisine": "Unknown",
+    "dessert": false,
+    "tags": [],
+    "card_type": "handwritten",
+    "ocr_confidence": "medium",
+    "id": "2026-5-3-pilot-batch-img-3130-8d10cd6d",
+    "slug": "appetizers",
+    "review_status": "approved",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "approved",
+    "reasons": []
+  },
+  "publication": {
+    "is_published": true,
+    "published_slug": "appetizers",
+    "published_at": "2026-05-03T22:42:47.670Z",
+    "published_hash": "e14666c5cbf50f95f31363a3bf71cee27820f94c"
+  }
+}

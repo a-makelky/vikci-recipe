@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "id": "2026-5-3-pilot-batch-img-3107-7c1e9b3d",
+  "slug": "white-queso-dip-mexican-cheese-dip",
+  "source": {
+    "input_path": "/Users/aaronmakelky/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.3-pilot-batch/IMG_3107.JPG",
+    "related_input_paths": [],
+    "file_name": "IMG_3107.JPG",
+    "mime_type": "image/jpeg",
+    "ingested_at": "2026-05-03T22:04:26.381Z"
+  },
+  "ocr": {
+    "provider": "zai-vision",
+    "markdown": "White Queso Dip (Mexican Cheese Dip)\n★★★★ 4.86 from 28 votes\nThe number one thing I look forward to when eating Mexican food is the white\nqueso dip! I never knew how to make it at home, but once you find out how easy it is to make,\nyou'll want to serve it on every taco Tuesday from here on out!\nCook Time\n10 mins\nTotal Time\n10 mins\nCourse: Appetizer  Cuisine: American, Mexican  Servings: 8 people\nKeyword: Cheese dip, Chips and dip, Party foods, Queso dip\nCalories: 272kcal\nEquipment\n• medium saucepan\n• rubber spatula\nIngredients\n• 1/2 lb white american cheese\n• 1/2 lb pepper jack cheese\n• 1 4.5 oz can chopped green chiles drained\n• 1 12 oz can evaporated milk\n• 1 tsp ground cumin\nFor serving:\n• tortilla chips I like the scoop variety\nInstructions\n1. Add the cheeses and evaporated milk to a saucepan over low heat. Stir until the cheese is\nmelted and the mixture is smooth.\n2. Drain the can of green chiles and add them to the saucepan. Sprinkle in the cumin and stir\nto combine.\n3. Serve warm with tortilla chips!\nNutrition\nServing: 8servings | Calories: 272kcal | Carbohydrates: 5.4g | Protein: 16.2g | Fat: 21.6g |\nSaturated Fat: 14.2g | Cholesterol: 68mg | Sodium: 608mg | Potassium: 133mg | Sugar: 4.3g |\nCalcium: 470mg",
+    "raw_response": {
+      "choices": [
+        {
+          "finish_reason": "stop",
+          "index": 0,
+          "message": {
+            "content": "\nWhite Queso Dip (Mexican Cheese Dip)\n★★★★ 4.86 from 28 votes\nThe number one thing I look forward to when eating Mexican food is the white\nqueso dip! I never knew how to make it at home, but once you find out how easy it is to make,\nyou'll want to serve it on every taco Tuesday from here on out!\nCook Time\n10 mins\nTotal Time\n10 mins\nCourse: Appetizer  Cuisine: American, Mexican  Servings: 8 people\nKeyword: Cheese dip, Chips and dip, Party foods, Queso dip\nCalories: 272kcal\nEquipment\n• medium saucepan\n• rubber spatula\nIngredients\n• 1/2 lb white american cheese\n• 1/2 lb pepper jack cheese\n• 1 4.5 oz can chopped green chiles drained\n• 1 12 oz can evaporated milk\n• 1 tsp ground cumin\nFor serving:\n• tortilla chips I like the scoop variety\nInstructions\n1. Add the cheeses and evaporated milk to a saucepan over low heat. Stir until the cheese is\nmelted and the mixture is smooth.\n2. Drain the can of green chiles and add them to the saucepan. Sprinkle in the cumin and stir\nto combine.\n3. Serve warm with tortilla chips!\nNutrition\nServing: 8servings | Calories: 272kcal | Carbohydrates: 5.4g | Protein: 16.2g | Fat: 21.6g |\nSaturated Fat: 14.2g | Cholesterol: 68mg | Sodium: 608mg | Potassium: 133mg | Sugar: 4.3g |\nCalcium: 470mg",
+            "reasoning_content": "Got it, let's transcribe the recipe card. First, I need to read each section carefully. The title is \"White Queso Dip (Mexican Cheese Dip)\". Then the stars and rating: \"★★★★ 4.86 from 28 votes\". The description: \"The number one thing I look forward to when eating Mexican food is the white queso dip! I never knew how to make it at home, but once you find out how easy it is to make, you'll want to serve it on every taco Tuesday from here on out!\". Then Cook Time: \"10 mins\", Total Time: \"10 mins\". Course: \"Appetizer\", Cuisine: \"American, Mexican\", Keyword: \"Cheese dip, Chips and dip, Party foods, Queso dip\", Servings: \"8 people\", Calories: \"272kcal\". Equipment: \"medium saucepan, rubber spatula\". Ingredients: \"1/2 lb white american cheese, 1/2 lb pepper jack cheese, 1 4.5 oz can chopped green chiles drained, 1 12 oz can evaporated milk, 1 tsp ground cumin\". For serving: \"tortilla chips I like the scoop variety\". Instructions: \"1. Add the cheeses and evaporated milk to a saucepan over low heat. Stir until the cheese is melted and the mixture is smooth. 2. Drain the can of green chiles and add them to the saucepan. Sprinkle in the cumin and stir to combine. 3. Serve warm with tortilla chips!\". Nutrition: \"Serving: 8servings | Calories: 272kcal | Carbohydrates: 5.4g | Protein: 16.2g | Fat: 21.6g | Saturated Fat: 14.2g | Cholesterol: 68mg | Sodium: 608mg | Potassium: 133mg | Sugar: 4.3g | Calcium: 470mg\". Wait, let me check each line again to make sure I don't miss anything. Let's go step by step:\n\nTitle: White Queso Dip (Mexican Cheese Dip)\nStars: ★★★★ 4.86 from 28 votes\nDescription: The number one thing I look forward to when eating Mexican food is the white queso dip! I never knew how to make it at home, but once you find out how easy it is to make, you'll want to serve it on every taco Tuesday from here on out!\nCook Time: 10 mins\nTotal Time: 10 mins\nCourse: Appetizer\nCuisine: American, Mexican\nKeyword: Cheese dip, Chips and dip, Party foods, Queso dip\nServings: 8 people\nCalories: 272kcal\nEquipment: medium saucepan, rubber spatula\nIngredients: 1/2 lb white american cheese, 1/2 lb pepper jack cheese, 1 4.5 oz can chopped green chiles drained, 1 12 oz can evaporated milk, 1 tsp ground cumin\nFor serving: tortilla chips I like the scoop variety\nInstructions: 1. Add the cheeses and evaporated milk to a saucepan over low heat. Stir until the cheese is melted and the mixture is smooth. 2. Drain the can of green chiles and add them to the saucepan. Sprinkle in the cumin and stir to combine. 3. Serve warm with tortilla chips!\nNutrition: Serving: 8servings | Calories: 272kcal | Carbohydrates: 5.4g | Protein: 16.2g | Fat: 21.6g | Saturated Fat: 14.2g | Cholesterol: 68mg | Sodium: 608mg | Potassium: 133mg | Sugar: 4.3g | Calcium: 470mg\n\nI think that's all. Let me make sure the line breaks are preserved. The original has sections, so I'll keep them as they are.",
+            "role": "assistant"
+          }
+        }
+      ],
+      "created": 1777845825,
+      "id": "2026050406031088455b07c9d4480a",
+      "model": "glm-4.6v",
+      "object": "chat.completion",
+      "request_id": "2026050406031088455b07c9d4480a",
+      "usage": {
+        "completion_tokens": 1232,
+        "completion_tokens_details": {
+          "reasoning_tokens": 847
+        },
+        "prompt_tokens": 6143,
+        "prompt_tokens_details": {
+          "cached_tokens": 7
+        },
+        "total_tokens": 7375
+      }
+    },
+    "fallback_used": false
+  },
+  "recipe": {
+    "title": "White Queso Dip (Mexican Cheese Dip)",
+    "summary": "The number one thing I look forward to when eating Mexican food is the white queso dip! I never knew how to make it at home, but once you find out how easy it is to make, you'll want to serve it on every taco Tuesday from here on out!",
+    "ingredients": [
+      "1/2 lb white american cheese",
+      "1/2 lb pepper jack cheese",
+      "1 4.5 oz can chopped green chiles drained",
+      "1 12 oz can evaporated milk",
+      "1 tsp ground cumin",
+      "tortilla chips I like the scoop variety"
+    ],
+    "instructions": [
+      "Add the cheeses and evaporated milk to a saucepan over low heat. Stir until the cheese is melted and the mixture is smooth.",
+      "Drain the can of green chiles and add them to the saucepan. Sprinkle in the cumin and stir to combine.",
+      "Serve warm with tortilla chips!"
+    ],
+    "notes": [],
+    "source_name": "Unknown",
+    "source_family": "Unknown",
+    "course": "appetizer",
+    "proteins": [
+      "vegetarian"
+    ],
+    "cuisine": "American, Mexican",
+    "dessert": false,
+    "tags": [
+      "cheese dip",
+      "chips and dip",
+      "party foods",
+      "queso dip"
+    ],
+    "card_type": "printed",
+    "ocr_confidence": "high",
+    "id": "2026-5-3-pilot-batch-img-3107-7c1e9b3d",
+    "slug": "white-queso-dip-mexican-cheese-dip",
+    "review_status": "needs_review",
+    "scan_assets": []
+  },
+  "review": {
+    "status": "needs_review",
+    "reasons": [
+      "OCR text appears to contain more than one recipe title: Total Time"
+    ]
+  },
+  "publication": {
+    "is_published": false
+  }
+}
