@@ -1,0 +1,141 @@
+{
+  "started_at": "2026-05-10T22:28:55.559Z",
+  "input_path": "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg",
+  "category": "Vegetables",
+  "published": [
+    {
+      "title": "Scalloped Potatoes",
+      "slug": "scalloped-potatoes",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0001-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0001-back.jpg"
+      ]
+    },
+    {
+      "title": "Au Gratin Potatoes",
+      "slug": "au-gratin-potatoes",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0002-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0002-back.jpg"
+      ]
+    },
+    {
+      "title": "Twice Baked Potatoes (Best Ever)",
+      "slug": "twice-baked-potatoes-best-ever",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0003-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0003-back.jpg"
+      ]
+    },
+    {
+      "title": "Southern Baked Yams",
+      "slug": "southern-baked-yams",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0004-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0004-back.jpg"
+      ]
+    },
+    {
+      "title": "Holiday Green Bean Casserole",
+      "slug": "holiday-green-bean-casserole",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0005-front.jpg"
+      ]
+    },
+    {
+      "title": "Mashed Potatoes",
+      "slug": "mashed-potatoes",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0006-front.jpg"
+      ]
+    },
+    {
+      "title": "St. Michael's Yams",
+      "slug": "st-michael-s-yams",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0007-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0007-back.jpg"
+      ]
+    },
+    {
+      "title": "Twice Baked Potatoes",
+      "slug": "twice-baked-potatoes",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0008-front.jpg"
+      ]
+    },
+    {
+      "title": "Vegetable Pizza",
+      "slug": "vegetable-pizza",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0009-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0009-back.jpg"
+      ]
+    },
+    {
+      "title": "Invisible Rice",
+      "slug": "invisible-rice",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0010-front.jpg"
+      ]
+    },
+    {
+      "title": "Potato Patties",
+      "slug": "potato-patties",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0011-front.jpg"
+      ]
+    },
+    {
+      "title": "Baked Smashing Potatoes",
+      "slug": "baked-smashing-potatoes",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0012-front.jpg"
+      ]
+    },
+    {
+      "title": "Cheesy Green Beans",
+      "slug": "cheesy-green-beans",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0013-front.jpg"
+      ]
+    },
+    {
+      "title": "Bacon Baked Beans",
+      "slug": "bacon-baked-beans",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0014-front.jpg"
+      ]
+    },
+    {
+      "title": "Broccoli with Bacon and Toasted Almonds",
+      "slug": "broccoli-with-bacon-and-toasted-almonds",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0015-front.jpg"
+      ]
+    },
+    {
+      "title": "Twice-Baked Potatoes",
+      "slug": "twice-baked-potatoes-2",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0016-front.jpg"
+      ]
+    },
+    {
+      "title": "Potato Topping Ideas",
+      "slug": "potato-topping-ideas",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0017-front.jpg"
+      ]
+    },
+    {
+      "title": "Quick Oats Home Preparation",
+      "slug": "quick-oats-home-preparation",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-vegetables-batch/ingest-jpg/recipe-0018-front.jpg"
+      ]
+    }
+  ],
+  "skipped": [],
+  "completed_at": "2026-05-10T22:28:57.865Z"
+}

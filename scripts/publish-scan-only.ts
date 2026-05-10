@@ -49,12 +49,16 @@ const COURSE_BY_CATEGORY: Record<string, RecipeFrontmatter["course"]> = {
   mains: "main",
   salad: "salad",
   salads: "salad",
+  sauce: "side",
+  sauces: "side",
   side: "side",
   sides: "side",
   snack: "snack",
   snacks: "snack",
   soup: "soup",
-  soups: "soup"
+  soups: "soup",
+  vegetable: "side",
+  vegetables: "side"
 };
 
 async function main() {
