@@ -1,0 +1,59 @@
+---
+import { getCollection } from "astro:content";
+
+import RecipeExplorer from "@/components/RecipeExplorer.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const publicStatuses = new Set(["approved", "needs_transcription"]);
+const recipes = (await getCollection("recipes", ({ data }) => publicStatuses.has(data.review_status)))
+  .sort((left, right) => left.data.title.localeCompare(right.data.title))
+  .map((entry) => ({
+    href: `/recipes/${entry.slug}`,
+    recipe: entry.data
+  }));
+const transcribedCount = recipes.filter(({ recipe }) => recipe.review_status === "approved").length;
+const scanOnlyCount = recipes.filter(({ recipe }) => recipe.review_status === "needs_transcription").length;
+---
+
+<BaseLayout
+  title="Recipes | Vicki Makelky"
+  description="Search and browse Vicki Makelky's digitized family recipe cards."
+>
+  <main>
+    <a class="back-link" href="/">Vicki Makelky</a>
+
+    <section class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Vicki's Recipe Archive</p>
+        <h1>Original recipe cards, preserved first and transcribed as they clear review.</h1>
+        <p class="hero__lede">
+          Every card can be browsed from its original scan. Clean searchable text is added as each recipe clears review.
+        </p>
+        <div class="hero__stats">
+          <div>
+            <strong>{recipes.length}</strong>
+            <span>visible cards</span>
+          </div>
+          <div>
+            <strong>{transcribedCount}</strong>
+            <span>transcribed recipes</span>
+          </div>
+          <div>
+            <strong>{scanOnlyCount}</strong>
+            <span>scan-first entries</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__panel">
+        <p>Archive priorities</p>
+        <ul>
+          <li>Keep the original wording from the card whenever possible.</li>
+          <li>Make scans visible before waiting on perfect OCR.</li>
+          <li>Store structured metadata for filters and future migrations.</li>
+        </ul>
+      </div>
+    </section>
+
+    <RecipeExplorer recipes={recipes} />
+  </main>
+</BaseLayout>

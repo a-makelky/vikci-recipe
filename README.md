@@ -4,8 +4,8 @@ A static, Git-backed archive for handwritten and printed recipe cards.
 
 ## What this repo does
 
-- Publishes approved recipes as a static Astro site that can deploy on Netlify.
-- Indexes built pages with Pagefind for full-text search.
+- Publishes approved recipes as a static Astro site on Cloudflare Pages.
+- Indexes built recipe pages with Pagefind and keeps the archive page search local for reliable filtering.
 - Ingests scan batches through a local CLI:
   - OCR with Z.ai Coding Plan vision models for local image scans
   - structured extraction into a typed recipe schema
@@ -173,9 +173,9 @@ npm run recipes -- update \
 
 ## Deploying
 
-- Connect the repo to Netlify.
-- Netlify uses `npm run build` and publishes `dist/`.
-- Point your custom domain at the Netlify site after the first successful deploy.
+- Cloudflare Pages is connected to the GitHub repo.
+- Cloudflare uses `npm run build` and publishes `dist/`.
+- `vickimakelky.com` and `www.vickimakelky.com` point at the Cloudflare Pages project.
 
 ## Pilot checklist
 

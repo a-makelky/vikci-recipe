@@ -35,7 +35,17 @@ const dataset = recipes.map(({ href, recipe }) => ({
   dessert: recipe.dessert,
   proteins: recipe.proteins,
   tags: recipe.tags,
-  haystack: buildSearchText(recipe)
+  haystack: [
+    buildSearchText(recipe),
+    recipe.course,
+    recipe.cuisine,
+    recipe.source_family,
+    recipe.source_name,
+    recipe.review_status,
+    recipe.card_type,
+    recipe.proteins.join(" "),
+    recipe.tags.join(" ")
+  ].join(" ")
 }));
 ---
 
@@ -145,26 +155,18 @@ const dataset = recipes.map(({ href, recipe }) => ({
   const clearButton = document.getElementById("clear-filters");
   const resultsSummary = document.getElementById("results-summary");
 
+  function normalizeSearch(value) {
+    return String(value ?? "")
+      .toLowerCase()
+      .normalize("NFKD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
+
   const entries = cards.map((card, index) => ({
     card,
-    ...dataset[index]
+    ...dataset[index],
+    haystack: normalizeSearch(dataset[index]?.haystack)
   }));
-
-  let pagefindModule;
-
-  async function loadPagefind() {
-    if (pagefindModule !== undefined) {
-      return pagefindModule;
-    }
-
-    try {
-      pagefindModule = await import("/pagefind/pagefind.js");
-    } catch (error) {
-      pagefindModule = null;
-    }
-
-    return pagefindModule;
-  }
 
   function selectedValues(name) {
     return chipFilters
@@ -187,31 +189,12 @@ const dataset = recipes.map(({ href, recipe }) => ({
     );
   }
 
-  async function matchSearch(query) {
-    if (!query) {
-      return new Set(entries.map((entry) => entry.href));
-    }
-
-    const pagefind = await loadPagefind();
-    if (pagefind?.search) {
-      const result = await pagefind.search(query);
-      const urls = await Promise.all(
-        result.results.map(async (resultItem) => {
-          const data = await resultItem.data();
-          return new URL(data.url, window.location.origin).pathname.replace(/\/$/, "") || "/";
-        })
-      );
-      return new Set(urls);
-    }
-
-    return new Set(
-      entries
-        .filter((entry) => entry.haystack.includes(query.toLowerCase()))
-        .map((entry) => entry.href)
-    );
+  function matchesSearch(entry, query) {
+    const terms = normalizeSearch(query).split(/\s+/).filter(Boolean);
+    return terms.every((term) => entry.haystack.includes(term));
   }
 
-  async function updateResults() {
+  function updateResults() {
     const filters = {
       course: document.querySelector('[data-filter="course"]').value,
       cuisine: document.querySelector('[data-filter="cuisine"]').value,
@@ -224,12 +207,10 @@ const dataset = recipes.map(({ href, recipe }) => ({
     };
 
     const query = searchInput.value.trim();
-    const searchMatches = await matchSearch(query);
 
     let visibleCount = 0;
     for (const entry of entries) {
-      const pathname = entry.href.replace(/\/$/, "") || "/";
-      const isVisible = searchMatches.has(pathname) && matchesFilters(entry, filters);
+      const isVisible = matchesSearch(entry, query) && matchesFilters(entry, filters);
       entry.card.hidden = !isVisible;
       if (isVisible) {
         visibleCount += 1;

@@ -1,30 +1,43 @@
 ---
 import { getCollection } from "astro:content";
 
-import RecipeExplorer from "@/components/RecipeExplorer.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const publicStatuses = new Set(["approved", "needs_transcription"]);
-const recipes = (await getCollection("recipes", ({ data }) => publicStatuses.has(data.review_status)))
-  .sort((left, right) => left.data.title.localeCompare(right.data.title))
+const recipes = (await getCollection("recipes", ({ data }) => publicStatuses.has(data.review_status))).sort((left, right) =>
+  left.data.title.localeCompare(right.data.title)
+);
+const transcribedCount = recipes.filter((entry) => entry.data.review_status === "approved").length;
+const scanOnlyCount = recipes.filter((entry) => entry.data.review_status === "needs_transcription").length;
+
+const featuredSlugs = ["brazilian-limeade", "wendy-s-frosty", "toasted-almond-party-spread"];
+const featuredRecipes = featuredSlugs
+  .map((slug) => recipes.find((entry) => entry.slug === slug))
+  .filter((entry) => entry !== undefined)
   .map((entry) => ({
     href: `/recipes/${entry.slug}`,
-    recipe: entry.data
+    title: entry.data.title,
+    preview: entry.data.scan_assets.find((asset) => asset.role === "preview" && asset.type === "image")?.path
   }));
-const transcribedCount = recipes.filter(({ recipe }) => recipe.review_status === "approved").length;
-const scanOnlyCount = recipes.filter(({ recipe }) => recipe.review_status === "needs_transcription").length;
 ---
 
-<BaseLayout>
-  <main>
-    <section class="hero">
-      <div class="hero__content">
-        <p class="eyebrow">Vicki's Recipe Archive</p>
-        <h1>Vicki's family recipe cards, preserved first and transcribed as they clear review.</h1>
-        <p class="hero__lede">
-          Every card can be browsed from its original scan. Clean searchable text is added as each recipe clears review.
+<BaseLayout
+  title="Vicki Makelky"
+  description="Vicki Makelky's family recipe cards, preserved as original scans and searchable recipes."
+  bodyClass="home-page"
+>
+  <main class="home-main">
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="home-hero__copy">
+        <p class="eyebrow">Vicki Makelky</p>
+        <h1 id="home-title">Family recipes, preserved from the original cards.</h1>
+        <p class="home-hero__lede">
+          Browse the cards as Vicki kept them. Clean transcriptions are added as each recipe clears review.
         </p>
-        <div class="hero__stats">
+        <div class="home-hero__actions">
+          <a class="button button--primary" href="/recipes">Browse recipes</a>
+        </div>
+        <div class="hero__stats" aria-label="Recipe archive status">
           <div>
             <strong>{recipes.length}</strong>
             <span>visible cards</span>
@@ -39,16 +52,20 @@ const scanOnlyCount = recipes.filter(({ recipe }) => recipe.review_status === "n
           </div>
         </div>
       </div>
-      <div class="hero__panel">
-        <p>Archive priorities</p>
-        <ul>
-          <li>Keep the original wording from the card whenever possible.</li>
-          <li>Make scans visible before waiting on perfect OCR.</li>
-          <li>Store structured metadata for filters and future migrations.</li>
-        </ul>
+
+      <div class="home-hero__scans" aria-label="Featured recipe cards">
+        {
+          featuredRecipes.map((recipe, index) => (
+            <a class={`home-scan home-scan--${index + 1}`} href={recipe.href}>
+              {recipe.preview ? (
+                <img src={recipe.preview} alt={`Recipe card preview for ${recipe.title}`} loading={index === 0 ? "eager" : "lazy"} />
+              ) : (
+                <span>{recipe.title}</span>
+              )}
+            </a>
+          ))
+        }
       </div>
     </section>
-
-    <RecipeExplorer recipes={recipes} />
   </main>
 </BaseLayout>
