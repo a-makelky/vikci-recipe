@@ -4,7 +4,8 @@ import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  const recipes = await getCollection("recipes", ({ data }) => data.review_status === "approved");
+  const publicStatuses = new Set(["approved", "needs_transcription"]);
+  const recipes = await getCollection("recipes", ({ data }) => publicStatuses.has(data.review_status));
   return recipes.map((recipe) => ({
     params: { slug: recipe.slug },
     props: { recipe }
@@ -15,6 +16,7 @@ const { recipe } = Astro.props;
 const { Content } = await recipe.render();
 const previewAssets = recipe.data.scan_assets.filter((asset) => asset.role === "preview");
 const originalAssets = recipe.data.scan_assets.filter((asset) => asset.role === "original");
+const needsTranscription = recipe.data.review_status === "needs_transcription";
 const pageTitle = `${recipe.data.title} | Vicki's Recipe Archive`;
 const description = recipe.data.summary || `Digitized family recipe for ${recipe.data.title}.`;
 ---
@@ -27,6 +29,7 @@ const description = recipe.data.summary || `Digitized family recipe for ${recipe
       <div>
         <p class="eyebrow">{recipe.data.source_family} family archive</p>
         <h1>{recipe.data.title}</h1>
+        {needsTranscription && <p class="status-banner">Scan is live. Transcription is still pending.</p>}
         {recipe.data.summary && <p class="recipe-detail__summary">{recipe.data.summary}</p>}
         <dl class="recipe-detail__facts">
           <div>
@@ -74,21 +77,28 @@ const description = recipe.data.summary || `Digitized family recipe for ${recipe
       </div>
     </section>
 
-    <section class="recipe-detail__content">
-      <div>
-        <h2>Ingredients</h2>
-        <ul class="recipe-list">
-          {recipe.data.ingredients.map((ingredient) => <li>{ingredient}</li>)}
-        </ul>
-      </div>
+    {needsTranscription ? (
+      <section class="recipe-detail__notes">
+        <h2>Transcription pending</h2>
+        <p>Use the original scan above as the recipe source for now. Ingredients and instructions will be added after review.</p>
+      </section>
+    ) : (
+      <section class="recipe-detail__content">
+        <div>
+          <h2>Ingredients</h2>
+          <ul class="recipe-list">
+            {recipe.data.ingredients.map((ingredient) => <li>{ingredient}</li>)}
+          </ul>
+        </div>
 
-      <div>
-        <h2>Instructions</h2>
-        <ol class="recipe-list recipe-list--numbered">
-          {recipe.data.instructions.map((instruction) => <li>{instruction}</li>)}
-        </ol>
-      </div>
-    </section>
+        <div>
+          <h2>Instructions</h2>
+          <ol class="recipe-list recipe-list--numbered">
+            {recipe.data.instructions.map((instruction) => <li>{instruction}</li>)}
+          </ol>
+        </div>
+      </section>
+    )}
 
     {recipe.data.notes.length > 0 && (
       <section class="recipe-detail__notes">
@@ -125,6 +135,7 @@ const description = recipe.data.summary || `Digitized family recipe for ${recipe
       <span data-pagefind-filter="course">{recipe.data.course}</span>
       <span data-pagefind-filter="cuisine">{recipe.data.cuisine}</span>
       <span data-pagefind-filter="family">{recipe.data.source_family}</span>
+      <span data-pagefind-filter="status">{recipe.data.review_status}</span>
       <span data-pagefind-filter="card_type">{recipe.data.card_type}</span>
       {recipe.data.proteins.map((protein) => <span data-pagefind-filter="protein">{protein}</span>)}
       {recipe.data.tags.map((tag) => <span data-pagefind-filter="tags">{tag}</span>)}

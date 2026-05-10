@@ -30,7 +30,7 @@ export const PROTEIN_VALUES = [
 
 export const CARD_TYPE_VALUES = ["handwritten", "printed", "mixed"] as const;
 export const OCR_CONFIDENCE_VALUES = ["high", "medium", "low"] as const;
-export const REVIEW_STATUS_VALUES = ["approved", "needs_review"] as const;
+export const REVIEW_STATUS_VALUES = ["approved", "needs_review", "needs_transcription"] as const;
 
 const cardTypeSchema = z.preprocess((value) => {
   if (typeof value !== "string") {

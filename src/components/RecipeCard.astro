@@ -8,6 +8,7 @@ interface Props {
 
 const { href, recipe } = Astro.props;
 const previewImage = recipe.scan_assets.find((asset) => asset.role === "preview" && asset.type === "image");
+const statusLabel = recipe.review_status === "needs_transcription" ? "scan only" : `${recipe.ocr_confidence} confidence`;
 ---
 
 <article class="recipe-card">
@@ -27,7 +28,7 @@ const previewImage = recipe.scan_assets.find((asset) => asset.role === "preview"
     <div class="recipe-card__body">
       <div class="recipe-card__eyebrow">
         <span>{recipe.source_family}</span>
-        <span>{recipe.ocr_confidence} confidence</span>
+        <span>{statusLabel}</span>
       </div>
       <h2>{recipe.title}</h2>
       {recipe.summary && <p>{recipe.summary}</p>}

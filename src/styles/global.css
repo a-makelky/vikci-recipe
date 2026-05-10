@@ -107,6 +107,7 @@ main {
 .explorer__intro p,
 .recipe-detail__summary,
 .recipe-card__body p,
+.status-banner,
 .recipe-detail__notes p {
   color: var(--muted);
   font-size: 1.08rem;
@@ -359,12 +360,22 @@ main {
 
 .recipe-card__meta li,
 .recipe-card__tags span,
-.recipe-detail__tags span {
+.recipe-detail__tags span,
+.status-banner {
   padding: 7px 11px;
   border-radius: 999px;
   background: rgba(105, 117, 75, 0.11);
   color: var(--olive);
   font-size: 0.88rem;
+}
+
+.status-banner {
+  display: inline-flex;
+  margin: 18px 0 0;
+  border-radius: var(--radius-sm);
+  background: rgba(187, 93, 53, 0.12);
+  color: var(--accent-dark);
+  font-weight: 700;
 }
 
 .recipe-page .site-shell {

@@ -1,0 +1,233 @@
+{
+  "started_at": "2026-05-09T18:02:27.722Z",
+  "input_path": "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg",
+  "category": "Drinks",
+  "published": [
+    {
+      "title": "Pina Colada",
+      "slug": "pina-colada",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0002-front.jpg"
+      ]
+    },
+    {
+      "title": "Brazilian Limeade",
+      "slug": "brazilian-limeade",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0003-front.jpg"
+      ]
+    },
+    {
+      "title": "Caramel Frappe",
+      "slug": "caramel-frappe",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0004-front.jpg"
+      ]
+    },
+    {
+      "title": "Skinny Caramel Macchiato",
+      "slug": "skinny-caramel-macchiato",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0005-front.jpg"
+      ]
+    },
+    {
+      "title": "Sugar Free Italian Creme",
+      "slug": "sugar-free-italian-creme",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0006-front.jpg"
+      ]
+    },
+    {
+      "title": "Orange Julius",
+      "slug": "orange-julius",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0008-front.jpg"
+      ]
+    },
+    {
+      "title": "Peach Margarita",
+      "slug": "peach-margarita",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0009-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0009-back.jpg"
+      ]
+    },
+    {
+      "title": "Chocolate lovers hot chocolate",
+      "slug": "chocolate-lovers-hot-chocolate",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0010-front.jpg"
+      ]
+    },
+    {
+      "title": "Strawberry Cheesecake Smoothie",
+      "slug": "strawberry-cheesecake-smoothie",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0011-front.jpg"
+      ]
+    },
+    {
+      "title": "Orange Julius",
+      "slug": "orange-julius-2",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0012-front.jpg"
+      ]
+    },
+    {
+      "title": "Coffee 101 Cafe Mocha",
+      "slug": "coffee-101-cafe-mocha",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0013-front.jpg"
+      ]
+    },
+    {
+      "title": "Halloween Punch",
+      "slug": "halloween-punch",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0014-front.jpg"
+      ]
+    },
+    {
+      "title": "Lemonade",
+      "slug": "lemonade",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0015-front.jpg"
+      ]
+    },
+    {
+      "title": "Celebration Punch",
+      "slug": "celebration-punch",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0016-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0016-back.jpg"
+      ]
+    },
+    {
+      "title": "Tiger Tea",
+      "slug": "tiger-tea",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0017-front.jpg"
+      ]
+    },
+    {
+      "title": "Punch",
+      "slug": "punch",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0018-front.jpg"
+      ]
+    },
+    {
+      "title": "Shower Punch",
+      "slug": "shower-punch",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0019-front.jpg"
+      ]
+    },
+    {
+      "title": "Super Dieters Tea",
+      "slug": "super-dieters-tea",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0020-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0020-back.jpg"
+      ]
+    },
+    {
+      "title": "Strawberry Daiquiri",
+      "slug": "strawberry-daiquiri",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0021-front.jpg"
+      ]
+    },
+    {
+      "title": "Strawberry Daiquiris",
+      "slug": "strawberry-daiquiris",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0022-front.jpg"
+      ]
+    },
+    {
+      "title": "Rum Slush",
+      "slug": "rum-slush",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0023-front.jpg"
+      ]
+    },
+    {
+      "title": "Ice Cream Punch",
+      "slug": "ice-cream-punch",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0024-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0024-back.jpg"
+      ]
+    },
+    {
+      "title": "Hot Chocolate Mix",
+      "slug": "hot-chocolate-mix",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0025-front.jpg"
+      ]
+    },
+    {
+      "title": "Cocoa",
+      "slug": "cocoa",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0026-front.jpg"
+      ]
+    },
+    {
+      "title": "Peppermint schnapps hot chocolate",
+      "slug": "peppermint-schnapps-hot-chocolate",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0027-front.jpg"
+      ]
+    },
+    {
+      "title": "Citrus Punch",
+      "slug": "citrus-punch",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0028-front.jpg"
+      ]
+    },
+    {
+      "title": "Red Hot Punch",
+      "slug": "red-hot-punch",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0029-front.jpg"
+      ]
+    },
+    {
+      "title": "Rum Slush",
+      "slug": "rum-slush-2",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0030-front.jpg"
+      ]
+    },
+    {
+      "title": "Party Drink",
+      "slug": "party-drink",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0031-front.jpg"
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "title": "Pomegranate Moscow Mule",
+      "slug": "recipe-0001-front",
+      "reason": "This source scan already has a published OCR recipe.",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0001-front.jpg"
+      ]
+    },
+    {
+      "title": "Wendy's Frosty",
+      "slug": "recipe-0007-front",
+      "reason": "This source scan already has a published OCR recipe.",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.9-mothers-day-batch-1/ingest-jpg/recipe-0007-front.jpg"
+      ]
+    }
+  ],
+  "completed_at": "2026-05-09T18:02:27.927Z"
+}

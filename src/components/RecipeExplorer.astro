@@ -18,6 +18,7 @@ const filterOptions = {
   course: [...new Set(recipes.map(({ recipe }) => recipe.course))].sort(),
   cuisine: [...new Set(recipes.map(({ recipe }) => recipe.cuisine))].sort(),
   family: [...new Set(recipes.map(({ recipe }) => recipe.source_family))].sort(),
+  status: [...new Set(recipes.map(({ recipe }) => recipe.review_status))].sort(),
   cardType: [...new Set(recipes.map(({ recipe }) => recipe.card_type))].sort(),
   proteins: [...new Set(recipes.flatMap(({ recipe }) => recipe.proteins))].sort(),
   tags: [...new Set(recipes.flatMap(({ recipe }) => recipe.tags))].sort()
@@ -29,6 +30,7 @@ const dataset = recipes.map(({ href, recipe }) => ({
   course: recipe.course,
   cuisine: recipe.cuisine,
   family: recipe.source_family,
+  status: recipe.review_status,
   cardType: recipe.card_type,
   dessert: recipe.dessert,
   proteins: recipe.proteins,
@@ -43,8 +45,8 @@ const dataset = recipes.map(({ href, recipe }) => ({
       <p class="eyebrow">Searchable Family Archive</p>
       <h2>Search by ingredient, family source, or recipe type.</h2>
       <p>
-        This archive is static and read-only. Every public entry has been reviewed or auto-approved above the
-        confidence threshold.
+        This archive is static and read-only. Scan-first entries are visible now; reviewed recipes become searchable as
+        transcription catches up.
       </p>
     </div>
 
@@ -75,6 +77,14 @@ const dataset = recipes.map(({ href, recipe }) => ({
         <select data-filter="family">
           <option value="">All</option>
           {filterOptions.family.map((option) => <option value={option}>{option}</option>)}
+        </select>
+      </label>
+
+      <label>
+        <span>Status</span>
+        <select data-filter="status">
+          <option value="">All</option>
+          {filterOptions.status.map((option) => <option value={option}>{option}</option>)}
         </select>
       </label>
 
@@ -169,6 +179,7 @@ const dataset = recipes.map(({ href, recipe }) => ({
       (!filters.course || entry.course === filters.course) &&
       (!filters.cuisine || entry.cuisine === filters.cuisine) &&
       (!filters.family || entry.family === filters.family) &&
+      (!filters.status || entry.status === filters.status) &&
       (!filters.cardType || entry.cardType === filters.cardType) &&
       (!filters.dessert || entry.dessert === true) &&
       hasProteins &&
@@ -205,6 +216,7 @@ const dataset = recipes.map(({ href, recipe }) => ({
       course: document.querySelector('[data-filter="course"]').value,
       cuisine: document.querySelector('[data-filter="cuisine"]').value,
       family: document.querySelector('[data-filter="family"]').value,
+      status: document.querySelector('[data-filter="status"]').value,
       cardType: document.querySelector('[data-filter="cardType"]').value,
       dessert: document.querySelector('[data-toggle-filter="dessert"]').checked,
       proteins: selectedValues("proteins"),
