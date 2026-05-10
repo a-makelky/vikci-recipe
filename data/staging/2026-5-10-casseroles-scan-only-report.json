@@ -1,0 +1,449 @@
+{
+  "started_at": "2026-05-10T21:55:26.587Z",
+  "input_path": "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg",
+  "category": "Casseroles",
+  "published": [
+    {
+      "title": "Spaghetti + Meat Balls",
+      "slug": "spaghetti-meat-balls",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0001-front.jpg"
+      ]
+    },
+    {
+      "title": "Junior-ettes & Hamburger",
+      "slug": "junior-ettes-hamburger",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0002-front.jpg"
+      ]
+    },
+    {
+      "title": "Crescent Roll Casserole",
+      "slug": "crescent-roll-casserole",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0003-front.jpg"
+      ]
+    },
+    {
+      "title": "Making Spaghetti Sauce",
+      "slug": "making-spaghetti-sauce",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0004-front.jpg"
+      ]
+    },
+    {
+      "title": "Cabbage Casserole",
+      "slug": "cabbage-casserole-2",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0005-front.jpg"
+      ]
+    },
+    {
+      "title": "Ham & Broccoli Casserole",
+      "slug": "ham-broccoli-casserole",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0006-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0006-back.jpg"
+      ]
+    },
+    {
+      "title": "Pasta Primavera",
+      "slug": "pasta-primavera-2",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0007-front.jpg"
+      ]
+    },
+    {
+      "title": "Barbecued Hamburgers",
+      "slug": "barbecued-hamburgers-2",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0008-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0008-back.jpg"
+      ]
+    },
+    {
+      "title": "Hamburger Pie",
+      "slug": "hamburger-pie",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0009-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0009-back.jpg"
+      ]
+    },
+    {
+      "title": "Lasagna",
+      "slug": "lasagna",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0010-front.jpg"
+      ]
+    },
+    {
+      "title": "Zucchini Casserole",
+      "slug": "zucchini-casserole",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0011-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0011-back.jpg"
+      ]
+    },
+    {
+      "title": "Penne with Vodka Sauce and Cream Pasta",
+      "slug": "penne-with-vodka-sauce-and-cream-pasta",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0012-front.jpg"
+      ]
+    },
+    {
+      "title": "Tortilla Stack",
+      "slug": "tortilla-stack",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0013-front.jpg"
+      ]
+    },
+    {
+      "title": "Salsa Ground Beef",
+      "slug": "salsa-ground-beef",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0014-front.jpg"
+      ]
+    },
+    {
+      "title": "Barbecued Beefies",
+      "slug": "barbecued-beefies",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0015-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0015-back.jpg"
+      ]
+    },
+    {
+      "title": "Spaghetti Bake",
+      "slug": "spaghetti-bake",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0016-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0016-back.jpg"
+      ]
+    },
+    {
+      "title": "Stuffed Green Peppers",
+      "slug": "stuffed-green-peppers",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0017-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0017-back.jpg"
+      ]
+    },
+    {
+      "title": "Hamb. Hot Dish",
+      "slug": "hamb-hot-dish",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0018-front.jpg"
+      ]
+    },
+    {
+      "title": "Hot Dish in Bread Dough",
+      "slug": "hot-dish-in-bread-dough",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0019-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0019-back.jpg"
+      ]
+    },
+    {
+      "title": "Pizza Rolls",
+      "slug": "pizza-rolls",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0020-front.jpg"
+      ]
+    },
+    {
+      "title": "Kraut Runza",
+      "slug": "kraut-runza",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0021-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0021-back.jpg"
+      ]
+    },
+    {
+      "title": "Tater Tot Hot Dish",
+      "slug": "tater-tot-hot-dish",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0022-front.jpg"
+      ]
+    },
+    {
+      "title": "Meat Pie / Mom's Baking Powder Biscuits",
+      "slug": "meat-pie-mom-s-baking-powder-biscuits",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0023-front.jpg"
+      ]
+    },
+    {
+      "title": "Potato Puff Casserole",
+      "slug": "potato-puff-casserole",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0024-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0024-back.jpg"
+      ]
+    },
+    {
+      "title": "Delicious Hot Dish",
+      "slug": "delicious-hot-dish",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0025-front.jpg"
+      ]
+    },
+    {
+      "title": "Swedish Meatballs",
+      "slug": "swedish-meatballs",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0026-front.jpg"
+      ]
+    },
+    {
+      "title": "Asian Chicken Stir-Fry",
+      "slug": "asian-chicken-stir-fry",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0027-front.jpg"
+      ]
+    },
+    {
+      "title": "Chicken & Broccoli Alfredo",
+      "slug": "chicken-broccoli-alfredo",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0028-front.jpg"
+      ]
+    },
+    {
+      "title": "Enchilada",
+      "slug": "enchilada",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0029-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0029-back.jpg"
+      ]
+    },
+    {
+      "title": "Pizza Casserole",
+      "slug": "pizza-casserole",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0030-front.jpg"
+      ]
+    },
+    {
+      "title": "Hash",
+      "slug": "hash",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0031-front.jpg"
+      ]
+    },
+    {
+      "title": "Crockpot Spaghetti",
+      "slug": "crockpot-spaghetti",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0032-front.jpg"
+      ]
+    },
+    {
+      "title": "Easy Chicken & Cheese Enchiladas",
+      "slug": "easy-chicken-cheese-enchiladas",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0033-front.jpg"
+      ]
+    },
+    {
+      "title": "Chow Mein Casserole",
+      "slug": "chow-mein-casserole",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0034-front.jpg"
+      ]
+    },
+    {
+      "title": "Stir Fry",
+      "slug": "stir-fry",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0035-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0035-back.jpg"
+      ]
+    },
+    {
+      "title": "Easy Pot Pie",
+      "slug": "easy-pot-pie",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0036-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0036-back.jpg"
+      ]
+    },
+    {
+      "title": "Shortcut Sloppy Joes",
+      "slug": "shortcut-sloppy-joes",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0037-front.jpg"
+      ]
+    },
+    {
+      "title": "Chow Mein",
+      "slug": "chow-mein",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0038-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0038-back.jpg"
+      ]
+    },
+    {
+      "title": "Lasagne with Italian Sausage & Four Cheeses",
+      "slug": "lasagne-with-italian-sausage-four-cheeses",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0039-front.jpg"
+      ]
+    },
+    {
+      "title": "Layered Casserole",
+      "slug": "layered-casserole",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0040-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0040-back.jpg"
+      ]
+    },
+    {
+      "title": "Zeno Casserole",
+      "slug": "zeno-casserole",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0041-front.jpg"
+      ]
+    },
+    {
+      "title": "Chopped Suey Casserole",
+      "slug": "chopped-suey-casserole",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0042-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0042-back.jpg"
+      ]
+    },
+    {
+      "title": "Broccoli Cheese Casserole",
+      "slug": "broccoli-cheese-casserole",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0043-front.jpg"
+      ]
+    },
+    {
+      "title": "Chow Mein Casserole",
+      "slug": "chow-mein-casserole-2",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0044-front.jpg"
+      ]
+    },
+    {
+      "title": "Swanson Oriental Chicken and Vegetable Stir-Fry",
+      "slug": "swanson-oriental-chicken-and-vegetable-stir-fry",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0045-front.jpg"
+      ]
+    },
+    {
+      "title": "Prego Miracle Lasagna",
+      "slug": "prego-miracle-lasagna",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0046-front.jpg"
+      ]
+    },
+    {
+      "title": "Reames Hearty Chicken & Noodles",
+      "slug": "reames-hearty-chicken-noodles",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0047-front.jpg"
+      ]
+    },
+    {
+      "title": "Green Chile Quesadillas",
+      "slug": "green-chile-quesadillas",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0048-front.jpg"
+      ]
+    },
+    {
+      "title": "Quick Cheeseburger Bake",
+      "slug": "quick-cheeseburger-bake",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0049-front.jpg"
+      ]
+    },
+    {
+      "title": "Spaghetti",
+      "slug": "spaghetti",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0050-front.jpg"
+      ]
+    },
+    {
+      "title": "Cabbage Bundles",
+      "slug": "cabbage-bundles",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0051-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0051-back.jpg"
+      ]
+    },
+    {
+      "title": "Easy One-Dish Ham Bake",
+      "slug": "easy-one-dish-ham-bake",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0052-front.jpg"
+      ]
+    },
+    {
+      "title": "Your Basic Pizza",
+      "slug": "your-basic-pizza",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0053-front.jpg"
+      ]
+    },
+    {
+      "title": "Skillet Macaroni & Beef",
+      "slug": "skillet-macaroni-beef",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0054-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0054-back.jpg"
+      ]
+    },
+    {
+      "title": "Hulupsie",
+      "slug": "hulupsie",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0055-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0055-back.jpg"
+      ]
+    },
+    {
+      "title": "Chili",
+      "slug": "chili",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0056-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0056-back.jpg"
+      ]
+    },
+    {
+      "title": "Old Fashioned Lasagna",
+      "slug": "old-fashioned-lasagna",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0057-front.jpg"
+      ]
+    },
+    {
+      "title": "Beef 'n' Bean Enchiladas",
+      "slug": "beef-n-bean-enchiladas",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0058-front.jpg"
+      ]
+    },
+    {
+      "title": "Cowboy Hash",
+      "slug": "cowboy-hash",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0059-front.jpg"
+      ]
+    },
+    {
+      "title": "Cheeseburger Casserole",
+      "slug": "cheeseburger-casserole",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-casseroles-batch/ingest-jpg/recipe-0060-front.jpg"
+      ]
+    }
+  ],
+  "skipped": [],
+  "completed_at": "2026-05-10T21:55:34.814Z"
+}

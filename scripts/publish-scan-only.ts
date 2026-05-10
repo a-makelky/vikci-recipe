@@ -1,6 +1,8 @@
 import { copyFile, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { execFile } from "node:child_process";
 import path from "node:path";
 import { parseArgs } from "node:util";
+import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 
 import { serializeRecipeMarkdown } from "./lib/io";
@@ -28,11 +30,14 @@ Purpose:
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const config = resolveRuntimeConfig(projectRoot);
+const runFile = promisify(execFile);
 const COURSE_BY_CATEGORY: Record<string, RecipeFrontmatter["course"]> = {
   appetizer: "appetizer",
   appetizers: "appetizer",
   bread: "bread",
   breads: "bread",
+  casserole: "main",
+  casseroles: "main",
   dessert: "dessert",
   desserts: "dessert",
   drink: "beverage",
@@ -281,7 +286,7 @@ async function publishScanAssets(sourcePaths: string[], slug: string): Promise<S
     const originalDestination = path.join(scanDir, originalName);
     const previewDestination = path.join(scanDir, previewName);
     await copyFile(sourcePath, originalDestination);
-    await copyFile(sourcePath, previewDestination);
+    await createImagePreview(sourcePath, previewDestination);
 
     const labelPrefix = sourcePaths.length === 1 ? "" : `${capitalize(sideLabel)} `;
     previewAssets.push({
@@ -307,6 +312,14 @@ function publicScanPath(filePath: string): string {
 
 function capitalize(value: string): string {
   return value.replace(/^./, (character) => character.toUpperCase());
+}
+
+async function createImagePreview(sourcePath: string, destinationPath: string): Promise<void> {
+  try {
+    await runFile("sips", ["-s", "format", "jpeg", "--resampleHeightWidthMax", "1600", sourcePath, "--out", destinationPath]);
+  } catch {
+    await copyFile(sourcePath, destinationPath);
+  }
 }
 
 main().catch((error) => {
