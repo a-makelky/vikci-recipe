@@ -1,0 +1,151 @@
+{
+  "started_at": "2026-05-10T22:41:17.324Z",
+  "input_path": "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg",
+  "category": "Soups",
+  "published": [
+    {
+      "title": "Turkey and Rice Soup",
+      "slug": "turkey-and-rice-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0001-front.jpg"
+      ]
+    },
+    {
+      "title": "Bean Soup",
+      "slug": "bean-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0002-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0002-back.jpg"
+      ]
+    },
+    {
+      "title": "Potato Soup",
+      "slug": "potato-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0003-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0003-back.jpg"
+      ]
+    },
+    {
+      "title": "Chicken Tortilla Soup",
+      "slug": "chicken-tortilla-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0004-front.jpg"
+      ]
+    },
+    {
+      "title": "Creamy Asparagus Potato Soup",
+      "slug": "creamy-asparagus-potato-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0005-front.jpg"
+      ]
+    },
+    {
+      "title": "Old Fashioned Cream of Tomato Soup",
+      "slug": "old-fashioned-cream-of-tomato-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0006-front.jpg"
+      ]
+    },
+    {
+      "title": "Turkey or Chicken Soup",
+      "slug": "turkey-or-chicken-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0007-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0007-back.jpg"
+      ]
+    },
+    {
+      "title": "Ham Soup",
+      "slug": "ham-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0008-front.jpg"
+      ]
+    },
+    {
+      "title": "Vegetable Soup",
+      "slug": "vegetable-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0009-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0009-back.jpg"
+      ]
+    },
+    {
+      "title": "Fast and Fit Potato Chowder",
+      "slug": "fast-and-fit-potato-chowder",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0010-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0010-back.jpg"
+      ]
+    },
+    {
+      "title": "Cream Vegetable Soup",
+      "slug": "cream-vegetable-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0011-front.jpg"
+      ]
+    },
+    {
+      "title": "Beef Vegetable Soup",
+      "slug": "beef-vegetable-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0012-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0012-back.jpg"
+      ]
+    },
+    {
+      "title": "Ham Minestrone Soup",
+      "slug": "ham-minestrone-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0013-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0013-back.jpg"
+      ]
+    },
+    {
+      "title": "Crock Pot Cheese Potato Soup",
+      "slug": "crock-pot-cheese-potato-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0014-front.jpg"
+      ]
+    },
+    {
+      "title": "Cheesy Ham 'n' Rice Soup",
+      "slug": "cheesy-ham-n-rice-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0015-front.jpg"
+      ]
+    },
+    {
+      "title": "Chicken Dumpling Soup",
+      "slug": "chicken-dumpling-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0016-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0016-back.jpg"
+      ]
+    },
+    {
+      "title": "Potato Soup",
+      "slug": "potato-soup-2",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0017-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0017-back.jpg"
+      ]
+    },
+    {
+      "title": "4 Bs Tomato Soup",
+      "slug": "4-bs-tomato-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0018-front.jpg"
+      ]
+    },
+    {
+      "title": "Tomato Macaroni Ham Soup",
+      "slug": "tomato-macaroni-ham-soup",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-soups-batch/ingest-jpg/recipe-0019-front.jpg"
+      ]
+    }
+  ],
+  "skipped": [],
+  "completed_at": "2026-05-10T22:41:20.157Z"
+}
