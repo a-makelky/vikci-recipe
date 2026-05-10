@@ -1,0 +1,51 @@
+{
+  "started_at": "2026-05-10T22:34:47.831Z",
+  "input_path": "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-sauces-batch/ingest-jpg",
+  "category": "Sauces",
+  "published": [
+    {
+      "title": "Stir Fry Sauce",
+      "slug": "stir-fry-sauce",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-sauces-batch/ingest-jpg/recipe-0001-front.jpg"
+      ]
+    },
+    {
+      "title": "Enchilada Sauce",
+      "slug": "enchilada-sauce",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-sauces-batch/ingest-jpg/recipe-0002-front.jpg"
+      ]
+    },
+    {
+      "title": "The Perfect Gravy",
+      "slug": "the-perfect-gravy",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-sauces-batch/ingest-jpg/recipe-0003-front.jpg"
+      ]
+    },
+    {
+      "title": "Honey Teriyaki Sauce",
+      "slug": "honey-teriyaki-sauce",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-sauces-batch/ingest-jpg/recipe-0004-front.jpg"
+      ]
+    },
+    {
+      "title": "Honey Spice Dip and Sauces",
+      "slug": "honey-spice-dip-and-sauces",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-sauces-batch/ingest-jpg/recipe-0005-front.jpg"
+      ]
+    },
+    {
+      "title": "Cocktail Sauce for Seafood",
+      "slug": "cocktail-sauce-for-seafood",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-sauces-batch/ingest-jpg/recipe-0006-front.jpg"
+      ]
+    }
+  ],
+  "skipped": [],
+  "completed_at": "2026-05-10T22:34:48.453Z"
+}
