@@ -28,6 +28,29 @@ Purpose:
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const config = resolveRuntimeConfig(projectRoot);
+const COURSE_BY_CATEGORY: Record<string, RecipeFrontmatter["course"]> = {
+  appetizer: "appetizer",
+  appetizers: "appetizer",
+  bread: "bread",
+  breads: "bread",
+  dessert: "dessert",
+  desserts: "dessert",
+  drink: "beverage",
+  drinks: "beverage",
+  beverage: "beverage",
+  beverages: "beverage",
+  breakfast: "breakfast",
+  main: "main",
+  mains: "main",
+  salad: "salad",
+  salads: "salad",
+  side: "side",
+  sides: "side",
+  snack: "snack",
+  snacks: "snack",
+  soup: "soup",
+  soups: "soup"
+};
 
 async function main() {
   const parsed = parseArgs({
@@ -105,7 +128,7 @@ async function main() {
       ],
       source_name: config.defaultSourceName,
       source_family: config.defaultSourceFamily,
-      course: category.toLowerCase() === "drinks" ? "beverage" : "other",
+      course: courseForCategory(category),
       proteins: [],
       cuisine: "unknown",
       dessert: false,
@@ -238,6 +261,10 @@ function normalizeTitle(value: string): string {
     .replace(/\s+/g, " ")
     .trim()
     .replace(/^./, (character) => character.toUpperCase());
+}
+
+function courseForCategory(category: string): RecipeFrontmatter["course"] {
+  return COURSE_BY_CATEGORY[category.trim().toLowerCase()] ?? "other";
 }
 
 async function publishScanAssets(sourcePaths: string[], slug: string): Promise<ScanAsset[]> {

@@ -1,0 +1,215 @@
+{
+  "started_at": "2026-05-10T20:53:51.004Z",
+  "input_path": "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg",
+  "category": "Bread",
+  "published": [
+    {
+      "title": "Caramel for Rolls",
+      "slug": "caramel-for-rolls",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0001-front.jpg"
+      ]
+    },
+    {
+      "title": "Great Dinner Rolls",
+      "slug": "great-dinner-rolls",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0002-front.jpg"
+      ]
+    },
+    {
+      "title": "Banana Bread",
+      "slug": "banana-bread",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0003-front.jpg"
+      ]
+    },
+    {
+      "title": "Zucchini Bread",
+      "slug": "zucchini-bread",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0004-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0004-back.jpg"
+      ]
+    },
+    {
+      "title": "Bisquick Dumplings",
+      "slug": "bisquick-dumplings",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0005-front.jpg"
+      ]
+    },
+    {
+      "title": "Caramel Roll Topping",
+      "slug": "caramel-roll-topping",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0006-front.jpg"
+      ]
+    },
+    {
+      "title": "Buns Cinnamon Rolls",
+      "slug": "buns-cinnamon-rolls",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0007-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0007-back.jpg"
+      ]
+    },
+    {
+      "title": "German Coffee Kuchen",
+      "slug": "german-coffee-kuchen",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0008-front.jpg"
+      ]
+    },
+    {
+      "title": "Kuchen",
+      "slug": "kuchen",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0009-front.jpg"
+      ]
+    },
+    {
+      "title": "2 Hr Bread",
+      "slug": "2-hr-bread",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0010-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0010-back.jpg"
+      ]
+    },
+    {
+      "title": "Sour Cream Twists",
+      "slug": "sour-cream-twists",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0011-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0011-back.jpg"
+      ]
+    },
+    {
+      "title": "Pumpkin Nut Muffins",
+      "slug": "pumpkin-nut-muffins",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0012-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0012-back.jpg"
+      ]
+    },
+    {
+      "title": "Banana-Chocolate Chip Muffins",
+      "slug": "banana-chocolate-chip-muffins",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0013-front.jpg"
+      ]
+    },
+    {
+      "title": "KFC Buttermilk Biscuits",
+      "slug": "kfc-buttermilk-biscuits",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0014-front.jpg"
+      ]
+    },
+    {
+      "title": "Scallion & Cheddar Popovers",
+      "slug": "scallion-cheddar-popovers",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0015-front.jpg"
+      ]
+    },
+    {
+      "title": "Cinnamon Rolls",
+      "slug": "cinnamon-rolls",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0016-front.jpg"
+      ]
+    },
+    {
+      "title": "Cinnamon Streusel Bundt",
+      "slug": "cinnamon-streusel-bundt",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0017-front.jpg"
+      ]
+    },
+    {
+      "title": "S'more Jumbo Muffins",
+      "slug": "s-more-jumbo-muffins",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0018-front.jpg"
+      ]
+    },
+    {
+      "title": "Seasoned Pull-Apart Rolls",
+      "slug": "seasoned-pull-apart-rolls",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0019-front.jpg"
+      ]
+    },
+    {
+      "title": "Pull Apart Buns",
+      "slug": "pull-apart-buns",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0020-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0020-back.jpg"
+      ]
+    },
+    {
+      "title": "Quick Cinnamon Rolls",
+      "slug": "quick-cinnamon-rolls",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0021-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0021-back.jpg"
+      ]
+    },
+    {
+      "title": "Pineapple Zucchini Bread",
+      "slug": "pineapple-zucchini-bread",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0022-front.jpg"
+      ]
+    },
+    {
+      "title": "Cheese-Garlic Biscuits",
+      "slug": "cheese-garlic-biscuits",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0023-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0023-back.jpg"
+      ]
+    },
+    {
+      "title": "Easy-Does-It Donuts",
+      "slug": "easy-does-it-donuts",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0024-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0024-back.jpg"
+      ]
+    },
+    {
+      "title": "Zucchini Bread",
+      "slug": "zucchini-bread-2",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0025-front.jpg"
+      ]
+    },
+    {
+      "title": "Zucchini Bread",
+      "slug": "zucchini-bread-3",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0026-front.jpg"
+      ]
+    },
+    {
+      "title": "Cinnamon Rolls",
+      "slug": "cinnamon-rolls-2",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0027-front.jpg",
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0027-back.jpg"
+      ]
+    },
+    {
+      "title": "Whipped Cream",
+      "slug": "whipped-cream",
+      "files": [
+        "/Users/aaron/Library/Mobile Documents/com~apple~CloudDocs/vicki-recipe-raw-scans/2026.5.10-mothers-day-bread-batch/ingest-jpg/recipe-0028-front.jpg"
+      ]
+    }
+  ],
+  "skipped": [],
+  "completed_at": "2026-05-10T20:53:51.585Z"
+}
