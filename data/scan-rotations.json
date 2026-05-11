@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "rotations": [
+    {
+      "slug": "2-hr-bread",
+      "degrees": 270,
+      "files": [
+        "front-original.jpg",
+        "front-preview.jpg"
+      ],
+      "reason": "Front scan is sideways on the recipe page; back is mostly blank and already usable."
+    },
+    {
+      "slug": "appetizers",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "bacon-egg-souffle",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "banana-bread",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "barbecued-hamburgers-2",
+      "degrees": 180,
+      "reason": "Preview showed the card upside down on the recipe page."
+    },
+    {
+      "slug": "bisquick-dumplings",
+      "degrees": 270,
+      "reason": "Preview showed the clipping rotated sideways on the recipe page."
+    },
+    {
+      "slug": "breakfast-sausage-rolls",
+      "degrees": 270,
+      "reason": "Preview showed the clipping rotated sideways on the recipe page."
+    },
+    {
+      "slug": "brazilian-limeade",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "buns-cinnamon-rolls",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "caramel-for-rolls",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "caramel-roll-topping",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "cheese-ball",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "cheeseball",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "chicken-enchilada-cups",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "chili-con-carne-dip",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "crab-rangoon-baked",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "deviled-eggs",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "garden-vegetable-dip",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "german-coffee-kuchen",
+      "degrees": 270,
+      "reason": "Preview showed the scan rotated sideways on the recipe page."
+    },
+    {
+      "slug": "great-dinner-rolls",
+      "degrees": 270,
+      "reason": "Preview showed the scan rotated sideways on the recipe page."
+    },
+    {
+      "slug": "hamburger-pie",
+      "degrees": 180,
+      "reason": "Preview showed the card upside down on the recipe page."
+    },
+    {
+      "slug": "ham-broccoli-casserole",
+      "degrees": 180,
+      "files": [
+        "back-original.jpg",
+        "back-preview.jpg"
+      ],
+      "reason": "Back scan was upside down in the browser review; front is already usable."
+    },
+    {
+      "slug": "here-s-what-s-cookin-taco-dip",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "here-s-what-s-cookin-taco-dish-dip",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "kellogg-s-crispix-mix",
+      "degrees": 270,
+      "reason": "Preview showed the clipping rotated sideways on the recipe page."
+    },
+    {
+      "slug": "kuchen",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "lasagna",
+      "degrees": 180,
+      "reason": "Preview showed the card upside down on the recipe page."
+    },
+    {
+      "slug": "nachos",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "parmesan-almond-dip",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "party-cheese-ball",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "pasta-primavera-2",
+      "degrees": 180,
+      "reason": "Preview showed the scan upside down on the recipe page."
+    },
+    {
+      "slug": "penne-with-vodka-sauce-and-cream-pasta",
+      "degrees": 180,
+      "reason": "Preview showed the clipping upside down on the recipe page."
+    },
+    {
+      "slug": "recipe-for-spicy-mexican-party-dip",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "sausage-hashbrown-bake",
+      "degrees": 270,
+      "reason": "Preview showed the clipping rotated sideways on the recipe page."
+    },
+    {
+      "slug": "sausage-souffle",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "season-s-best-shrimp-dip",
+      "degrees": 270,
+      "reason": "Preview showed the clipping rotated sideways on the recipe page."
+    },
+    {
+      "slug": "skillet-macaroni-beef",
+      "degrees": 180,
+      "files": [
+        "front-original.jpg",
+        "front-preview.jpg"
+      ],
+      "reason": "Front scan needed one additional half-turn after the first orientation pass; back is already usable."
+    },
+    {
+      "slug": "southwestern-style-bean-dip",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "springtime-spinach-dip",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "taco-dip",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "tex-mex-dip",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "the-best-cowboy-caviar",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "the-original-chex-party-mix",
+      "degrees": 270,
+      "reason": "Preview showed the clipping rotated sideways on the recipe page."
+    },
+    {
+      "slug": "toasted-almond-party-spread",
+      "degrees": 270,
+      "reason": "Preview showed the clipping rotated sideways on the recipe page."
+    },
+    {
+      "slug": "traditional-chex-party-mix",
+      "degrees": 270,
+      "reason": "Preview showed the clipping rotated sideways on the recipe page."
+    },
+    {
+      "slug": "your-basic-pizza",
+      "degrees": 90,
+      "reason": "Preview showed the scan rotated sideways on the recipe page."
+    },
+    {
+      "slug": "zucchini-bread",
+      "degrees": 270,
+      "reason": "Preview showed the card rotated sideways on the recipe page."
+    },
+    {
+      "slug": "zucchini-casserole",
+      "degrees": 180,
+      "reason": "Preview showed the card upside down on the recipe page."
+    }
+  ]
+}

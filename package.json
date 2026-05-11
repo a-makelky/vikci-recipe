@@ -13,6 +13,7 @@
     "check": "astro check",
     "prepare-scans": "tsx scripts/prepare-scan-batch.ts",
     "publish-scan-only": "tsx scripts/publish-scan-only.ts",
+    "rotate-scans": "tsx scripts/rotate-published-scans.ts",
     "recipes": "tsx scripts/recipes.ts",
     "test": "tsx --test tests/**/*.test.ts"
   },
