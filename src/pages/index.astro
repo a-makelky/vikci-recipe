@@ -9,11 +9,11 @@ const recipes = (await getCollection("recipes", ({ data }) => publicStatuses.has
 );
 const transcribedCount = recipes.filter((entry) => entry.data.review_status === "approved").length;
 const scanOnlyCount = recipes.filter((entry) => entry.data.review_status === "needs_transcription").length;
-const balloonImage = "/images/vicky-vibe-hot-air-balloons.jpg";
+const balloonImage = "/images/vicki-hot-air-balloons.jpg";
 ---
 
 <BaseLayout
-  title="Vicky Vibe Codes"
+  title="Welcome to Vicki's Website"
   description="Vicki Makelky's family recipe cards in a colorful searchable archive."
   bodyClass="home-page"
 >
@@ -25,7 +25,7 @@ const balloonImage = "/images/vicky-vibe-hot-air-balloons.jpg";
 
       <div class="home-hero__copy">
         <p class="eyebrow">Vicki Makelky's family archive</p>
-        <h1 id="home-title">Vicky Vibe Codes</h1>
+        <h1 id="home-title">Welcome to Vicki's Website</h1>
         <p class="home-hero__lede">
           A bright, easy-to-read recipe archive with the original cards front and center.
         </p>

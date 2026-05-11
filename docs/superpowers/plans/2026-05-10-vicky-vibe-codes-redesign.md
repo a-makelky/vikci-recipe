@@ -1,8 +1,8 @@
-# Vicky Vibe Codes Redesign Implementation Plan
+# Vicki Website Redesign Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Apply the approved Purple Balloon Archive direction to the experimental branch without touching `main`.
+**Goal:** Apply the approved Purple Balloon Archive direction to Vicki's family recipe website.
 
 **Architecture:** Keep Astro content and recipe data unchanged. Centralize the visual system in `src/styles/global.css` with CSS custom properties, use a local hot-air-balloon photograph in `public/images`, and adjust page markup only where needed for the new hierarchy.
 
@@ -16,7 +16,7 @@
 - Modify: `package.json`
 - Modify: `package-lock.json`
 - Modify: `src/styles/global.css`
-- Create: `public/images/vicky-vibe-hot-air-balloons.jpg`
+- Create: `public/images/vicki-hot-air-balloons.jpg`
 
 - [x] Add Atkinson Hyperlegible as the body font.
 - [x] Download the approved hot-air-balloon photograph as a local static asset.
@@ -32,7 +32,7 @@
 - Modify: `src/components/RecipeExplorer.astro`
 - Modify: `src/components/RecipeCard.astro`
 
-- [x] Rename the experimental interface to `Vicky Vibe Codes`.
+- [x] Rename the public interface to Vicki's Website.
 - [x] Use the balloon photo as the main visual signal on the home and recipe archive pages.
 - [x] Keep search and browsing actions near the top on mobile.
 - [x] Preserve existing recipe data, routes, search, filters, and scan links.

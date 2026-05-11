@@ -13,15 +13,15 @@ const recipes = (await getCollection("recipes", ({ data }) => publicStatuses.has
   }));
 const transcribedCount = recipes.filter(({ recipe }) => recipe.review_status === "approved").length;
 const scanOnlyCount = recipes.filter(({ recipe }) => recipe.review_status === "needs_transcription").length;
-const balloonImage = "/images/vicky-vibe-hot-air-balloons.jpg";
+const balloonImage = "/images/vicki-hot-air-balloons.jpg";
 ---
 
 <BaseLayout
-  title="Recipes | Vicky Vibe Codes"
+  title="Recipes | Vicki's Website"
   description="Search and browse Vicki Makelky's colorful family recipe archive."
 >
   <main>
-    <a class="back-link" href="/">Vicky Vibe Codes</a>
+    <a class="back-link" href="/">Vicki's Website</a>
 
     <section class="hero">
       <div class="theme-photo hero__photo">

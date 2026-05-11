@@ -17,7 +17,7 @@ const { Content } = await recipe.render();
 const previewAssets = recipe.data.scan_assets.filter((asset) => asset.role === "preview");
 const originalAssets = recipe.data.scan_assets.filter((asset) => asset.role === "original");
 const needsTranscription = recipe.data.review_status === "needs_transcription";
-const pageTitle = `${recipe.data.title} | Vicky Vibe Codes`;
+const pageTitle = `${recipe.data.title} | Vicki's Website`;
 const description = recipe.data.summary || `Digitized family recipe for ${recipe.data.title}.`;
 ---
 
