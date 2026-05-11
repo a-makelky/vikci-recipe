@@ -20,6 +20,9 @@
   --color-pink: #e84593;
   --color-focus: #2b68ff;
   --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --background-photo: url("/images/vicky-vibe-hot-air-balloons.jpg");
+  --background-photo-opacity: 0.1;
+  --background-photo-position: center top;
   --shadow-raised: 0 18px 48px rgba(58, 35, 100, 0.16);
   --shadow-hover: 0 22px 58px rgba(58, 35, 100, 0.22);
   --border-strong: 2px solid var(--color-border);
@@ -44,9 +47,24 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   min-height: 100vh;
+  background: var(--color-page);
   overflow-x: clip;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--background-photo);
+  background-position: var(--background-photo-position);
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: "";
+  opacity: var(--background-photo-opacity);
 }
 
 img {
@@ -74,6 +92,8 @@ a:focus-visible {
 }
 
 .site-shell {
+  position: relative;
+  z-index: 1;
   padding: 18px 16px 52px;
 }
 
