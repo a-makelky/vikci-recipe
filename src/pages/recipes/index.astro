@@ -13,22 +13,32 @@ const recipes = (await getCollection("recipes", ({ data }) => publicStatuses.has
   }));
 const transcribedCount = recipes.filter(({ recipe }) => recipe.review_status === "approved").length;
 const scanOnlyCount = recipes.filter(({ recipe }) => recipe.review_status === "needs_transcription").length;
+const balloonImage = "/images/vicky-vibe-hot-air-balloons.jpg";
 ---
 
 <BaseLayout
-  title="Recipes | Vicki Makelky"
-  description="Search and browse Vicki Makelky's digitized family recipe cards."
+  title="Recipes | Vicky Vibe Codes"
+  description="Search and browse Vicki Makelky's colorful family recipe archive."
 >
   <main>
-    <a class="back-link" href="/">Vicki Makelky</a>
+    <a class="back-link" href="/">Vicky Vibe Codes</a>
 
     <section class="hero">
+      <div class="theme-photo hero__photo">
+        <img src={balloonImage} alt="Colorful hot air balloons photographed close together" loading="eager" />
+      </div>
+
       <div class="hero__content">
-        <p class="eyebrow">Vicki's Recipe Archive</p>
-        <h1>Original recipe cards, preserved first and transcribed as they clear review.</h1>
+        <p class="eyebrow">Recipe archive</p>
+        <h1>Find the family recipe.</h1>
         <p class="hero__lede">
-          Every card can be browsed from its original scan. Clean searchable text is added as each recipe clears review.
+          Browse the original cards now. Searchable text is added as recipes clear review.
         </p>
+        <div class="hero__actions hero__quick-links">
+          <a class="button button--ghost" href="#recipe-search">Search</a>
+          <a class="button button--primary" href="#recipe-grid">Browse cards</a>
+          <a class="button button--teal" href="/">Home</a>
+        </div>
         <div class="hero__stats">
           <div>
             <strong>{recipes.length}</strong>
@@ -43,14 +53,6 @@ const scanOnlyCount = recipes.filter(({ recipe }) => recipe.review_status === "n
             <span>scan-first entries</span>
           </div>
         </div>
-      </div>
-      <div class="hero__panel">
-        <p>Archive priorities</p>
-        <ul>
-          <li>Keep the original wording from the card whenever possible.</li>
-          <li>Make scans visible before waiting on perfect OCR.</li>
-          <li>Store structured metadata for filters and future migrations.</li>
-        </ul>
       </div>
     </section>
 

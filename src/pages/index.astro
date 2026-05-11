@@ -9,33 +9,29 @@ const recipes = (await getCollection("recipes", ({ data }) => publicStatuses.has
 );
 const transcribedCount = recipes.filter((entry) => entry.data.review_status === "approved").length;
 const scanOnlyCount = recipes.filter((entry) => entry.data.review_status === "needs_transcription").length;
-
-const featuredSlugs = ["brazilian-limeade", "wendy-s-frosty", "toasted-almond-party-spread"];
-const featuredRecipes = featuredSlugs
-  .map((slug) => recipes.find((entry) => entry.slug === slug))
-  .filter((entry) => entry !== undefined)
-  .map((entry) => ({
-    href: `/recipes/${entry.slug}`,
-    title: entry.data.title,
-    preview: entry.data.scan_assets.find((asset) => asset.role === "preview" && asset.type === "image")?.path
-  }));
+const balloonImage = "/images/vicky-vibe-hot-air-balloons.jpg";
 ---
 
 <BaseLayout
-  title="Vicki Makelky"
-  description="Vicki Makelky's family recipe cards, preserved as original scans and searchable recipes."
+  title="Vicky Vibe Codes"
+  description="Vicki Makelky's family recipe cards in a colorful searchable archive."
   bodyClass="home-page"
 >
   <main class="home-main">
     <section class="home-hero" aria-labelledby="home-title">
+      <div class="theme-photo home-hero__photo">
+        <img src={balloonImage} alt="Colorful hot air balloons floating together in the sky" loading="eager" />
+      </div>
+
       <div class="home-hero__copy">
-        <p class="eyebrow">Vicki Makelky</p>
-        <h1 id="home-title">Family recipes, preserved from the original cards.</h1>
+        <p class="eyebrow">Vicki Makelky's family archive</p>
+        <h1 id="home-title">Vicky Vibe Codes</h1>
         <p class="home-hero__lede">
-          Browse the cards as Vicki kept them. Clean transcriptions are added as each recipe clears review.
+          A bright, easy-to-read recipe archive with the original cards front and center.
         </p>
         <div class="home-hero__actions">
-          <a class="button button--primary" href="/recipes">Browse recipes</a>
+          <a class="button button--ghost" href="/recipes">Browse all recipes</a>
+          <a class="button button--teal" href="/recipes#recipe-search">Search archive</a>
         </div>
         <div class="hero__stats" aria-label="Recipe archive status">
           <div>
@@ -51,20 +47,6 @@ const featuredRecipes = featuredSlugs
             <span>scan-first entries</span>
           </div>
         </div>
-      </div>
-
-      <div class="home-hero__scans" aria-label="Featured recipe cards">
-        {
-          featuredRecipes.map((recipe, index) => (
-            <a class={`home-scan home-scan--${index + 1}`} href={recipe.href}>
-              {recipe.preview ? (
-                <img src={recipe.preview} alt={`Recipe card preview for ${recipe.title}`} loading={index === 0 ? "eager" : "lazy"} />
-              ) : (
-                <span>{recipe.title}</span>
-              )}
-            </a>
-          ))
-        }
       </div>
     </section>
   </main>

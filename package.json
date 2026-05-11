@@ -17,6 +17,7 @@
     "test": "tsx --test tests/**/*.test.ts"
   },
   "dependencies": {
+    "@fontsource/atkinson-hyperlegible": "^5.2.8",
     "@fontsource/bricolage-grotesque": "^5.2.6",
     "@fontsource/source-serif-4": "^5.2.6",
     "astro": "^5.7.0",

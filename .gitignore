@@ -5,6 +5,7 @@ dist
 .netlify
 .env
 .env.local
+.superpowers/
 npm-debug.log*
 data/staging/artifacts/*.json
 data/staging/artifacts/*.md
